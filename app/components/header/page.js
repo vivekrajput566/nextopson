@@ -72,13 +72,13 @@ function Header() {
 
     <div className="menu-logo-body flex gap-10  items-center">
 
-    <div className="header-menu-body " onClick={openMenu}>
+    <div className="header-menu-body text-white " onClick={openMenu}>
     
     <FiAlignLeft size={30}/>
 
     </div>
 
-    <div className="company-name-logo-body text-2xl font-semibold whitespace-nowrap dark:text-white">
+    <div className="company-name-logo-body text-2xl font-semibold whitespace-nowrap text-white">
 
             NextProperty
 
@@ -88,7 +88,7 @@ function Header() {
 
     <div className="header-list-body flex">
 
-    <ul className="flex space-x-8 text-md font-medium">
+    <ul className="flex space-x-8 text-md font-medium text-white">
         <li>
           <a href="#for-tenants">For Tenants</a>
         </li>
@@ -114,11 +114,11 @@ function Header() {
 </button>
 
     </div>
-    <div className="user-login-body flex items-center justify-center space-x-2">
+    <div className="user-login-body text-white flex items-center justify-center space-x-2">
        <div>
        <FaRegUser />
      </div>
-    <div>
+    <div >
 
     Login/Signup
     </div>
