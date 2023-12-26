@@ -30,7 +30,7 @@ export default function RootLayout({ children}) {
 
         </div>
 
-        <div className='no-scrollbar dashboard-content w-full flex justify-center overflow-y-scroll  p-10 pb-0'>
+        <div className='no-scrollbar dashboard-content w-full flex justify-center overflow-y-scroll  p-10 pb-10'>
          {children}
 
         </div>
