@@ -17,7 +17,7 @@ function Sidebar() {
         <div className='sidebar-content flex-col  w-full '>
 
 
-            <div className="company-name-logo-body flex justify-start p-4 text-4xl font-semibold whitespace-nowrap dark:text-white">
+            <div className="company-name-logo-body flex justify-start p-4 text-4xl font-semibold whitespace-nowrap text-white">
 
             NextOpson
 
@@ -37,7 +37,7 @@ function Sidebar() {
 
                 </div>
 
-                <div className='user-name-body text-xl capitalize'>
+                <div className='user-name-body text-xl text-white capitalize'>
 
                         vivek rajput
 
