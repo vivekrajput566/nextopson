@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 
 import Sidebar from './sidebar'
+import DashboardHeader from './dashboard-header/page'
 
 
 
@@ -30,7 +31,9 @@ export default function RootLayout({ children}) {
 
         </div>
 
-        <div className='no-scrollbar dashboard-content w-full flex justify-center overflow-y-scroll  p-10 pb-10'>
+        <div className='no-scrollbar dashboard-content w-full flex-col items-center justify-center overflow-y-scroll  p-10 pl-0 pr-0 pt-0 pb-10'>
+        <div className='w-full mb-10'><DashboardHeader />
+        </div>
          {children}
 
         </div>

@@ -1,12 +1,45 @@
-import React from "react";
-import { AiOutlineTwitter } from "react-icons/ai";
-import { BiLogoFacebook } from "react-icons/bi";
+'use client'
+import React, { useState } from "react";
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation'
 
 function LoginPage() {
+
+  const [showForm,setShowForm]=useState({mobileNumber:'7840034924',password:'1234'});
+  console.log(showForm)  
+  const router = useRouter()
+
+  async function handleFormData(e){
+
+    e.preventDefault();
+
+
+    console.log("you are here login page..")
+    
+      try{                       
+              
+      const result = await signIn('credentials', {mobileNumber:showForm.mobileNumber,password:showForm.password,callbackUrl: '/',redirect:false});
+      console.log(result)
+      if(result.error){
+        console.log(result.error)
+        console.log("wrong details...")
+        return false;
+
+      }
+      }
+      catch(error){
+        console.log("blablabla");
+      }
+     // router.replace('/');
+     
+
+    }
+
+
   return (
    <>
    
-   return (
+    
     <section className="mt-10 bg-white pt-10 pb-10 flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center  mx-5 md:mx-0 md:my-10">
       <div className="md:w-1/3 max-w-sm">
         <img
@@ -16,14 +49,14 @@ function LoginPage() {
       </div>
       <div className="md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20">
         <div className="text-center md:text-left">
-          <label className="mr-1 flex justify-center mb-4 text-600 text-black text-xl">Login/Register</label>
+          <label className="mr-1 flex justify-center mb-4 text-600 text-black text-xl">LOGIN/REGISTER</label>
           
         </div>
         
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
           type="text"
-          placeholder="Email Address"
+          placeholder="Mobile number"
         />
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
@@ -43,7 +76,7 @@ function LoginPage() {
           </a>
         </div>
         <div className="text-center md:text-left">
-          <button
+          <button onClick={handleFormData}
             className="mt-4 bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
           >

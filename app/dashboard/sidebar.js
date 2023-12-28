@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { CiUser } from "react-icons/ci";
 import { IoCreateOutline } from "react-icons/io5";
 import Image from 'next/image';
+import { FiAlignLeft } from "react-icons/fi";
 
 function Sidebar() {
     
@@ -17,13 +18,13 @@ function Sidebar() {
         <div className='sidebar-content flex-col  w-full '>
 
 
-            <div className="company-name-logo-body flex justify-start p-4 text-4xl font-semibold whitespace-nowrap text-white">
+            <div className="company-name-logo-body flex items-center gap-4 justify-start p-4 text-4xl font-semibold whitespace-nowrap text-white">
 
-            NextOpson
+            <FiAlignLeft size={30}/>  NextOpson
 
             </div>
 
-            <div className='user-details p-4 flex gap-4 w-full items-center border-b-2 border-slate-500'>
+            <div className='user-details p-4 flex gap-4 w-full items-center border-b-2 border-slate-500 '>
 
                 <div className='user-icon-body'>
                 <Image
@@ -46,12 +47,12 @@ function Sidebar() {
                  
             </div>
 
-            <div className='menu-data text-white flex-col whitespace-nowrap p-4 '>
+            <div className='menu-data text-white flex-col whitespace-nowrap  '>
 
                 
 
             <Link href='/dashboard/home' >
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                      <Image
@@ -73,7 +74,7 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/new-listing-form' >
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                     <Image
@@ -94,7 +95,7 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/your-listings' >
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                     <Image
@@ -117,7 +118,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/payments' >
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                     <Image
@@ -139,7 +140,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/notification' >
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                     <Image
@@ -162,7 +163,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/support' >                
-                <div className='home-body flex items-center gap-4 justify-start  mt-6'>
+                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon'>
                             
                     <Image

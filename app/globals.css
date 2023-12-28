@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -9,5 +10,13 @@
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.box-shadow-class {
+  box-shadow: 0px 5px 90px -50px rgb(125, 125, 223);
+}
+body{
+
+  font-family: 'Poppins', sans-serif;
 }
 
