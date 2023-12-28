@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const userdata_schema_model = new mongoose.Schema({
 
-    mobileNo:{type:Number,required:true},
+    mobileNo:{type:String,required:true},
     password:{type:String,required:true},
     username:{type:String, required:true},
     email:{type:String, required:false},

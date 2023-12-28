@@ -15,16 +15,18 @@ import Login from "@/app/backend/login-signup/login";
           async authorize(credentials, req) {
             // Add logic here to look up the user from the credentials supplied
             try{
-                console.log("heheheheh");
-            await Login(credentials.mobileno,credentials.password);
-            //const user = {...credentials }
+               
+                    
+            const isValidLogin=await Login(credentials.mobileno,credentials.password);
+           // console.log(isValidLogin)
+            const user = {mobileno:credentials.mobileno};
            
             
-            return null
+            return user
             }
             catch(error){
-                console.log(error)
-                throw new Error("not a valid user")
+             //   console.log("blblblbllblblb"+error)
+                throw new Error("Invalid mobile no or password")
             }
           
           }
