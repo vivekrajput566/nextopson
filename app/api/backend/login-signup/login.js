@@ -7,18 +7,7 @@ import bcrypt from 'bcryptjs';
 export default async function Login(mobileNumber, password){
 
     try{
-        // console.log("hellooooo")
-        // const userr = new Userdata({
-        //     mobileNo: '7840034924',
-        //     password: '1237845124',
-        //     username: 'vivek',
-        //     email: 'vivek@gmail.com'
-        // });
-        
-        // // Insert the data
-        // userr.save()
-//         const salt = await bcrypt.genSalt(10);
-//   const hashedPassword = await bcrypt.hash(password, salt);
+      
 
     const connected= await mongoose.connect(connectionString);
     //console.log(connected);
@@ -42,5 +31,9 @@ export default async function Login(mobileNumber, password){
       throw new Error("Invalid Mobile No. or Password")
      // console.log("DB NOT CONNECTED"); // Re-throw to allow handling at a higher level
     }
+    finally {
+        // Ensure database connection is closed even if errors occur
+        await mongoose.disconnect();
+      } 
 
 }

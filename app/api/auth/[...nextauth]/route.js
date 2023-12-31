@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import Login from "@/app/backend/login-signup/login";
+import Login from "../../backend/login-signup/login";
 
 
 
@@ -20,6 +20,7 @@ import Login from "@/app/backend/login-signup/login";
             const isValidLogin=await Login(credentials.mobileno,credentials.password);
            // console.log(isValidLogin)
             const user = {mobileno:credentials.mobileno};
+            console.log(user)
            
             
             return user
