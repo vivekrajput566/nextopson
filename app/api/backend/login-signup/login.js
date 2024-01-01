@@ -29,10 +29,10 @@ export default async function Login(mobileNumber, password){
     } catch (error) {
      // console.error(error);
       throw new Error("Invalid Mobile No. or Password")
-     // console.log("DB NOT CONNECTED"); // Re-throw to allow handling at a higher level
+    
     }
     finally {
-        // Ensure database connection is closed even if errors occur
+       
         await mongoose.disconnect();
       } 
 

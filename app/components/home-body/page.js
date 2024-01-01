@@ -268,7 +268,7 @@ function HomeBody() {
             <div className='block1  '>
             <a
       href="#" style={{borderRadius:'80px 10px 80px 10px'}}
-      className="flex flex-col shadow-xl p-10 items-center bg-white border border-gray-200  shadow md:flex-row md:max-w-xl hover:bg-gray-100 border-gray-700 bg-green-600 hover:bg-gray-700"
+      className="flex flex-col shadow-xl p-10 items-center bg-white border border-gray-200  shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-green-600 dark:hover:bg-gray-700"
     >
       <img
         className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
@@ -293,7 +293,7 @@ function HomeBody() {
             <div className='block2  '>
             <a
       href="#" style={{borderRadius:'10px 80px 10px 80px'}}
-      className="flex flex-col  p-10 items-center bg-white border border-gray-200  shadow md:flex-row md:max-w-xl hover:bg-gray-100 border-gray-700 bg-purple-800 hover:bg-gray-700"
+      className="flex flex-col  p-10 items-center bg-white border border-gray-200  shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-purple-800 dark:hover:bg-gray-700"
     >
       <img
         className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"

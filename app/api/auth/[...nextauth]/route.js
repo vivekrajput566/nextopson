@@ -8,12 +8,12 @@ import Login from "../../backend/login-signup/login";
 
     providers: [ 
         CredentialsProvider({
-          // The name to display on the sign in form (e.g. "Sign in with...")
+          
           name: "Credentials",
           
           credentials: {},
           async authorize(credentials, req) {
-            // Add logic here to look up the user from the credentials supplied
+           
             try{
                
                     
@@ -33,11 +33,12 @@ import Login from "../../backend/login-signup/login";
           }
         })
       ],
-   //   secret: process.env.NEXTAUTH_SECRET,
+      secret: process.env.NEXTAUTH_SECRET,
 
    session:{
  
     strategy:"jwt",
+    maxAge: 60*60*24*30*12
 
    },
 

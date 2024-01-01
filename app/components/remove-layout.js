@@ -11,7 +11,7 @@ export function RemoveLayout() {
 const parts = currentPage.split('/');
 //console.log(currentPage)
 //const parentPath = parts.slice(0, -1).join('/');
-const pathsArray = ["dashboard"];
+const pathsArray = ["dashboard","login"];
 console.log(parts)
 
 if(pathsArray.includes(parts[1])) {
