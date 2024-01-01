@@ -18,7 +18,7 @@ function LoginPage() {
   const [loginSpinnerStatus,setLoginSpinnerStatus]=useState(false);
   const [registerSpinnerStatus,setRegisterSpinnerStatus]=useState(false);
   const [otpSpinnerStatus,setOtpSpinnerStatus]=useState(false);
-  const [otpForgotPasswordStatus,setForgotPasswordSpinnerStatus]=useState(false);
+  const [forgotPasswordStatus,setForgotPasswordSpinnerStatus]=useState(false);
 
   const [loginInputs,setLoginInputs]=useState({})
   const [registerInputs,setRegisterInputs]=useState({})
@@ -361,6 +361,180 @@ function LoginPage() {
        
   
   }
+
+
+  async function handleForgotPasswordOtpFormData(e){
+
+    e.preventDefault();
+    setForgotPasswordSpinnerStatus(true);
+    setForgotPasswordError("");
+
+    const otpValue= forgotPasswordInputs.otp;
+    if(otpValue?.length!=4 || isNaN(otpValue)){
+      setForgotPasswordSpinnerStatus(false);
+      setForgotPasswordError("Enter Valid OTP Number");
+      return false;
+    }
+   
+    console.log("you are here forgot password otp no input page..")
+    
+    try{                       
+              
+       
+      const res =  await fetch('/api/backend/login-signup/forgotPassword/otpValidate', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json;charset=utf-8' },
+         body: JSON.stringify(forgotPasswordInputs),
+       })
+         .then((response) => {
+          
+           if (!response.ok) {
+             setForgotPasswordSpinnerStatus(false)
+             
+             throw new Error('Network response was not ok');
+
+           }
+           return response.json();
+         })
+         .then((responseData) => {
+           if(responseData.success==true){
+
+             console.log(responseData)
+             
+             setForgotPasswordError("")
+             setViewForm("forgotPassword-password")
+             setForgotPasswordSpinnerStatus(false)
+             return;
+       
+           }
+           if(responseData.success==false){
+
+             console.log(registerInputs)
+             console.log(responseData)
+             console.log("not valid data")
+             setForgotPasswordError("Wrong OTP")
+             setForgotPasswordSpinnerStatus(false)
+             return; 
+       
+           }
+           
+          
+           
+           // Handle successful response
+         })
+         .catch((error) => {
+           setForgotPasswordSpinnerStatus(false);
+           setForgotPasswordError("Network Error")
+          //console.log(error)
+           // Handle errors
+         });
+     
+   
+   }
+   catch(error){
+      console.log(error)
+   }
+     
+
+}
+    
+
+async function handleForgotPasswordPasswordFormData(e){
+
+    e.preventDefault();
+    setForgotPasswordSpinnerStatus(true);
+    setForgotPasswordError("");
+
+    const passwordValue= forgotPasswordInputs.password;
+    if(!passwordValue || passwordValue?.length<=3 ){
+      setForgotPasswordSpinnerStatus(false);
+      setForgotPasswordError("Password Is Too Short");
+      return false;
+    }
+   
+    console.log("you are here forgot password otp no input page..")
+    
+    try{                       
+              
+       
+      const res =  await fetch('/api/backend/login-signup/forgotPassword/newPassword', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json;charset=utf-8' },
+         body: JSON.stringify(forgotPasswordInputs),
+       })
+         .then((response) => {
+          
+           if (!response.ok) {
+             setForgotPasswordSpinnerStatus(false)
+             
+             throw new Error('Network response was not ok');
+
+           }
+           return response.json();
+         })
+         .then(async (responseData) => {
+           if(responseData.success==true){
+
+             
+             try{                       
+              const mobileno=forgotPasswordInputs.mobileno;
+              const password=forgotPasswordInputs.password;
+              console.log(mobileno+" "+password)
+              const result = await signIn('credentials', {mobileno:mobileno,password:password,callbackUrl: '/',redirect:false});
+              
+              console.log(result)
+              if(result.error){
+                setForgotPasswordSpinnerStatus(false)
+                setForgotPasswordError(result.error);
+                return false;
+        
+              }
+              if(result.ok){
+                setForgotPasswordError("")
+                
+                setForgotPasswordSpinnerStatus(true)
+               
+               router.replace('/'); 
+              }
+              }
+              catch(error){
+                console.log("blablabla");
+              }
+             
+             setForgotPasswordError("")
+             
+       
+           }
+           if(responseData.success==false){
+
+             console.log(registerInputs)
+             console.log(responseData)
+             console.log("not valid data")
+             setForgotPasswordError("Wrong OTP")
+             setForgotPasswordSpinnerStatus(false)
+             return; 
+       
+           }
+           
+          
+           
+           // Handle successful response
+         })
+         .catch((error) => {
+           setForgotPasswordSpinnerStatus(false);
+           setForgotPasswordError("Network Error")
+          console.log(error)
+           // Handle errors
+         });
+     
+   
+   }
+   catch(error){
+      console.log(error)
+   }
+     
+
+}
     
 
       
@@ -410,8 +584,20 @@ function LoginPage() {
 
 
       }
+
+      
+      if(viewForm=="login"){
+
+        setForgotPasswordInputs("");
+        setForgotPasswordError("");
+        setForgotPasswordSpinnerStatus(false);
+
+
+      }
       
     },[viewForm])
+
+    
     
 
 
@@ -745,7 +931,7 @@ function LoginPage() {
         
         <div className="text-center md:text-left flex items-center justify-center">
          
-            {otpForgotPasswordStatus?(
+            {forgotPasswordStatus?(
                <button 
                className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
                type="submit"
@@ -815,7 +1001,7 @@ function LoginPage() {
           type="text"
           name="otp"
           value={forgotPasswordInputs.otp || ""}
-          placeholder="Mobile Number"
+          placeholder="OTP"
           onChange={forgotPasswordInputsChange}
           required
         />
@@ -824,7 +1010,7 @@ function LoginPage() {
         
         <div className="text-center md:text-left flex items-center justify-center">
          
-            {otpForgotPasswordStatus?(
+            {forgotPasswordStatus?(
                <button 
                className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
                type="submit"
@@ -840,7 +1026,7 @@ function LoginPage() {
           </button>
           ):
           (
-            <button onClick={handleForgotPasswordFormData}
+            <button onClick={handleForgotPasswordOtpFormData}
             className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
           >
@@ -879,7 +1065,7 @@ function LoginPage() {
         </div>
         <div className="text-center md:text-left">
           
-          <label className="mr-1 flex justify-center text-600 text-gray-400 text-sm">Enter Your Registered Mobile Number</label>
+          <label className="mr-1 flex justify-center text-600 text-gray-400 text-sm">Create Your New Password</label>
           
         </div>
 
@@ -892,9 +1078,9 @@ function LoginPage() {
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
           type="text"
-          name="mobileno"
-          value={forgotPasswordInputs.mobileno || ""}
-          placeholder="Mobile Number"
+          name="password"
+          value={forgotPasswordInputs.password || ""}
+          placeholder="Enter New Password"
           onChange={forgotPasswordInputsChange}
           required
         />
@@ -903,7 +1089,7 @@ function LoginPage() {
         
         <div className="text-center md:text-left flex items-center justify-center">
          
-            {otpForgotPasswordStatus?(
+            {forgotPasswordStatus?(
                <button 
                className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
                type="submit"
@@ -919,7 +1105,7 @@ function LoginPage() {
           </button>
           ):
           (
-            <button onClick={handleForgotPasswordFormData}
+            <button onClick={handleForgotPasswordPasswordFormData}
             className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
           >
