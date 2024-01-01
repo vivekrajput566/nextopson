@@ -10,7 +10,7 @@ import { MdOutlinePassword } from "react-icons/md";
 function LoginPage() {
 
 
-  const [loginError,setLoginError]=useState();
+  const [loginError,setLoginError]=useState<any>();
   const [registerError,setRegisterError]=useState();
   const [otpError,setOtpError]=useState();
   const [forgotPasswordError,setForgotPasswordError]=useState();
@@ -30,7 +30,7 @@ function LoginPage() {
   
   const router = useRouter()
 
-  async function handleLoginFormData(e){
+  async function handleLoginFormData(e:any){
 
     
 
