@@ -3,9 +3,12 @@ import React from 'react'
 import Image from 'next/image'
 import building from "../../images/aprt01.jpg"
 import { IoStarOutline } from "react-icons/io5";
+import Link from 'next/link';
 
 const ProductCard = () => {
   return (
+    <Link href={"/product"}>
+
     <div className='relative'>
         <div className={`absolute top-3 right-3`}><IoStarOutline className={"text-xl text-white font-semibold"}/></div>
          <div className='project-detail-body flex  flex-col  rounded-lg justify-center shadow-md p-1 text-black' >
@@ -40,6 +43,7 @@ const ProductCard = () => {
 
 </div>  
     </div>
+    </Link>
   )
 }
 
