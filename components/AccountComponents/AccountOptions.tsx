@@ -17,6 +17,8 @@ import { IoStarOutline } from "react-icons/io5";
 import { PiTerminalWindow } from "react-icons/pi";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoBookmarkOutline } from "react-icons/io5";
+import { RiEdit2Fill } from "react-icons/ri";
+
 
 const optionStyle = "flex items-center lg:gap-x-3 gap-x-2  lg:text-sm text-xs font-semibold py-5  cursor-pointer border-b border-b-[#EEF0F5]";
 
@@ -28,46 +30,77 @@ const currTab = params.get("tab");
     <div className="sm:block  hidden w-[100%] filter-border  h-full  ">
         {/* <div><h1 className='text-xl font-bold'>My Account</h1></div> */}
       {/* top section  */}
-      <div className={`flex flex-col `}>
-      <div className="flex flex-col gap-2  bg-primary px-3 py-5 ">
+      <div className={`flex flex-col  border border-[#EEF0F5] `}>
+      {/* <div className="flex flex-col gap-2  bg-primary px-3 py-5 ">
         <div className="flex justify-center relative  rounded-full bg-white px-3 py-3">
           <div className="flex  items-center lg:gap-3 gap-1 relative w-full  rounded-full">
         <div className='rounded-full p-1 border border-[#EEEEEE]'>
               <div className="h-[62px] w-[62px] rounded-full  z-10">
-                {/* <Image
+                <Image
                   src={profilePic}
                   alt=""
                   height={1000}
                   width={1000}
                   className="h-[100%] w-[100%] object-fill  rounded-full"
-                /> */}
+                />
               </div>
               </div>
               <div className='' >
                 <h3 className='text-base font-bold text-black'>Hello, Arjun Rawat</h3>
                 <p className='text-[#555555] lg:text-sm text-xs  overflow-wrap break-word' >rajun.rawat@gmail.com</p>
               </div>
-              {/* <div className=''>
-  <h3 className='text-base font-bold text-black'>
-    <span style={{ display: 'block', overflowWrap: 'break-word' }}>
-      Hello, Arjun Rawat
-    </span>
-  </h3>
-  <p className='text-[#555555] lg:text-sm text-xs '>
-    <span style={{ display: 'block', overflowWrap: 'break-word' }}>
-      rajun.rawat@gmail.com
-    </span>
-  </p>
-</div> */}
+             
           </div>
         </div>
        
       
-      </div>
-      <div className=" flex flex-col   border border-[#EEF0F5] px-5">
+      </div> */}
+        <div className="flex flex-col items-center mt-5 mb-7">
+          <div className="border border-[#EEEEEE] rounded-full p-2 mb-2">
+            <div className=" rounded-full h-[110px] w-[110px] border border-primary relative">
+              {/* <Image
+                src={(isClient && userData?.dP) || constant.errImage}
+                alt=""
+                width={1000}
+                height={1000}
+                style={{ aspectRatio: "auto", width: "110px", height: "110px" }}
+                className="rounded-full"
+              /> */}
+              <div className="absolute bottom-0 right-0">
+                <input
+                  placeholder="Destination Image"
+                  type="file"
+                  accept="image/*"
+                  // onChange={async (e) => {
+                  
+                  //   await uploadTask(e.target.files[0]);
+                  // }}
+                  id="Destination-Image"
+                  className="w-full hover:cursor-pointer   outline-none px-[10px] py-[7px] hidden rounded-md "
+                />
+                {/* <label htmlFor='Destination-Image' className='hover:cursor-pointer '>v</label> */}
+                <label
+                  htmlFor="Destination-Image"
+                  className="hover:cursor-pointer h-[30px] w-[30px] rounded-full border border-[#EEEEEE] bg-white flex justify-center items-center"
+                >
+                  <RiEdit2Fill className="text-primary text-xl" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <h5 className="text-secondary font-semibold text-sm mb-1">
+          
+            Arjun Rawat
+          </h5>
+          <h6 className="text-[#555555] font-medium text-sm">
+            {/* {isClient && userData?.email} */}
+            rajun.rawat@gmail.com
+          </h6>
+        </div>
+      <div className=" flex flex-col    px-5">
         {/* option  */}
         <Link href={{ pathname: "/account", query: { tab: "my-profile" } }}   
-        className={`${optionStyle} ${currTab === "my-profile" ? "text-primary" : "text-black"} `}>
+        className={`${optionStyle} border-t border-t-[#EEF0F5] ${currTab === "my-profile" ? "text-primary" : "text-black"} `}>
             <div>
               <RiUser3Line className="flaticon-user text-xl" />
             </div>

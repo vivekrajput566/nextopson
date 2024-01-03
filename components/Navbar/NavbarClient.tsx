@@ -7,6 +7,7 @@ import { IoCallOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import NavCategories from './NavCategories';
 import Link from 'next/link';
+import MobileNav from './MobileNav';
 
 
 const dummyDta=[
@@ -17,13 +18,14 @@ const dummyDta=[
 const NavbarClient = () => {
   return (
     <div className=''>
-        <div className={`px-body flex items-center justify-between `}>
+        <MobileNav/>
+        <div className={`px-body hidden md:flex items-center justify-between `}>
             <Link href={"/"}>
-        <button className={` text-black px-6 py-2.5 rounded-md text-3xl font-semibold`}>NEXTOPSON</button>
+        <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button>
         </Link>
         <div className={`flex items-center`}>
             {dummyDta.map((item:any,idx:number)=>{
-                return  <div key={idx} className='flex items-center  py-3.5  px-8 gap-x-3 border-r border-r-[#BFBFBF]'>
+                return  <div key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
                 <div className={`text-2xl font-normal`}>{item.icon}</div>
                 <div className={`flex flex-col `}>
                     <h2 className='text-sm font-semibold'>{item.heading}</h2>
