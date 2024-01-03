@@ -4,6 +4,7 @@ import React from 'react'
 const AccountPage = async() => {
   return (
     <div>
+     
         <AccountClient/>
     </div>
   )

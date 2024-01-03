@@ -10,22 +10,22 @@ import { MdOutlinePassword } from "react-icons/md";
 function LoginPage() {
 
 
-  const [loginError,setLoginError]=useState<any>();
-  const [registerError,setRegisterError]=useState();
-  const [otpError,setOtpError]=useState();
-  const [forgotPasswordError,setForgotPasswordError]=useState();
-  
-  const [loginSpinnerStatus,setLoginSpinnerStatus]=useState(false);
-  const [registerSpinnerStatus,setRegisterSpinnerStatus]=useState(false);
-  const [otpSpinnerStatus,setOtpSpinnerStatus]=useState(false);
-  const [forgotPasswordStatus,setForgotPasswordSpinnerStatus]=useState(false);
+  const [loginError, setLoginError] = useState<any>();
+  const [registerError, setRegisterError] = useState<any>();
+  const [otpError, setOtpError] = useState<any>();
+  const [forgotPasswordError, setForgotPasswordError] = useState<any>();
 
-  const [loginInputs,setLoginInputs]=useState({})
-  const [registerInputs,setRegisterInputs]=useState({})
-  const [otpInputs,setOtpInputs]=useState({})
-  const [forgotPasswordInputs,setForgotPasswordInputs]=useState({})
+  const [loginSpinnerStatus, setLoginSpinnerStatus] = useState(false);
+  const [registerSpinnerStatus, setRegisterSpinnerStatus] = useState(false);
+  const [otpSpinnerStatus, setOtpSpinnerStatus] = useState(false);
+  const [forgotPasswordStatus, setForgotPasswordSpinnerStatus] = useState(false);
 
-  const [viewForm,setViewForm]=useState("login");
+  const [loginInputs, setLoginInputs] = useState<any>({});
+  const [registerInputs, setRegisterInputs] = useState<any>({});
+  const [otpInputs, setOtpInputs] = useState<any>({});
+  const [forgotPasswordInputs, setForgotPasswordInputs] = useState<any>({});
+
+  const [viewForm, setViewForm] = useState("login");
   
   
   const router = useRouter()
@@ -40,7 +40,7 @@ function LoginPage() {
 
     
     
-    const mobileNumber=loginInputs?.mobileno;
+    const mobileNumber=loginInputs?.mobileno
     const password=loginInputs?.password;
    
 
@@ -66,13 +66,13 @@ function LoginPage() {
       const result = await signIn('credentials', {...loginInputs,callbackUrl: '/',redirect:false});
       
       console.log(result)
-      if(result.error){
+      if(result?.error){
         setLoginSpinnerStatus(false)
         setLoginError(result.error);
         return false;
 
       }
-      if(result.ok){
+      if(result?.ok){
         setLoginSpinnerStatus(true)
         setLoginError("");
         router.replace('/'); 
@@ -86,7 +86,7 @@ function LoginPage() {
 
     }
 
-    async function handleRegisterFormData(e){
+    async function handleRegisterFormData(e:any){
 
       e.preventDefault();
   
@@ -185,7 +185,7 @@ function LoginPage() {
       }
 
 
-    async function handleOtpFormData(e){
+    async function handleOtpFormData(e:any){
 
         e.preventDefault();
         setOtpSpinnerStatus(true);
@@ -233,13 +233,13 @@ function LoginPage() {
                       const result = await signIn('credentials', {mobileno:mobileno,password:password,callbackUrl: '/',redirect:false});
                       
                       console.log(result)
-                      if(result.error){
+                      if(result?.error){
                         setOtpSpinnerStatus(false)
                         setOtpError(result.error);
                         return false;
                 
                       }
-                      if(result.ok){
+                      if(result?.ok){
                         setRegisterError("")
                         
                         setOtpSpinnerStatus(true)
@@ -287,7 +287,7 @@ function LoginPage() {
     
     }
 
-    async function handleForgotPasswordFormData(e){
+    async function handleForgotPasswordFormData(e:any){
 
       e.preventDefault();
       setForgotPasswordSpinnerStatus(true);
@@ -363,7 +363,7 @@ function LoginPage() {
   }
 
 
-  async function handleForgotPasswordOtpFormData(e){
+  async function handleForgotPasswordOtpFormData(e:any){
 
     e.preventDefault();
     setForgotPasswordSpinnerStatus(true);
@@ -439,7 +439,7 @@ function LoginPage() {
 }
     
 
-async function handleForgotPasswordPasswordFormData(e){
+async function handleForgotPasswordPasswordFormData(e:any){
 
     e.preventDefault();
     setForgotPasswordSpinnerStatus(true);
@@ -483,13 +483,13 @@ async function handleForgotPasswordPasswordFormData(e){
               const result = await signIn('credentials', {mobileno:mobileno,password:password,callbackUrl: '/',redirect:false});
               
               console.log(result)
-              if(result.error){
+              if(result?.error){
                 setForgotPasswordSpinnerStatus(false)
                 setForgotPasswordError(result.error);
                 return false;
         
               }
-              if(result.ok){
+              if(result?.ok){
                 setForgotPasswordError("")
                 
                 setForgotPasswordSpinnerStatus(true)
@@ -540,7 +540,7 @@ async function handleForgotPasswordPasswordFormData(e){
       
 
   
-    function loginInputsChange(e){
+    function loginInputsChange(e:any){
 
       const key=e.target.name;
       const value=e.target.value;
@@ -549,7 +549,7 @@ async function handleForgotPasswordPasswordFormData(e){
       
     }
 
-    function registerInputsChange(e){
+    function registerInputsChange(e:any){
 
       const key=e.target.name;
       const value=e.target.value;
@@ -558,7 +558,7 @@ async function handleForgotPasswordPasswordFormData(e){
       
     }
 
-    function otpInputsChange(e){
+    function otpInputsChange(e:any){
 
       const key=e.target.name;
       const value=e.target.value;
@@ -566,7 +566,7 @@ async function handleForgotPasswordPasswordFormData(e){
      
     }
 
-    function forgotPasswordInputsChange(e){
+    function forgotPasswordInputsChange(e:any){
 
       const key=e.target.name;
       const value=e.target.value;
@@ -703,7 +703,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Don&apos;t have an account?{" "}
           <button onClick={()=>setViewForm("register")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
             Register
           </button>
@@ -802,7 +802,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Already a member?{" "}
           <button onClick={()=>setViewForm("login")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
             Login
           </button>
@@ -883,7 +883,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Change Mobile No{" "} 
           <button onClick={()=>setViewForm("register")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
              Click Here
           </button>
@@ -964,7 +964,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Login From Here{" "} 
           <button onClick={()=>setViewForm("login")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
              Login
           </button>
@@ -1043,7 +1043,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Login From Here{" "} 
           <button onClick={()=>setViewForm("login")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
              Login
           </button>
@@ -1122,7 +1122,7 @@ async function handleForgotPasswordPasswordFormData(e){
           Login From Here{" "} 
           <button onClick={()=>setViewForm("login")}
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            
           >
              Login
           </button>
