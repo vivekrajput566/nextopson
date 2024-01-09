@@ -19,11 +19,11 @@ import Login from "../../backend/login-signup/login";
                     
             const isValidLogin=await Login(credentials.mobileno,credentials.password);
            // console.log(isValidLogin)
-            const user = {mobileno:credentials.mobileno};
-            console.log(user)
+            const user = {name:"vivek",lastname:"lastnmaeee",mobileno:credentials.mobileno};
+           // console.log(user)
            
             
-            return user
+            return user;
             }
             catch(error){
              //   console.log("blblblbllblblb"+error)
@@ -33,6 +33,32 @@ import Login from "../../backend/login-signup/login";
           }
         })
       ],
+
+      callbacks: {
+         
+          async jwt({token,user, session}){
+            
+           // console.log("Token is called here",{token, user, session})
+            if(user){ 
+               return {...token,name:user.name,mobileno:user.mobileno};
+            }
+            return token;
+
+          },
+          async session({session,token,user}){
+             
+           // console.log("session is called here",{token})
+            return {...session.user,
+              user:{
+                ...session.user,
+              name:token.name,mobileno:token.mobileno}
+            };
+
+          }
+
+
+      },
+
       secret: process.env.NEXTAUTH_SECRET,
 
    session:{
