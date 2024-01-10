@@ -3,6 +3,8 @@ import { Transition } from "@headlessui/react";
 import Link from "next/link";
 // import { useDispatch } from "react-redux";
 import OutsideClickHandler from "../../utils/OutsideClickHandler";
+import { RxCross1 } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 
 const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
 //   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
     <div
       className={`h-full  w-[100vw] bg-[rgba(0,0,0,0.5)]  fixed top-0 left-0 z-50 `}
     >
+
       <Transition
         show={isSidebarOpen}
         enter="transition-transform ease-in-out duration-200"
@@ -28,6 +31,14 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
             setIsSidebarOpen(false);
           }}
         >
+          <div
+          onClick={() => {
+            document.body.classList.remove("no-scroll");
+            // dispatch(closeSideMenu());
+            setIsSidebarOpen(false);
+          }}
+           className="absolute right-0 top-0"><RxCross2 className="text-white text-3xl"/></div>
+
           <div
             className={`  bg-white overflow-y-auto h-full rounded-br-md  sm:w-[50%] w-[86%] absolute top-0 left-0  z-50  `}
           >

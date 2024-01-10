@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from "react";
+import React, { useRef,FC } from "react";
 
 import ProductCard from '../ProductCard/ProductCard'
 import "slick-carousel/slick/slick.css";
@@ -8,7 +8,12 @@ import Slider from "react-slick";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForward } from "react-icons/io5";
 
-const ProductCarousel = () => {
+interface Props{
+  singlePropertyData:any
+}
+const ProductCarousel:FC<Props> = (singlePropertyData) => {
+  console.log("hii ProductCarousel ",singlePropertyData.singlePropertyData?.ProductDetails);
+
   const slider = useRef<any>(null);
   const settings = {
     dots: false,
@@ -21,8 +26,8 @@ const ProductCarousel = () => {
       {
         breakpoint: 1242,
         settings: {
-          slidesToShow: 4.4,
-          slidesToScroll: 4,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: false,
         },
@@ -94,7 +99,12 @@ const ProductCarousel = () => {
   </div>
 </div>
 <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
-  <div className="px-2">
+  {singlePropertyData&&singlePropertyData?.singlePropertyData?.ProductDetails&&singlePropertyData?.singlePropertyData?.ProductDetails.map((singleProperty:any,idx:number)=>{
+    return  <div className="px-2">
+    <ProductCard singleProperty={singleProperty}/>
+    </div>
+  })}
+  {/* <div className="px-2">
 <ProductCard/>
 </div>
 <div className="px-2">
@@ -111,7 +121,7 @@ const ProductCarousel = () => {
 </div>
 <div className="px-2">
 <ProductCard/>
-</div>
+</div> */}
 </Slider>
 </div>
   )

@@ -8,7 +8,7 @@ const Agents = () => {
   return (
     <div className='real-state-body px-body'>
 
-        <div className='real-state-content flex flex-col gap-10 justify-center  md:py-10 py-5 shadow-2xl rounded-xl '>
+        <div className='real-state-content flex flex-col gap-10 justify-center  md:p-10 p-5 shadow-2xl rounded-xl '>
 
 
             <div className='real-state-text md:text-3xl sm:text-2xl text-xl flex justify-center font-bold text-black ' >

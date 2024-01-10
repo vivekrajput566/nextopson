@@ -5,7 +5,9 @@ import building from "../../images/aprt01.jpg"
 import { IoStarOutline } from "react-icons/io5";
 import Link from 'next/link';
 
-const ProductCard = () => {
+const ProductCard = (singleProperty:any) => {
+  console.log(singleProperty,"from card");
+  
   return (
     <Link href={"/product"}>
 
@@ -35,7 +37,7 @@ const ProductCard = () => {
 </div>
 </div>
 <div className='project-detail-content font-semibold text-md text-light-black '>
-  10-15L
+  {singleProperty?.singleProperty?.price}{""}L
 </div>
 
 </div>
