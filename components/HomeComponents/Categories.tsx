@@ -1,20 +1,124 @@
-"use cliet"
-import React from 'react'
-import CategoryCard from '../CategoryCard/CategoryCard'
+"use client"
+import React, { useRef } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { IoArrowBackSharp } from "react-icons/io5";
+import { IoArrowForward } from "react-icons/io5";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
 const Categories = () => {
+  const slider = useRef<any>(null);
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1242,
+        settings: {
+          slidesToShow: 4.4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1515,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 5,
+          infinite: true,
+          dots: false,
+        },
+      },
+
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2.3,
+          slidesToScroll: 2,
+          initialSlide: 1,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2.4,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
+  };
   return (
-    <div className={`px-body flex flex-col gap-10`}>
-        <h1 className={`text-3xl font-bold`}>Explore Real Estate In Popular Indian Cities</h1>
-       <div className={`grid grid-cols-6 gap-x-4`}>
-       <CategoryCard/>
-       <CategoryCard/>
-       <CategoryCard/>
-       <CategoryCard/>
-       <CategoryCard/>
-       <CategoryCard/>
-       </div>
-    </div>
+
+<div className={`px-body   `}>
+<div className="flex justify-between items-center">
+<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>Explore Real Estate In Popular Indian Cities</h2>
+  <div className="flex gap-2">
+    <button
+      className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"
+      onClick={() => {
+        if (slider) {
+          slider.current?.slickPrev();
+        }
+      }}
+    >
+      <IoArrowBackSharp />
+    </button>
+    <button
+      onClick={() => {
+        if (slider) {
+          slider.current?.slickNext();
+        }
+      }}
+      className="bg-[#4B2C10] w-8 text-white h-8 flex justify-center items-center"
+    >
+      <IoArrowForward />
+    </button>
+  </div>
+</div>
+<Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
+  <div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+<div className="px-2">
+<CategoryCard/>
+</div>
+</Slider>
+</div>
   )
 }
 
