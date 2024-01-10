@@ -17,7 +17,7 @@ export async function POST(req , res) {
     
   if (req.method === "POST") {
   
-    const formData = await req.formData();
+   // const formData = await req.formData();
    // const productId= formData.get("productId");
     await mongoose.connect(connectionString)
     const productData = await Propertylisting.aggregate([
