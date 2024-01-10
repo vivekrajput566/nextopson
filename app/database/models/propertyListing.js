@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const propertyListing_schema_model = new mongoose.Schema({
   productId:{type:String, required:true},
   mobileno: { type: String, required: true },
+  city: { type: String, required: true },
   airConditioning: { type: String, required: false },
   bathrooms: { type: String, required: true },
   bedrooms: { type: String, required: true },

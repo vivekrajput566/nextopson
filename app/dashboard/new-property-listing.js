@@ -48,6 +48,9 @@ const PropertyForm = () => {
     const key=e.target.name;
     console.log(e.target.name);
     const value=e.target.value
+    //console.log(e.target.checked);
+  
+    
     setFormData((prevDetails) => ({
       ...prevDetails,
       [key]: value,
@@ -55,6 +58,36 @@ const PropertyForm = () => {
     }));
 
   };
+
+  const handleFormDataCheckedBox=(e)=>{
+
+    const key=e.target.name;
+    console.log(e.target.checked);
+    const value=e.target.value
+    if(e.target.checked){
+
+      setFormData((prevDetails) => ({
+        ...prevDetails,
+        [key]: true,
+  
+      }));
+      
+    }
+    else{
+
+      setFormData((prevDetails) => ({
+        ...prevDetails,
+        [key]: false,
+  
+      }));
+
+    }
+  
+    
+    
+
+
+  }
 
 
     async function validateForm(){
@@ -72,9 +105,11 @@ const PropertyForm = () => {
         parkingAvailable,
         price,
         propertyFor,
-        propertyType
+        propertyType,
+        city
       } = formData;
 
+   
       if (
         !address ||
         !bathrooms ||
@@ -85,7 +120,8 @@ const PropertyForm = () => {
         !listedBy ||
         !price ||
         !propertyFor ||
-        !propertyType
+        !propertyType ||
+        !city
       ) {
        
         
@@ -119,10 +155,12 @@ const PropertyForm = () => {
    // console.log(formData);
     const validateFormStatus= await validateForm();
     
+    
     if(!validateFormStatus){
 
       return false;
     }
+  
 
     if(!images || images?.length==0 ){
       console.log("Please Upload Property Photos ")
@@ -422,14 +460,35 @@ const PropertyForm = () => {
           <option value="unfurnished">Unfurnished</option>
         </select>
       </div>
+      <div className="mb-5">
+        <label htmlFor="city" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          City<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <select
+          name="city"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.city || ""}
+          onChange={handleFormData}
+          required
+        >
+          <option value="">Select</option>
+          <option value="indore">Indore</option>
+          <option value="delhi">Delhi</option>
+          <option value="banglore">Banglore</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="pune">Pune</option>
+        </select>
+      </div>
       <div className="mb-5 flex items-center pt-4 pb-4">
         <div className="flex items-center ">
           <input
             name="parkingAvailable"
             type="checkbox"
             className="w-4 h-4 border border-white-300 rounded bg-white-50 focus:ring-3 focus:ring-blue-300 dark:bg-white-700 dark:border-white-600 dark:focus:ring-blue-600 dark:ring-offset-white-800 dark:focus:ring-offset-white-800"
-            value={formData.parkingAvailable || ""}
-            onChange={handleFormData}
+            checked={formData.parkingAvailable || false}
+            //value={formData.parkingAvailable}
+            onChange={handleFormDataCheckedBox}
           />
           </div>
           <div>

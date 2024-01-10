@@ -65,6 +65,7 @@ export async function POST(req, res) {
      const propertyData = {
       productId: productId,
       mobileno: mobileno,
+      city: formData.get('city'),
       airConditioning: formData.get('airConditioning'),
       bathrooms: formData.get('bathrooms'),
       bedrooms: formData.get('bedrooms'),
@@ -89,7 +90,6 @@ export async function POST(req, res) {
 
 
   }
-  console.log("server end")
-  
+ 
 }
 
