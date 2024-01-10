@@ -15,8 +15,7 @@ export async function POST(req , res) {
 
   if (req.method === "POST") {
   
-    //const formData = await req.formData();
-    //const productId= formData.get("productId");
+
     const cititesDetail=[
         
             {
