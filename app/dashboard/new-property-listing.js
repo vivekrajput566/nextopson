@@ -3,51 +3,257 @@ import React, { useState } from 'react';
 
 const PropertyForm = () => {
     
-  const [propertyFor, setPropertyFor] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-  const [bedrooms, setBedrooms] = useState('');
-  const [bathrooms, setBathrooms] = useState('');
-  const [price, setPrice] = useState('');
-  const [address, setAddress] = useState('');
-  const [description, setDescription] = useState('');
-  const [advanceDetails, setAdvanceDetails] = useState({
-    carpetArea: '',
-    furniture: '',
-    parkingAvailable: false,
-    airConditioning: '',
-  });
-  const [listedBy, setListedBy] = useState('');
+  const [formData, setFormData] = useState({});
+
   const [images, setImages] = useState([]);
 
-  const handleImageChange = (e) => {
-    const files = e.target.files;
+  const [imagesPrev, setImagesPrev] = useState([]);
+  
+  const [submitButtonStatus, setSubmitButtonStatus]= useState(false);
 
-    if (files) {
-      const imagesArray = Array.from(files).map((file) => URL.createObjectURL(file));
-      setImages((prevImages) => [...prevImages, ...imagesArray]);
+
+  var b=1;
+  const handleImageChange =async (e) => {
+    
+
+     const files = e.target.files;
+     setImages((images)=>[...images,...files])
+
+     if (files) {
+       const imagesArray = Array.from(files).map((file) => URL.createObjectURL(file));
+       setImagesPrev((prevImages) => [...prevImages, ...imagesArray]);
+     } else {
+        // No files selected
+        console.log("No files selected");
     }
-  };
+    console.log(images)
+    
 
-
-
-  const handleAdvanceDetailsChange = (field, value) => {
-    setAdvanceDetails((prevDetails) => ({
-      ...prevDetails,
-      [field]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    // You can access the form data using the state variables
+    
   };
 
   const handleRemoveImage = (index) => {
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
     setImages(updatedImages);
+    const prevImages = [...imagesPrev];
+    prevImages.splice(index, 1);
+    setImagesPrev(prevImages);
   };
+
+
+  const handleFormData = (e) => {
+
+   
+    const key=e.target.name;
+    console.log(e.target.name);
+    const value=e.target.value
+    //console.log(e.target.checked);
+  
+    
+    setFormData((prevDetails) => ({
+      ...prevDetails,
+      [key]: value,
+
+    }));
+
+  };
+
+  const handleFormDataCheckedBox=(e)=>{
+
+    const key=e.target.name;
+    console.log(e.target.checked);
+    const value=e.target.value
+    if(e.target.checked){
+
+      setFormData((prevDetails) => ({
+        ...prevDetails,
+        [key]: true,
+  
+      }));
+      
+    }
+    else{
+
+      setFormData((prevDetails) => ({
+        ...prevDetails,
+        [key]: false,
+  
+      }));
+
+    }
+  
+    
+    
+
+
+  }
+
+
+    async function validateForm(){
+
+      const {
+        airConditioning,
+        address,
+        bathrooms,
+        bedrooms,
+        carpetArea,
+        description,
+        landmark,
+        furniture,
+        listedBy,
+        parkingAvailable,
+        price,
+        propertyFor,
+        propertyType,
+        city
+      } = formData;
+
+   
+      if (
+        !address ||
+        !bathrooms ||
+        !bedrooms ||
+        !description ||
+        !landmark ||
+        !furniture ||
+        !listedBy ||
+        !price ||
+        !propertyFor ||
+        !propertyType ||
+        !city
+      ) {
+       
+        
+        console.log("Please fill in all the required fields correctly");
+        return false;
+
+
+      }
+
+      if (isNaN(bathrooms) || isNaN(bedrooms) || isNaN(price)) {
+        
+        console.log("Numeric values are expected for certain fields");
+        return false;
+      }
+      if (bathrooms<0 || bedrooms<0 || price<0) {
+        
+        console.log("Numbers Should Be Positive");
+        return false;
+      }
+      if (carpetArea && isNaN(carpetArea)) {
+        
+        console.log("Numeric values are expected for certain fields");
+        return false;
+      }
+
+      return true;
+    }
+  const  handleSubmit = async (e) => {
+    e.preventDefault();
+   // setSubmitButtonStatus(true);
+   // console.log(formData);
+    const validateFormStatus= await validateForm();
+    
+    
+    if(!validateFormStatus){
+
+      return false;
+    }
+  
+
+    if(!images || images?.length==0 ){
+      console.log("Please Upload Property Photos ")
+      return false;
+    }
+    if(images?.length>10){
+      console.log("You Can Upload 10 Photos Only")
+      return false;
+    }
+    
+    const formDataValues = new FormData();
+
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataValues.append(key, value);
+    })
+
+      console.log(images)
+
+      images.forEach((file, index) => {
+        formDataValues.append(`files[]`, file);
+      });
+
+      formDataValues.forEach((name)=>{
+          console.log(name);
+      })
+ 
+
+  console.log(images.length);
+  
+    try{                       
+                
+         console.log("here..")
+      const res =  await fetch('/api/backend/listNewProperty/saveListing', {
+         method: 'POST',
+         body: formDataValues,
+       })
+         .then((response) => {
+            console.log(response)
+            setSubmitButtonStatus(false);
+            return false
+           if (!response.ok) {
+            // setRegisterSpinnerStatus(false)
+             
+             throw new Error('Network response was not ok');
+
+           }
+           return response.json();
+         })
+         .then((responseData) => {
+           if(responseData.success==true){
+
+             console.log(responseData)
+             
+             setRegisterError("")
+             setViewForm("otp")
+             setRegisterSpinnerStatus(false)
+             return;
+       
+           }
+           if(responseData.success==false){
+
+             console.log(registerInputs)
+             console.log(responseData)
+             console.log("not valid data")
+             setRegisterError("Mobile no. already exist")
+             setRegisterSpinnerStatus(false)
+             return; 
+       
+           }
+           
+          
+           
+           // Handle successful response
+         })
+         .catch((error) => {
+           setRegisterSpinnerStatus(false);
+           setRegisterError("Network Error")
+          //console.log(error)
+           // Handle errors
+         });
+     
+   
+   }
+   catch(error){
+      console.log(error)
+   }
+    
+
+
+
+  };
+
+ 
 
   return (
 
@@ -63,7 +269,7 @@ const PropertyForm = () => {
         <div>
 
                 <div className="flex flex-wrap -mx-2 p-4">
-          {images.map((image, index) => (
+          {imagesPrev.map((image, index) => (
             <div key={index} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
               <div className="relative group">
                 <img
@@ -96,18 +302,18 @@ const PropertyForm = () => {
       </label>
     </div>
     
-        <form className=" mx-auto  w-3/4 text-black" onSubmit={handleSubmit}>
+        <form className=" mx-auto  w-3/4 text-black" >
       {/* Basic Details */}
       <div className="mb-5">
-        <label htmlFor="propertyFor" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-        Property for sale or rent
+        <label htmlFor="propertyFor" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+        Property for sale or rent<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <select
-          id="propertyFor"
+          name="propertyFor"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={propertyFor}
           placeholder='sefes'
-          onChange={(e) => setPropertyFor(e.target.value)}
+          value={formData.propertyFor || ""}
+          onChange={handleFormData}
           required
         >
           <option value="">Property for sale or rent</option>
@@ -116,87 +322,109 @@ const PropertyForm = () => {
         </select>
       </div>
       <div className="mb-5">
-        <label htmlFor="propertyType" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-        Property type
+        <label htmlFor="propertyType" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+        Property type<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <select
-          id="propertyType"
+          name="propertyType"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={propertyType}
-          onChange={(e) => setPropertyType(e.target.value)}
+          value={formData.propertyType || ""}
+          onChange={handleFormData}
           required
         >
           <option value="">Property type</option>
           <option value="flat">Flat</option>
           <option value="house">House</option>
           <option value="townhouse">Townhouse</option>
+          <option value="appartment">Appartment</option>
+          <option value="commercial">Commercial</option>
+          <option value="flatmates">Flat Mates</option>
+          <option value="plot">Plot</option>
+          <option value="duplex">Duplex</option>
         </select>
       </div>
       <div className="mb-5">
-        <label htmlFor="bedrooms" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Number of Bedrooms
+        <label htmlFor="bedrooms" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Number of Bedrooms<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="number"
-          id="bedrooms"
+          name="bedrooms"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={bedrooms}
-          onChange={(e) => setBedrooms(e.target.value)}
+          value={formData.bedrooms || ""}
+          onChange={handleFormData}
           placeholder='Number of Bedrooms'
           required
+          
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="bathrooms" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Number of Bathrooms
+        <label htmlFor="bathrooms" className="relative block relative mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Number of Bathrooms<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="number"
-          id="bathrooms"
+          name="bathrooms"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={bathrooms}
-          onChange={(e) => setBathrooms(e.target.value)}
+          value={formData.bathrooms || ""}
+          onChange={handleFormData}
           placeholder='Number of Bathrooms'
           required
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="price" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Price
+        <label htmlFor="price" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Price<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="text"
-          id="price"
+          name="price"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={formData.price || ""}
+          onChange={handleFormData}
           placeholder=' Price'
           required
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="address" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Property Address
+        <label htmlFor="address" className="relative  block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Property Address<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="text"
-          id="address"
+          name="address"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          value={formData.address || ""}
+          onChange={handleFormData}
           placeholder=' Property Address'
           required
         />
       </div>
+
+
       <div className="mb-5">
-        <label htmlFor="description" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Property Description
+        <label htmlFor="landmark" className="relative  block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Property Landmark<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <input
+          type="text"
+          name="landmark"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.landmark ||""}
+          onChange={handleFormData}
+          placeholder=' Property Landmark'
+          required
+        />
+      </div>
+      <div className="mb-5">
+        <label htmlFor="description" className=" relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Property Description<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <textarea
-          id="description"
+          name="description"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={formData.description || ""}
+          onChange={handleFormData}
           placeholder=' Property Description'
           required
         />
@@ -209,21 +437,22 @@ const PropertyForm = () => {
         </label>
         <input
           type="text"
-          id="carpetArea"
+          name="carpetArea"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={advanceDetails.carpetArea}
-          onChange={(e) => handleAdvanceDetailsChange('carpetArea', e.target.value)}
+          value={formData.carpetArea || ""}
+          onChange={handleFormData}
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="furniture" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Furniture
+        <label htmlFor="furniture" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Furniture<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <select
-          id="furniture"
+          name="furniture"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={advanceDetails.furniture}
-          onChange={(e) => handleAdvanceDetailsChange('furniture', e.target.value)}
+          value={formData.furniture || ""}
+          onChange={handleFormData}
+          required
         >
           <option value="">Select</option>
           <option value="furnished">Furnished</option>
@@ -231,14 +460,35 @@ const PropertyForm = () => {
           <option value="unfurnished">Unfurnished</option>
         </select>
       </div>
+      <div className="mb-5">
+        <label htmlFor="city" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          City<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <select
+          name="city"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.city || ""}
+          onChange={handleFormData}
+          required
+        >
+          <option value="">Select</option>
+          <option value="indore">Indore</option>
+          <option value="delhi">Delhi</option>
+          <option value="banglore">Banglore</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="pune">Pune</option>
+        </select>
+      </div>
       <div className="mb-5 flex items-center pt-4 pb-4">
         <div className="flex items-center ">
           <input
-            id="parkingAvailable"
+            name="parkingAvailable"
             type="checkbox"
             className="w-4 h-4 border border-white-300 rounded bg-white-50 focus:ring-3 focus:ring-blue-300 dark:bg-white-700 dark:border-white-600 dark:focus:ring-blue-600 dark:ring-offset-white-800 dark:focus:ring-offset-white-800"
-            checked={advanceDetails.parkingAvailable}
-            onChange={(e) => handleAdvanceDetailsChange('parkingAvailable', e.target.checked)}
+            checked={formData.parkingAvailable || false}
+            //value={formData.parkingAvailable}
+            onChange={handleFormDataCheckedBox}
           />
           </div>
           <div>
@@ -252,10 +502,10 @@ const PropertyForm = () => {
           Air Conditioning
         </label>
         <select
-          id="airConditioning"
+          name="airConditioning"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={advanceDetails.airConditioning}
-          onChange={(e) => handleAdvanceDetailsChange('airConditioning', e.target.value)}
+          value={formData.airConditioning || ""}
+          onChange={handleFormData}
         >
           <option value="">Select</option>
           <option value="centralAC">Central AC</option>
@@ -266,14 +516,14 @@ const PropertyForm = () => {
 
       {/* Listed By */}
       <div className="mb-5">
-        <label htmlFor="listedBy" className="block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Listed By
+        <label htmlFor="listedBy" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Listed By<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <select
-          id="listedBy"
+          name="listedBy"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={listedBy}
-          onChange={(e) => setListedBy(e.target.value)}
+          value={formData.listedBy || ""}
+          onChange={handleFormData}
           required
         >
           <option value="">Select</option>
@@ -281,15 +531,38 @@ const PropertyForm = () => {
           <option value="owner">Owner</option>
         </select>
       </div>
-      <div className='flex w-full justify-center'>
-      <button
-        type="submit"
-        className="text-white w-11/12 bg-black flex justify-center hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-lg px-5 py-2.5 text-center dark:bg-black-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Submit
-      </button>
+      <div className="text-center md:text-left flex items-center justify-center">
+         
+            {submitButtonStatus?(
+               <button 
+               className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
+               type="submit"
+             >
+            
+            <div role="status" className=" w-full flex justify-center items-center ">
+            <svg aria-hidden="true" className="inline flex justify-center w-4 h-4 text-white animate-spin  fill-black " viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+            <span className="sr-only">Loading...</span>
+          </div>
+          </button>
+          ):
+          (
+            <button
+            className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
+            type="submit"
+            onClick={handleSubmit}
+          >
 
-      </div>
+           <span>Continue</span>
+           </button>
+
+          )}
+
+           
+         
+        </div>
     </form>
     </div>
 

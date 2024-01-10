@@ -1,4 +1,4 @@
 const {db_username,password}=process.env;
 
 
-export const connectionString = 'mongodb://'+db_username+':'+password+'@localhost:27017/nextopson';
+export const connectionString = "mongodb+srv://vivekrajput:"+password+"@cluster0.s7qqhtl.mongodb.net/nextopson?retryWrites=true&w=majority"
