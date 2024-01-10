@@ -45,7 +45,7 @@ const SearchBar = () => {
           })}
         </div>
         <div className='flex md:flex-row flex-col items-center md:justify-between  md:px-5 px-3'>
-          <div className={`md:w-fit w-full border-r border-r-[#F5F5F5] pr-5 text-gray-500 flex items-center gap-1 md:py-5 py-3 border border-[red]`}>
+          <div className={`md:w-fit w-full border-r border-r-[#F5F5F5] pr-5 text-gray-500 flex items-center gap-1 md:py-5 py-3 `}>
             <h4 className={`md:text-base text-sm font-medium`}>All Residential</h4>
             <div>
               <IoChevronDownOutline className={`text-gray-600 text-base mt-1`} />
@@ -55,12 +55,12 @@ const SearchBar = () => {
             <FiSearch className={`text-gray-500 text-xl`}/>
             <input type="text" placeholder='Search here...' className='outline-0 w-[100%] text-sm md:py-0 py-4'/>
           </div>
-         <div className={'md:w-fit w-full flex md:justify-start justify-between  gap-3 items-center  '}>
+         <div className={'md:w-fit w-full flex md:justify-start justify-between  gap-3 items-center   mb-3 '}>
            <div className={'flex  gap-1 items-center  '}>
             <div><MdOutlineMyLocation /></div>
-            <h5 className='font-semibold text-base'>Near me</h5>
+            <h5 className='font-semibold sm:text-base text-sm'>Near me</h5>
           </div>
-          <button className={`bg-primary text-white px-5 py-2 text-base font-semibold rounded-md`}>
+          <button className={`bg-primary text-white px-5 py-2 sm:text-base text-sm font-semibold rounded-md`}>
             Search
           </button></div>
         </div>

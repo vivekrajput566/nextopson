@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
+    "@mui/material": "^5.15.2",
     "bcryptjs": "^2.4.3",
     "image-compressor": "^2.0.3",
     "mongoose": "^8.0.3",
@@ -17,29 +21,24 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "react-spring": "^9.7.3",
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@headlessui/react": "^1.7.17",
-    "@mui/material": "^5.15.2",
     "react-slick": "^0.29.0",
+    "react-spring": "^9.7.3",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
-    "@types/react": "^18.2.46",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.15.2",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.2",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5.3.3",
-    "@types/react-dom": "^18",
-    "@types/react-slick": "^0.23.13"
-
+    "typescript": "^5.3.3"
   }
 }

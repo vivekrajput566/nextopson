@@ -9,7 +9,7 @@ import SearchSection from '../Navbar/SearchSection'
 
 const HomeClient = () => {
   return (
-    <div className='flex flex-col gap-14'>
+    <div className='flex flex-col sm:gap-14 gap-10'>
       <SearchSection/>
       <Categories/>
       <Members/>
