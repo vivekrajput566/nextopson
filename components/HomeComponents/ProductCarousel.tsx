@@ -12,7 +12,7 @@ interface Props{
   singlePropertyData:any
 }
 const ProductCarousel:FC<Props> = (singlePropertyData) => {
-  console.log("hii ProductCarousel ",singlePropertyData.singlePropertyData?.ProductDetails);
+  // console.log("hii ProductCarousel ",singlePropertyData.singlePropertyData?.ProductDetails);
 
   const slider = useRef<any>(null);
   const settings = {
@@ -100,28 +100,10 @@ const ProductCarousel:FC<Props> = (singlePropertyData) => {
 </div>
 <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
   {singlePropertyData&&singlePropertyData?.singlePropertyData?.ProductDetails&&singlePropertyData?.singlePropertyData?.ProductDetails.map((singleProperty:any,idx:number)=>{
-    return  <div className="px-2">
+    return  <div key={idx} className="px-2">
     <ProductCard singleProperty={singleProperty}/>
     </div>
   })}
-  {/* <div className="px-2">
-<ProductCard/>
-</div>
-<div className="px-2">
-<ProductCard/>
-</div>
-<div className="px-2">
-<ProductCard/>
-</div>
-<div className="px-2">
-<ProductCard/>
-</div>
-<div className="px-2">
-<ProductCard/>
-</div>
-<div className="px-2">
-<ProductCard/>
-</div> */}
 </Slider>
 </div>
   )

@@ -10,9 +10,12 @@ import { FaStar } from "react-icons/fa";
 import apple from "../../images/aprt01.jpg";
 import apple2  from "../../images/Delhi.webp";
 import apple3 from "../../images/aprt01.jpg";
+import { IoStarOutline } from "react-icons/io5";
 
 
-const ProductDescription = ({ cookie, slug }: any) => {
+const ProductDescription = ({ singlePropertyData }: any) => {
+  console.log("ProductDescription",ProductDescription);
+  
   const [isShowLoginMenu, setShowLoginMenu] = useState(false);
   const [isSubscription, setIsSubscription] = useState(false);
  
@@ -54,11 +57,12 @@ const ProductDescription = ({ cookie, slug }: any) => {
                 .fill(0)
                 .map((_, keyid) => (
                   <div
+                  key={keyid}
                     className="w-[25%] bg-[#FAFAFA] p-1 sm:p-1.5 md:p-2"
                     // key={image?.url}
                   >
                     <Image
-                      // key={image?.url}
+                      key={keyid}
                       src={apple3}
                     //   src={keyid === 0 ? apple2 : keyid === 1 ? apple3 : null}
                       // onClick={() => setSelectedImage(index)}
@@ -81,11 +85,11 @@ const ProductDescription = ({ cookie, slug }: any) => {
           <h2 className="font-bold text-lg sm:text-xl md:text-2xl text-neutral-950 ">
           Skyom Apartment
           </h2>
-          <div className="flex  gap-0.5 sm:gap-1 md:gap-1.5">
+          {/* <div className="flex  gap-0.5 sm:gap-1 md:gap-1.5">
             {Array(5)
               .fill(0)
               .map((_, keyid) => (
-                <FaStar className="h-[18px] sm:h-[22px] md:h-[26px]  w-[18px] sm:w-[22px] md:w-[26px] aspect-square text-[#FFBD15]" />
+                <FaStar key={keyid} className="h-[18px] sm:h-[22px] md:h-[26px]  w-[18px] sm:w-[22px] md:w-[26px] aspect-square text-[#FFBD15]" />
               ))}
             <p
               className="font-semibold text-sm sm:text-base md:text-lg  text-zinc-400
@@ -93,78 +97,71 @@ const ProductDescription = ({ cookie, slug }: any) => {
             >
               (27)
             </p>
-          </div>
+          </div> */}
 
           <div className="flex gap-4 sm:gap-8 md:gap-12  items-center ">
             <div className=" text-xl sm:text-2xl md:text-3xl text-center text-primary font-bold ">
            
-              Rs 2,000
+              {/* Rs 2,000 */}
+              {singlePropertyData?.ProductDetails?.price}
             </div>
            
-            <div className=" text-base sm:text-lg md:text-xl line-through font-medium  text-center text-zinc-400">
+            {/* <div className=" text-base sm:text-lg md:text-xl line-through font-medium  text-center text-zinc-400">
             
               Rs 2,500
-            </div>
+            </div> */}
         
           </div>
 
 
           <p className=" text-neutral-600  text-xs sm:text-sm md:text-base font-medium w-full md:w-[90%]">
-            Rhoncus est pellentesque elit ullamcorper. Consequat ac felis donec
+            {/* Rhoncus est pellentesque elit ullamcorper. Consequat ac felis donec
             et odio pellentesque diam. Elementum nibh tellus molestie nunc non
-            blandit massa enim nec. Ipsum consequat nisl vel pretium.
+            blandit massa enim nec. Ipsum consequat nisl vel pretium. */}
+            {singlePropertyData?.ProductDetails?.description}
           </p>
 
-          <div className="flex flex-col gap-1 sm:gap-2 md:gap-3">
+          {/* <div className="flex flex-col gap-1 sm:gap-2 md:gap-3">
             <h2 className=" text-black text-sm sm:text-base md:text-lg font-semibold">
               Quantity:
             </h2>
             <div className="my-1 md:my-2 flex flex-wrap gap-2 sm:gap-3 md:gap-4">
-              {/* {productInfo &&
-              productInfo?.variants?.map((variant: any, index: number) => { 
-                return (*/}
+             
               {Array(3)
                 .fill(0)
                 .map((_, keyid) => (
                   <div
-                    // key={variant?.weight}
+                    key={keyid}
                     onClick={() => {
                       setSelectedVariant(keyid);
                     }}
-                    // onClick={() => {
-                    //   setSelectedVariant(index);
-                    // }}
-                    // ${                      selectedVariant === index && "bg-primary "                    }
+                   
                     className={`px-3 sm:px-4 md:px-5 py-1 sm:py-2 md:py-3 bg-white rounded-md border ${
                       selectedVariant === keyid
                         ? "border-primary"
                         : "border-stone-300"
                     } shadow-sm  cursor-pointer`}
                   >
-                    {/* ${selectedVariant === index && "text-white"} */}
                     <p
                       className={`text-xs sm:text-sm md:text-base ${
                         selectedVariant === keyid && "text-primary"
                       }`}
                     >
-                      {/* {variant?.weight} {variant?.unit} */}
+                     
                       1BHK
                     </p>
                   </div>
                 ))}
-              {/* );
-               })} */}
+             
             </div>
-          </div>
+          </div> */}
 
-          <div
+          {/* <div
             className={`px-2 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 bg-orange-100 rounded-[10px] shadow-sm  flex justify-between items-center`}
           >
-            {/* ${selectedVariant === index && "text-white"} */}
             <p
               className={`text-black text-xs sm:text-sm md:text-base font-semibold`}
             >
-              {/* {variant?.weight} {variant?.unit} */}
               Subscription:
             </p>
             <div className="flex gap-3 sm:gap-4 md:gap-5">
@@ -202,7 +199,7 @@ const ProductDescription = ({ cookie, slug }: any) => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* <div className=" text-base font-semibold  my-[1rem]">
             SKU: <span className="text-[#5b5b5a]">{productInfo.Sku}</span>
@@ -213,7 +210,7 @@ const ProductDescription = ({ cookie, slug }: any) => {
               className=" text-white text-xs sm:text-sm md:text-base font-semibold bg-primary rounded-md h-8 sm:h-12 md:h-16 w-[90%] px-3 sm:px-4 md:px-5 py-3 sm:py-4 md:py-5 flex justify-center items-center"
              
             >
-              Add to cart
+             Contact
             </button>
             <div
               className="border border-[#BFBFBF] gap-1 sm:gap-1.5 md:gap-2 aspect-square h-8 sm:h-12 md:h-16 flex items-center justify-center font-medium rounded-lg cursor-pointer "
@@ -221,15 +218,16 @@ const ProductDescription = ({ cookie, slug }: any) => {
               //   auth.currentUser?.uid ? handleBuyNowRequest : handleLoginClick
               // }
             >
-              <GoHeart className="md:h-[26px] lg:h-[30px] md:w-[26px] lg:w-[30px]  bg-[white]" />
+              <IoStarOutline className={"text-2xl text-gray-500 font-semibold"}/>
+              {/* <GoHeart className="md:h-[26px] lg:h-[30px] md:w-[26px] lg:w-[30px]  bg-[white]" /> */}
             </div>
           </div>
           <div className="flex flex-col gap-1 sm:gap-2 md:gap-3">
             <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-              Category: Fruits
+            Property Type : {singlePropertyData?.ProductDetails?.propertyType}
             </p>
             <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-              Tags: Fruits and vegetables, Categories
+            PropertyFor : {singlePropertyData?.ProductDetails?.propertyFor}
             </p>
           </div>
           <div className="border border-[#A8A8A8]"></div>

@@ -40,21 +40,27 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
            className="absolute right-0 top-0"><RxCross2 className="text-white text-3xl"/></div>
 
           <div
-            className={`  bg-white overflow-y-auto h-full rounded-br-md  sm:w-[50%] w-[86%] absolute top-0 left-0  z-50  `}
+            className={`  bg-white overflow-y-auto h-[100vh]   sm:w-[50%] w-[86%] absolute top-0 left-0  z-50 rounded-tr-2xl rounded-br-2xl `}
           >
-            <div className="flex flex-col gap-1 sm:gap-2 md:gap-3 px-body py-body">
-              <Link href={"/"} className="text-lg sm:text-xl md:text-2xl font-semibold">
+            <div className="flex flex-col gap-3 sm:gap-2 md:gap-4 px-5 py-5">
+              <Link
+               onClick={(e) => {
+                e.preventDefault();
+                setIsSidebarOpen(false);
+              //   dispatch(openLoginModal());
+              }}
+               href={"/"} className="text-base font-semibold ">
                 Home
               </Link>
-              <Link href={"/#"} className="text-lg sm:text-xl md:text-2xl font-semibold">
+              <Link href={"/#"} className="text-base font-semibold ">
                List Your Property
               </Link>
              
              
-              <Link href={"/#"} className="text-lg sm:text-xl md:text-2xl font-semibold">
+              <Link href={"/#"} className="text-base font-semibold ">
                0124-4356436
               </Link>
-              <Link href={"/#"} className="text-lg sm:text-xl md:text-2xl font-semibold"
+              <Link href={"/#"} className="text-base font-semibold "
                 onClick={() => {
                   document.body.classList.remove("no-scroll");
                   // dispatch(closeSideMenu());
@@ -65,7 +71,7 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
               </Link>
               <Link
                 href={"/#"}
-                className="text-lg sm:text-xl md:text-2xl font-semibold"
+                className="text-base font-semibold "
                 onClick={(e) => {
                   e.preventDefault();
                   setIsSidebarOpen(false);

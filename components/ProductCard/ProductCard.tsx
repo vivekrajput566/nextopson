@@ -6,10 +6,11 @@ import { IoStarOutline } from "react-icons/io5";
 import Link from 'next/link';
 
 const ProductCard = (singleProperty:any) => {
-  console.log(singleProperty,"from card");
+  // console.log(singleProperty,"from card");
+  
   
   return (
-    <Link href={"/product"}>
+    <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
 
     <div className='relative'>
         <div className={`absolute top-3 right-3`}><IoStarOutline className={"text-xl text-white font-semibold"}/></div>

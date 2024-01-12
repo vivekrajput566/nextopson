@@ -56,7 +56,7 @@ async function getData() {
     }
 
     const data = await res.json();
-    console.log("data from fetch", data);
+    // console.log("data from fetch", data);
     return data;
   } catch (error) {
     console.error("Error during fetch:", error);

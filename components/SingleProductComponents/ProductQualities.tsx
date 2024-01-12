@@ -17,14 +17,16 @@ const DUMMY_DATA = {
     "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
 };
 
-const ProductQualities = ({ slug }: any) => {
+const ProductQualities = ({ singlePropertyData }: any) => {
+  console.log("ProductQualities",singlePropertyData);
+  
   const [selectedTab, setSelectedTab] = useState(0);
   return (
     <div className="px-body my-16 sm:my-20 md:my-24">
       <div className="flex flex-col-reverse md:flex-row justify-center gap-8 sm:gap-12 md:gap-16">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 md:w-[50%] ">
           <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl text-neutral-950 ">
-            Product Details
+            Property Details
           </h2>
 
           <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
@@ -35,20 +37,46 @@ const ProductQualities = ({ slug }: any) => {
             ></p>
           </div>
           <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-            <h2 className="font-bold text-black text-lg sm:text-xl md:text-2xl">Key Features</h2>
-            <p
+            <h2 className="font-bold text-black text-lg sm:text-xl md:text-2xl">Key Details</h2>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <p className="text-black sm:text-base text-sm font-semibold">City :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.city}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                <p className="text-black sm:text-base text-sm font-semibold">Bedrooms :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.bedrooms}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                <p className="text-black sm:text-base text-sm font-semibold">Bathrooms :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.bathrooms}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                <p className="text-black sm:text-base text-sm font-semibold">Furnished :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.furniture}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                <p className="text-black sm:text-base text-sm font-semibold">Landmark :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.landmark}</p>
+                </div>
+
+            
+
+
+            </div>
+            {/* <p
               className=" text-neutral-600 text-[10px] sm:text-xs md:text-sm font-medium w-full md:w-[90%]"
               dangerouslySetInnerHTML={{ __html: DUMMY_DATA?.keyfeatures }}
-            ></p>
+            ></p> */}
           </div>
-          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
+          {/* <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
             <h2 className="font-bold text-black text-lg sm:text-xl md:text-2xl">Ingredients</h2>
             <p
               className=" text-neutral-600 text-[10px] sm:text-xs md:text-sm font-medium  w-full md:w-[90%]"
               dangerouslySetInnerHTML={{ __html: DUMMY_DATA?.ingredients }}
             ></p>
-          </div>
-          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
+          </div> */}
+          {/* <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
             <div className="border border-[#CCCCCC]"></div>
             <div className="flex justify-between w-full px-2 sm:px-4 md:px-6 gap-1 md:gap-2 ">
               <div className="flex gap-1 sm:gap-2 md:gap-3 items-center">
@@ -62,7 +90,7 @@ const ProductQualities = ({ slug }: any) => {
                   {Array(5)
                     .fill(0)
                     .map((_, keyid) => (
-                      <IoStar className="h-[18px] sm:h-[22px] md:h-[26px]  w-[18px] sm:w-[22px] md:w-[26px] aspect-square text-[#FFBD15]" />
+                      <IoStar key={keyid} className="h-[18px] sm:h-[22px] md:h-[26px]  w-[18px] sm:w-[22px] md:w-[26px] aspect-square text-[#FFBD15]" />
                     ))}
                 </div>
 
@@ -75,7 +103,7 @@ const ProductQualities = ({ slug }: any) => {
               </div>
             </div>
             <div className="border border-[#CCCCCC]"></div>
-          </div>
+          </div> */}
         </div>
         <div className="md:w-[45%] ">
           <div className=" relative  w-full h-[13rem] sm:h-[20rem] md:h-[27rem]  bg-white bg-opacity-40 rounded-[20px]">

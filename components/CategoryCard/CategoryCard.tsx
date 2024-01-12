@@ -1,10 +1,15 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { FC } from 'react'
 import img from "../../images/Delhi.webp"
+interface Props{
+  singleCategory:any
+}
 
 
-const CategoryCard = () => {
+const CategoryCard:FC<Props> = ({singleCategory}) => {
+  // console.log("from CategoryCard",singleCategory);
+  
   return (
     <div className='states-detail-body flex  flex-col gap-2 items-center justify-center' >
     <div className='states-detail-photos-body '>
@@ -12,14 +17,15 @@ const CategoryCard = () => {
     </div>
     <div className='flex flex-col  justify-center items-center'>
     <h2 className='state-detail-name text-lg text-black font-semibold '>
-        New Delhi
+       {singleCategory?.name}
     </h2>
-    <p className='state-detail-content text-light-black text-[#7E7E7E]'>
+    {/* <p className='state-detail-content text-light-black text-[#7E7E7E]'>
         28,00+ New Property
-    </p>
+    </p> */}
     </div>
 </div>
   )
 }
 
 export default CategoryCard
+// require(`../../public/state-photos/${singleCategory.photo}`)

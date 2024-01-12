@@ -13,6 +13,8 @@
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.15.2",
+    "@tanstack/react-query": "^5.17.9",
+    "@tanstack/react-query-devtools": "^5.17.9",
     "bcryptjs": "^2.4.3",
     "formidable": "^3.5.1",
     "image-compressor": "^2.0.3",

@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar/Navbar'
 import NavbarClient from '@/components/Navbar/NavbarClient'
 import Footer from '@/components/Footer/Footer'
+import Providers from '@/reactQuery/provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-poppins`}>
+        <Providers>
         <NavbarClient/>
         {children}
         <Footer/>
+        </Providers>
         </body>
     </html>
   )

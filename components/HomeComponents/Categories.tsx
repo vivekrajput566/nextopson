@@ -6,8 +6,16 @@ import Slider from "react-slick";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForward } from "react-icons/io5";
 import CategoryCard from "../CategoryCard/CategoryCard";
+import { useQuery } from "@tanstack/react-query";
+import { fecthCategoriesData } from "@/services/database";
 
 const Categories = () => {
+  const { data: propertyCategories} = useQuery({
+    queryKey: ["propertyCategories"],
+    queryFn: () => fecthCategoriesData(),
+  });
+  console.log("propertyCategories",propertyCategories);
+  
   const slider = useRef<any>(null);
   const settings = {
     dots: false,
@@ -93,7 +101,14 @@ const Categories = () => {
   </div>
 </div>
 <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
-  <div className="px-2">
+  {propertyCategories&&propertyCategories?.cititesDetail&&
+  propertyCategories?.cititesDetail.length>0&&
+  propertyCategories?.cititesDetail.map((category:any,idx:number)=>{
+    return  <div key={idx} className="px-2 ">
+    <CategoryCard singleCategory={category}/>
+    </div>
+  })}
+  {/* <div className="px-2">
 <CategoryCard/>
 </div>
 <div className="px-2">
@@ -116,7 +131,7 @@ const Categories = () => {
 </div>
 <div className="px-2">
 <CategoryCard/>
-</div>
+</div> */}
 </Slider>
 </div>
   )

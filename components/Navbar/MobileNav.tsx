@@ -12,21 +12,9 @@ const MobileNav = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div
-      className={`md:hidden flex items-center  
-      
-       px-body  w-full min-h-[90.97px]`}
+      className={`md:hidden  flex items-center justify-between px-body  w-full min-h-[90.97px]`}
     >
-      <div className="flex-1 gap-3 flex items-center">
-        <div className="w-[140px]">
-          {/* <Image
-            src={require("../../images/logo.png")}
-            alt="logo"
-            className="w-full h-full object-contain"
-          /> */}
-          <h1>NEXTOPSON</h1>
-        </div>
-      </div>
-      <button
+       <button
         onClick={() => {
           document.body.classList.add("no-scroll");
           // dispatch(openSideMenu());
@@ -36,6 +24,17 @@ const MobileNav = () => {
         <AiOutlineMenu className={"text-2xl"}/>
         {/* Menu */}
       </button>
+      <div className=" gap-3 flex items-center">
+        <div className="">
+          {/* <Image
+            src={require("../../images/logo.png")}
+            alt="logo"
+            className="w-full h-full object-contain"
+          /> */}
+          <h1>NEXTOPSON</h1>
+        </div>
+      </div>
+     
 
       {isSidebarOpen && (
         <SideMenu
