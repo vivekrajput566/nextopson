@@ -8,7 +8,7 @@ import { Propertylisting } from "@/app/database/models/propertyListing";
 import { Propertyphotos } from "@/app/database/models/propertyPhotos";
 
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AuthOptions } from "../../../authOptions";
 
 export async function POST(req, res) {
 
@@ -68,6 +68,7 @@ export async function POST(req, res) {
       city: formData.get('city'),
       airConditioning: formData.get('airConditioning'),
       bathrooms: formData.get('bathrooms'),
+      address: formData.get('address'),
       bedrooms: formData.get('bedrooms'),
       carpetArea: formData.get('carpetArea'),
       description: formData.get('description'),
@@ -79,6 +80,8 @@ export async function POST(req, res) {
       propertyType: formData.get('propertyType'),
       landmark: formData.get('landmark'),
     };
+
+    console.log(propertyData);
    
     const property = new Propertylisting(propertyData);
       await property.save();

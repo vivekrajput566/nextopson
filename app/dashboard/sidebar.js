@@ -13,14 +13,14 @@ function Sidebar() {
   return (
 
     <>
-    <div className='sidebar-content-body flex border-t-2   border-t-slate-600 w-full border-2 border-black h-full bg-slate-900'>
+    <div className='sidebar-content-body flex  w-full  h-full bg-slate-900'>
 
         <div className='sidebar-content flex-col  w-full '>
 
 
-            <div className="company-name-logo-body flex items-center gap-4 justify-start p-4 text-4xl font-semibold whitespace-nowrap text-white">
+            <div className="company-name-logo-body flex items-center gap-4 justify-start p-4 pt-0 text-2xl lg:text-4xl font-semibold whitespace-nowrap text-white">
 
-            <FiAlignLeft size={30}/>  NextOpson
+             NextOpson
 
             </div>
 
@@ -78,7 +78,7 @@ function Sidebar() {
                     <div className='home-icon'>
                             
                     <Image
-                        className="object-cover rounded-sm  "
+                        className="object-cover rounded-lg  "
                         src="/dashboard/Create Listing.png"
                         alt=""
                         width={25} 

@@ -6,6 +6,7 @@ import { IoMdLock } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
 import { MdOutlinePassword } from "react-icons/md";
+import Image from "next/image";
 
 function LoginPage() {
 
@@ -607,10 +608,13 @@ async function handleForgotPasswordPasswordFormData(e:any){
     
     <section className="mt-10 bg-white pt-10 pb-10 flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center  mx-5 md:mx-0 md:my-10">
       <div className="md:w-1/3 max-w-sm">
-        <img
-          src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          alt="Sample image"
-        />
+        <Image
+      src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+      alt="Sample image"
+      width={540} // Assuming original image width
+      height={360} // Assuming original image height
+      layout="responsive" // Adjust as needed
+    />
       </div>
       
       <div className={`login-form-body ${viewForm=="login"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>

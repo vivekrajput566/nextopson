@@ -7,7 +7,7 @@ const SoonAvailable = () => {
       <h5 className="mb-2 text-4xl p-10 font-bold text-gray-900 dark:text-white">Coming Soon!</h5>
       <p className="mb-5 text-base text-gray-500 sm:text-lg  dark:text-gray-400">
 
-                    We're working hard to bring you an exciting new feature. Stay tuned for its arrival!</p>
+                    We are working hard to bring you an exciting new feature. Stay tuned for its arrival!</p>
      
     </div>
 

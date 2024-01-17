@@ -25,7 +25,7 @@ export default function RootLayout({ children}) {
       <body>
 
       <div className='dashboard flex h-screen overflow-y-scroll '> 
-        <div className='sidebar-menu-dashboard w-1/4'>
+        <div className='sidebar-menu-dashboard hidden lg:w-1/4 lg:block'>
 
           <Sidebar />
 
