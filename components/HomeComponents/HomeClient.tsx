@@ -18,9 +18,9 @@ const HomeClient:FC<Props> = ({singlePropertyData}) => {
     <div className='flex flex-col sm:gap-14 gap-10'>
       <SearchSection/>
       <Categories/>
-      <Members/>
       <ProductCarousel singlePropertyData={singlePropertyData}/>
-      <Agents/>
+      <Members/>
+      {/* <Agents/> */}
       <Faq/>
     </div>
   )

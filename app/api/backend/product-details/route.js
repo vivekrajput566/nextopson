@@ -10,7 +10,7 @@ import { Propertyphotos } from "@/app/database/models/propertyPhotos";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function POST(req :any , res:any) {
+export async function POST(req , res) {
 
 
   

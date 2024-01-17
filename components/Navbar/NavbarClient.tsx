@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { IoBagCheckOutline } from "react-icons/io5";
 import { LiaUserCircleSolid } from "react-icons/lia";
@@ -8,6 +9,12 @@ import { FaUserCircle } from "react-icons/fa";
 import NavCategories from './NavCategories';
 import Link from 'next/link';
 import MobileNav from './MobileNav';
+import { MdDashboard } from "react-icons/md";
+import logo from "../../images/nextopson logo.jpg"
+import Image from 'next/image';
+import { useScrollDirection } from "../../utils/useScroll";
+import FixedNav from './FixedNav';
+
 
 
 const dummyDta=[
@@ -16,30 +23,39 @@ const dummyDta=[
 {icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now"}]
 
 const NavbarClient = () => {
+  const isScrolled = useScrollDirection();
+
   return (
     <div className=''>
         <MobileNav/>
-        <div className={`px-body hidden md:flex items-center justify-between `}>
-            <Link href={"/"}>
-        <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button>
-        </Link>
-        <div className={`flex items-center`}>
-            {dummyDta.map((item:any,idx:number)=>{
-                return  <div key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
-                <div className={`text-2xl font-normal`}>{item.icon}</div>
-                <div className={`flex flex-col `}>
-                    <h2 className='text-sm font-semibold'>{item.heading}</h2>
-                    <p className='text-[#999999] text-xs'>{item.text}</p>
-                </div>
-            </div>
-            })}
-            <div className={`flex items-center gap-x-3  px-8`}>
-                <div><FaUserCircle className={`text-2xl`}/></div>
-                <h2 className={`text-sm font-semibold`}>Login/Signup</h2>
-            </div>
-           </div>
+     {isScrolled?
+     <FixedNav/>
+     :
+     <div className=''>
+     <div className={`px-body hidden md:flex items-center justify-between `}>
+         <Link href={"/"} className='w-20 h-10'>
+     <Image src={logo} alt="logo"/> 
+     {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
+     </Link>
+     <div className={`flex items-center`}>
+         {dummyDta.map((item:any,idx:number)=>{
+             return  <div key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             <div className={`text-2xl font-normal`}>{item.icon}</div>
+             <div className={`flex flex-col `}>
+                 <h2 className='text-sm font-semibold'>{item.heading}</h2>
+                 <p className='text-[#999999] text-xs'>{item.text}</p>
+             </div>
+         </div>
+         })}
+         <div className={`flex items-center gap-x-3  px-8`}>
+             <div><MdDashboard className={`text-2xl`}/></div>
+             <h2 className={`text-sm font-semibold`}>Dashboard</h2>
+         </div>
         </div>
-        <NavCategories/>
+     </div>
+     <NavCategories/>
+     </div>
+     }
     </div>
   )
 }

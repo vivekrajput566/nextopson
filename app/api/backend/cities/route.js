@@ -14,19 +14,17 @@ export async function POST(req , res) {
 
 
   if (req.method === "POST") {
-   console.log("indie post");
   
-    //const formData = await req.formData();
-    //const productId= formData.get("productId");
+
     const cititesDetail=[
         
             {
                     name:"Indore",
-                    photo:"indore.webp"
+                    photo:"Indore.webp"
             },
             {
                 name:"Delhi",
-                photo:"delhi.webp"
+                photo:"Delhi.webp"
             },
             {
                 name:"Banglore",

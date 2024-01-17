@@ -19,3 +19,18 @@
 .no-scroll {
   overflow: hidden;
 }
+.overflow-y-scroll::-webkit-scrollbar {
+  width: 4px;
+ 
+}
+
+/* .overflow-y-scroll::-webkit-scrollbar-thumb {
+  background-color: #054A91;
+  border-radius: 4px;
+  
+}
+
+.overflow-y-scroll::-webkit-scrollbar-track {
+  background-color: #F3F7FA;
+  border-radius: 4px;
+} */

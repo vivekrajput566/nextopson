@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 
 const SearchSection = () => {
   return (
-    <div className={`bg-primary px-body `}>
+    <div className={`bg-black px-body `}>
         <SearchBar/>
     </div>
   )

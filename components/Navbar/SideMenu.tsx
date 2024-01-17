@@ -5,6 +5,12 @@ import Link from "next/link";
 import OutsideClickHandler from "../../utils/OutsideClickHandler";
 import { RxCross1 } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
+import { IoMdHome } from "react-icons/io";
+import { FaBuilding } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { BsFillFileEarmarkTextFill } from "react-icons/bs";
+import { BiSolidLogIn } from "react-icons/bi";
+import { FaFileContract } from "react-icons/fa6";
 
 const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
 //   const dispatch = useDispatch();
@@ -40,45 +46,63 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
            className="absolute right-0 top-0"><RxCross2 className="text-white text-3xl"/></div>
 
           <div
-            className={`  bg-white overflow-y-auto h-[100vh]   sm:w-[50%] w-[86%] absolute top-0 left-0  z-50 rounded-tr-2xl rounded-br-2xl `}
+            className={`  bg-white overflow-y-auto h-[100vh]   sm:w-[50%] w-[86%] absolute top-0 left-0  z-50  `}
           >
-            <div className="flex flex-col gap-3 sm:gap-2 md:gap-4 px-5 py-5">
+            <div className="flex flex-col gap-6 sm:gap-5 md:gap-4 px-5 py-5">
               <Link
                onClick={(e) => {
                 e.preventDefault();
                 setIsSidebarOpen(false);
               //   dispatch(openLoginModal());
               }}
-               href={"/"} className="text-base font-semibold ">
-                Home
+               href={"/"} className="text-base font-semibold flex items-center gap-2 ">
+
+                <div>
+                <IoMdHome className={`text-3xl `}/>
+                </div>
+               <p className=""> Home</p>
               </Link>
-              <Link href={"/#"} className="text-base font-semibold ">
-               List Your Property
+              <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 ">
+                <div>
+                <FaBuilding className={"text-2xl "}/>
+                </div>
+<p className=""> 
+List Your Property
+
+</p>
               </Link>
              
              
-              <Link href={"/#"} className="text-base font-semibold ">
-               0124-4356436
+              <Link href={"/#"} className="text-base font-semibold flex items-center gap-4 ">
+                <div>
+                <FaPhoneAlt className={"text-xl "} />
+                </div>
+               <p className="">0124-4356436</p>
               </Link>
-              <Link href={"/#"} className="text-base font-semibold "
+              <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 "
                 onClick={() => {
                   document.body.classList.remove("no-scroll");
                   // dispatch(closeSideMenu());
                   setIsSidebarOpen(false);
                 }}
               >
-                About
+                <div>
+                {/* <BsFillFileEarmarkTextFill className={"text-3xl"}/> */}
+                <FaFileContract className={"text-2xl "}/>
+                </div>
+                <p className="">About</p>
               </Link>
               <Link
                 href={"/#"}
-                className="text-base font-semibold "
+                className="text-base font-semibold flex items-center gap-2 "
                 onClick={(e) => {
                   e.preventDefault();
                   setIsSidebarOpen(false);
                 //   dispatch(openLoginModal());
                 }}
               >
-                Login/Sign up
+                <p><BiSolidLogIn className={"text-3xl "}/></p>
+               <p className=""> Login/Sign up</p>
               </Link>
              
              
