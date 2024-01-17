@@ -1,18 +1,42 @@
 'use client'
 import React from 'react'
 import { CiBellOn } from "react-icons/ci";
+import { FiAlignLeft } from "react-icons/fi";
+import SideBarMenu from './../sideBarMenu/page';
+import { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
+
 
 function DashboardHeader() {
+
+   
+  
   return (
     <>
+
     
     <div className='flex justify-between items-center px-6 py-4 pt-4 shadow-md  '>
 
-        <div className='text-2xl font-semibold'>
-            DASHBOARD
-        </div>
+      <div className='lg:hidden'>
+         
+       <SideBarMenu />
 
-        <div className=' w-1/2'>
+       </div>
+
+       <div className='hidden lg:block'>
+         
+       <div className="company-name-logo-body text-2xl font-semibold whitespace-nowrap text-black">
+
+Dashboard
+
+</div>
+
+       </div>
+        
+
+        
+
+        <div className=' w-1/2 hidden md:block'>
 
         <form>
       <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only ">

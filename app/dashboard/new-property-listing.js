@@ -1,9 +1,14 @@
 'use client'
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const PropertyForm = () => {
     
   const [formData, setFormData] = useState({});
+
+  const [showError, setShowError] = useState("");
+
+  const [errorColor, setErrorColor] = useState("red-500");
 
   const [images, setImages] = useState([]);
 
@@ -11,6 +16,22 @@ const PropertyForm = () => {
   
   const [submitButtonStatus, setSubmitButtonStatus]= useState(false);
 
+  const landmark = [
+    'dhabli',
+    'niranjanpur',
+    'nipania',
+    'mahalaxmi nagar',
+    'bicholi mardana',
+    'bhanwarkuwa',
+    'rajendra nagar',
+    'rau',
+    'lalbagh palace',
+    'chandan nagar',
+    'sukhlia',
+    'vijaynagar',
+    'palasia',
+    'supercorridor'
+  ];
 
   var b=1;
   const handleImageChange =async (e) => {
@@ -95,6 +116,7 @@ const PropertyForm = () => {
       const {
         airConditioning,
         address,
+        bhk,
         bathrooms,
         bedrooms,
         carpetArea,
@@ -113,6 +135,7 @@ const PropertyForm = () => {
       if (
         !address ||
         !bathrooms ||
+        !bhk ||
         !bedrooms ||
         !description ||
         !landmark ||
@@ -125,7 +148,8 @@ const PropertyForm = () => {
       ) {
        
         
-        console.log("Please fill in all the required fields correctly");
+        setShowError("Please fill in all the required fields correctly");
+        setSubmitButtonStatus(false);
         return false;
 
 
@@ -133,17 +157,20 @@ const PropertyForm = () => {
 
       if (isNaN(bathrooms) || isNaN(bedrooms) || isNaN(price)) {
         
-        console.log("Numeric values are expected for certain fields");
+        setShowError("Numeric values are expected for certain fields");
+        setSubmitButtonStatus(false);
         return false;
       }
       if (bathrooms<0 || bedrooms<0 || price<0) {
         
-        console.log("Numbers Should Be Positive");
+        setShowError("Numbers Should Be Positive");
+        setSubmitButtonStatus(false);
         return false;
       }
       if (carpetArea && isNaN(carpetArea)) {
         
-        console.log("Numeric values are expected for certain fields");
+        setShowError("Numeric values are expected for certain fields");
+        setSubmitButtonStatus(false);
         return false;
       }
 
@@ -151,7 +178,7 @@ const PropertyForm = () => {
     }
   const  handleSubmit = async (e) => {
     e.preventDefault();
-   // setSubmitButtonStatus(true);
+    setSubmitButtonStatus(true);
    // console.log(formData);
     const validateFormStatus= await validateForm();
     
@@ -163,11 +190,13 @@ const PropertyForm = () => {
   
 
     if(!images || images?.length==0 ){
-      console.log("Please Upload Property Photos ")
+      setShowError("Please Upload Property Photos ")
+      setSubmitButtonStatus(false);
       return false;
     }
     if(images?.length>10){
-      console.log("You Can Upload 10 Photos Only")
+      setShowError("You Can Upload 10 Photos Only")
+      setSubmitButtonStatus(false);
       return false;
     }
     
@@ -199,8 +228,8 @@ const PropertyForm = () => {
        })
          .then((response) => {
             console.log(response)
-            setSubmitButtonStatus(false);
-            return false
+            
+            
            if (!response.ok) {
             // setRegisterSpinnerStatus(false)
              
@@ -213,10 +242,10 @@ const PropertyForm = () => {
            if(responseData.success==true){
 
              console.log(responseData)
-             
-             setRegisterError("")
-             setViewForm("otp")
-             setRegisterSpinnerStatus(false)
+             setShowError("Successfully Listed! Redirecting...")
+             setErrorColor("green-500")
+
+
              return;
        
            }
@@ -224,22 +253,25 @@ const PropertyForm = () => {
 
              console.log(registerInputs)
              console.log(responseData)
-             console.log("not valid data")
-             setRegisterError("Mobile no. already exist")
-             setRegisterSpinnerStatus(false)
+             //console.log("not valid data")
+             //setRegisterError("Mobile no. already exist")
+             //setRegisterSpinnerStatus(false)
+             setShowError("Something went wrong try again later!")
+             setErrorColor("red-500")
+             setSubmitButtonStatus(false);
              return; 
        
            }
            
           
            
-           // Handle successful response
+           
          })
          .catch((error) => {
-           setRegisterSpinnerStatus(false);
-           setRegisterError("Network Error")
-          //console.log(error)
-           // Handle errors
+          setShowError("Something went wrong try again later!")
+          setErrorColor("red-500")
+          setSubmitButtonStatus(false);
+          return; 
          });
      
    
@@ -249,8 +281,6 @@ const PropertyForm = () => {
    }
     
 
-
-
   };
 
  
@@ -259,50 +289,55 @@ const PropertyForm = () => {
 
     <>
      <div className='w-full flex justify-center'>
-    <div className=' w-3/4 shadow-2xl flex flex-col justify-center rounded-lg h-fit pt-4 pb-10 border-t-8 border-black'>
+    <div className=' sm:w-[88%] lg:w-3/4 w-[97%] shadow-2xl flex flex-col justify-center rounded-lg h-fit pt-4 pb-10 border-t-8 border-black'>
 
-        <div className='text-4xl  text-black  flex justify-center p-2'> 
+        <div className='  text-black  flex justify-center p-2 text-2xl lg:text-4xl'> 
           New Property Listing
 
         </div>
 
         <div>
 
-                <div className="flex flex-wrap -mx-2 p-4">
+                <div className="grid grid-cols-2 auto-rows-fr h-full w-full lg:grid-cols-3 gap-4 p-4">
           {imagesPrev.map((image, index) => (
-            <div key={index} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
-              <div className="relative group">
-                <img
+            <div key={index} className=" h-full p-2 shadow-md group justify-center items-center flex items-center relative">
+                <div className="w-full h-auto ">
+                <Image
                   src={image}
-                  alt={`preview-${index}`}
-                  className="w-full h-40 md:h-48 object-cover rounded-lg shadow-md transition-transform transform hover:scale-105"
+                  width="20"
+                    height="20"
+                    sizes="100vw"
+                    className="w-auto h-auto "
+                    alt="fd"
                 />
+              </div>
+
                 <button
                   onClick={() => handleRemoveImage(index)}
-                  className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-2 right-2 bg-black  text-white p-2 py-0 rounded-md "
                 >
-                  Remove
+                  X
                 </button>
-              </div>
+              
             </div>
           ))}
         </div>
 
 
-        <div className="upload-photos-body flex items-center justify-center w-full p-10">
-      <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+        <div className="upload-photos-body flex items-center justify-center w-full  sm:p-1 sm:p-2 lg:p-10">
+      <label htmlFor="dropzone-file" className="flex flex-col items-center w-full  justify-center  h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div className="flex flex-col items-center justify-center pt-5 pb-6 ">
           <svg className="w-10 h-10 mb-4 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
           </svg>
-          <p className="mb-2 text-xl text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+          <p className="mb-2  text-white"><span className="font-semibold text-md lg:text-xl">Click to upload</span> or drag and drop</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
         </div>
         <input id="dropzone-file" type="file" multiple onChange={handleImageChange} className="hidden" />
       </label>
     </div>
     
-        <form className=" mx-auto  w-3/4 text-black" >
+        <form className=" mx-auto w-[80%] lg:w-3/4 text-black mt-4" >
       {/* Basic Details */}
       <div className="mb-5">
         <label htmlFor="propertyFor" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
@@ -403,19 +438,40 @@ const PropertyForm = () => {
 
 
       <div className="mb-5">
-        <label htmlFor="landmark" className="relative  block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          Property Landmark<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        <label htmlFor="bhk" className="relative  block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          BHK<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="text"
-          name="landmark"
+          name="bhk"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={formData.landmark ||""}
+          value={formData.bhk || ""}
           onChange={handleFormData}
-          placeholder=' Property Landmark'
+          placeholder=' Property BHK'
           required
         />
       </div>
+
+
+      <div className="mb-5">
+      <label htmlFor="landmark" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+        Property Landmark<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+      </label>
+      <select
+        name="landmark"
+        className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        value={formData.landmark || ""}
+        onChange={handleFormData}
+        required
+      >
+        <option value="" disabled>Select Property Landmark</option>
+        {landmark.map((location, index) => (
+          <option key={index} value={location}>{location}</option>
+        ))}
+      </select>
+    </div>
+      
+
       <div className="mb-5">
         <label htmlFor="description" className=" relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
           Property Description<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
@@ -530,6 +586,13 @@ const PropertyForm = () => {
           <option value="agent">Agent</option>
           <option value="owner">Owner</option>
         </select>
+      </div>
+
+      <div className={`mb-5 text-${errorColor} flex justify-center font-semibold `}>
+            
+            {showError}
+
+
       </div>
       <div className="text-center md:text-left flex items-center justify-center">
          

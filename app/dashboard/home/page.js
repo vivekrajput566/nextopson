@@ -18,9 +18,9 @@ function Home() {
 
         <>
             <div className='flex flex-col justify-center items-center h-fit'>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 text-black">
+            <div className="grid grid-cols-1 gap-2 w-[95%] sm:grid-cols-2 sm:gap-2 xl:grid-cols-4 2xl:gap-7.5 text-black">
             
-                 <div className="box-shadow-class rounded-2xl  transition delay-100 hover:scale-105 border  bg-[#DCBFFF] py-6 px-20 shadow-md outline-4  ">
+                 <div className="box-shadow-class rounded-2xl  transition delay-100 hover:scale-105 border  bg-[#DCBFFF] py-6 px-10 md:px-20 shadow-md outline-4  ">
                 <div className="flex h-11.5 w-11.5 px-4 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
                 <GrView size={40} color="blue"/>
                 </div>
@@ -101,9 +101,9 @@ function Home() {
             </div>
 
 
-             <div className='border-2 border-t-1 border-l-1 rounded-xl border-b-[12px] border-r-[6px] border-black p-10 w-3/4 m-10 flex flex-col items-center gap-8  justify-center'>
+             <div className='border-2 border-t-1 border-l-1 rounded-xl border-b-[12px] border-r-[6px] border-black p-10 w-[98%] sm:w-3/4 m-10 flex flex-col items-center gap-8  justify-center'>
 
-                <div className='flex justify-center text-2xl  text'>
+                <div className='flex justify-center text-2xl text-center text'>
                     Create New Listing For Your Next Property
                 </div>
 

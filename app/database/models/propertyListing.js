@@ -6,6 +6,7 @@ const propertyListing_schema_model = new mongoose.Schema({
   city: { type: String, required: true },
   airConditioning: { type: String, required: false },
   bathrooms: { type: String, required: true },
+  address: { type: String, required: true },
   bedrooms: { type: String, required: true },
   carpetArea: { type: String, required: false },
   description: { type: String, required: true },

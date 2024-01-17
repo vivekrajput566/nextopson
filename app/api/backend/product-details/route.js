@@ -10,7 +10,7 @@ import { Propertyphotos } from "@/app/database/models/propertyPhotos";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function POST(req :any , res:any) {
+export async function POST(req , res) {
 
 
   
@@ -22,6 +22,7 @@ export async function POST(req :any , res:any) {
     await mongoose.connect(connectionString)
     const productData = await Propertylisting.findOne({productId:productId}).select('-mobileno');
     const productPhotos = await Propertyphotos.find({productId:productId}).select('fileName');
+    console.log(productPhotos);
     return NextResponse.json({ProductDetails:productData,ProductPhotos:productPhotos});
   
 
