@@ -1,10 +1,12 @@
 import AllProperty from '@/components/PropertyDetails/AllProperty'
 import React from 'react'
 
-const AllPropertyPage = () => {
+const AllPropertyPage = ({ params }: any) => {
+  console.log("from AllPropertyPage",params);
+  
   return (
     <div>
-        <AllProperty/>
+        <AllProperty params={params}/>
     </div>
   )
 }
