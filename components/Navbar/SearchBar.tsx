@@ -7,6 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import Link from 'next/link';
+import { fetchSingleCityData } from '@/services/database';
 
 
 const data = [
@@ -34,7 +35,7 @@ const searchDummyData=[
 
 const SearchBar = () => {
   const [activeTab, setActiveTab] = useState("Buy");
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState<any>({})
 
   const [searchedTerm, setSearchedTerm] = useState("")
   const [isSearchResult, setIsSearchResults] = useState(false)
@@ -62,6 +63,55 @@ const SearchBar = () => {
       setIsNoResultVisible(false);
     }
   };
+
+//   const handleKeyUp = (e:any) => {
+//     console.log("inside handleKeyUp");
+    
+//     if (e.key === 'Enter') {
+//       console.log("inside if");
+      
+//       // Call your fetchSingleCityData function with the input value
+//       fetchSingleCityData(searchedTerm)
+//         .then((result) => {
+//       console.log("inside then");
+// setSearchResults(result)
+// setIsSearchResults(true);
+// // setIsNoResultVisible(res.length === 0);
+//           // Store the results in a variable or process them as needed
+//           // For example, you can console.log the result for now
+//           console.log('Result from fetchSingleCityData:', result);
+//         })
+//         .catch((error) => {
+//           // Handle any errors that may occur during the API call
+//           console.error('Error in fetchSingleCityData:', error);
+//         });
+//     }
+//   };
+
+const handleKeyUp = (e:any) => {
+    console.log("inside handleKeyUp");
+
+  if (e.key === 'Enter') {
+      console.log("inside then");
+
+    fetchSingleCityData(searchedTerm)
+      .then((result) => {
+        setSearchResults(result);
+        setIsSearchResults(true);
+      })
+      .catch((error) => {
+        console.error('Error in fetchSingleCityData:', error);
+        setSearchResults({ result: false, ProductDetails: [] });
+        setIsSearchResults(true);
+      });
+  }
+};
+
+const handleCrossClick = () => {
+  setSearchedTerm('');
+  setIsSearchResults(false);
+};
+  console.log(searchResults,"searchResults");
   
 
   return (
@@ -94,7 +144,7 @@ const SearchBar = () => {
           <div className={' flex relative gap-3 items-center  2xl:w-[60%] md:w-[50%] w-[100%]  '}>
             <div className={`flex relative gap-3 items-center  w-[100%]`}>
             <FiSearch className={`text-gray-500 text-xl`}/>
-            <input
+            {/* <input
              value={searchedTerm}
              onChange={(e) => {
                setSearchedTerm(e.target.value)
@@ -102,34 +152,59 @@ const SearchBar = () => {
              }} 
             type="text" 
             placeholder='Search here...' 
-            className='outline-0 w-[100%] text-sm md:py-0 py-4'/>
+            className='outline-0 w-[100%] text-sm md:py-0 py-4'/> */}
+
+<input
+        value={searchedTerm}
+        onKeyUp={handleKeyUp}  
+        onChange={(e) => {
+          setSearchedTerm(e.target.value);
+          // renderSearchResults(e.target.value);
+        }}
+        type="text"
+        placeholder='Search here...'
+        className='outline-0 w-[100%] text-sm md:py-0 py-4'
+      />
           </div>
+
+
+        
+
+
           {searchedTerm &&
-              <div onClick={() => setSearchedTerm("")} className="flex items-center justify-center cursor-pointer">
+              <div onClick={() => {
+                setSearchedTerm("")
+                setSearchResults({})
+              }} className="flex items-center justify-center cursor-pointer">
                 <RxCross1 className=" text-[red] text-base" />
               </div>
             }
-          {searchedTerm && isSearchResult && searchResults && searchResults.length > 0 &&
-              <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute -left-7 top-[42px]  rounded-sm z-10 bg-white  w-[100%]">
-                {
-                  searchResults && searchResults.length > 0 && searchResults.map((item: any, idx: any) => {
-                    return <Link href={`/all-properties`}
-                    onClick={()=>console.log("clicked")
-                    }
-                    key={idx}
-                      // onClick={async () => onTagHandler(item)}
-                      className="text-sm bg-white w-full py-1.5   cursor-pointer border-t border-t-gray-200  px-6">
-                      {item.name}
-                    </Link>
-                  })
-                }
-              </div>
+            {searchResults&&searchResults.result&&searchResults.ProductDetails.length > 0&&
+             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute -left-7 top-[42px]  rounded-sm z-10 bg-white  w-[100%] border border-[red]">
+             {
+                searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
+                 return <Link href={`/all-properties/${item.landmark}`}
+                 onClick={()=>console.log("clicked")
+                 }
+                 key={idx}
+                   className="text-sm bg-white w-full py-1.5   cursor-pointer border-t border-t-gray-200  px-6">
+                   {item.landmark}
+                 </Link>
+               })
+             }
+           </div>
+           
             }
-            {searchedTerm && isNoResultVisible && (
-              <div className=" absolute -left-7 top-[42px] px-3 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  ">
-                No results found with &#8223;{searchedTerm}&#8221;
-              </div>
-            )}
+             {searchedTerm&&searchResults&&!searchResults?.result&&searchResults?.ProductDetails?.length===0&&
+                            
+          
+          <div className=" absolute -left-7 top-[42px] px-3 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  border border-[red]">
+          {searchResults.ProductDetails}
+        </div>
+            }
+           
+         
+           
           </div>
 
          <div className={'md:w-fit w-full flex md:justify-start justify-between  gap-3 items-center   mb-3 '}>

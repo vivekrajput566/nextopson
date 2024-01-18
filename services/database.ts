@@ -33,9 +33,9 @@ export const fetchSingleCityData = async (slug: any) => {
         console.log("fetchSinglePropertyData try");
         const form = new FormData();
         const cityName = slug
-        form.append("cityname", cityName);
+        form.append("inputValue", cityName);
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/cityDetails',
+        const res = await fetch('http://localhost:3000/api/backend/searchInput',
             {
                 method: "POST",
                 body: form,
