@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const PropertyForm = () => {
@@ -69,8 +69,11 @@ const PropertyForm = () => {
     const key=e.target.name;
     console.log(e.target.name);
     const value=e.target.value
+
     //console.log(e.target.checked);
-  
+    if(key=="propertyFor"){
+      formData.propertyType="";
+    }
     
     setFormData((prevDetails) => ({
       ...prevDetails,
@@ -128,7 +131,8 @@ const PropertyForm = () => {
         price,
         propertyFor,
         propertyType,
-        city
+        city,
+        contactNo
       } = formData;
 
    
@@ -144,7 +148,8 @@ const PropertyForm = () => {
         !price ||
         !propertyFor ||
         !propertyType ||
-        !city
+        !city ||
+        !contactNo
       ) {
        
         
@@ -178,6 +183,8 @@ const PropertyForm = () => {
     }
   const  handleSubmit = async (e) => {
     e.preventDefault();
+
+   // console.log(...formData);
     setSubmitButtonStatus(true);
    // console.log(formData);
     const validateFormStatus= await validateForm();
@@ -283,6 +290,8 @@ const PropertyForm = () => {
 
   };
 
+  
+
  
 
   return (
@@ -356,7 +365,7 @@ const PropertyForm = () => {
           <option value="rent">For Rent</option>
         </select>
       </div>
-      <div className="mb-5">
+      <div className={`mb-5 ${!formData.propertyFor ? 'hidden' : 'block'}`}>
         <label htmlFor="propertyType" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
         Property type<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
@@ -367,16 +376,31 @@ const PropertyForm = () => {
           onChange={handleFormData}
           required
         >
+          {formData.propertyFor}
           <option value="">Property type</option>
-          <option value="flat">Flat</option>
-          <option value="house">House</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="appartment">Appartment</option>
-          <option value="commercial">Commercial</option>
-          <option value="flatmates">Flat Mates</option>
-          <option value="plot">Plot</option>
-          <option value="duplex">Duplex</option>
-        </select>
+                  {
+            formData.propertyFor == "sale" && (
+                <>
+                <option value="house">House</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="plot">Plot</option>
+                <option value="duplex">Duplex</option>
+                <option value="commercial">Commercial</option>
+                </>
+            )
+
+          }
+
+          {
+            formData.propertyFor == "rent" && (
+                <>
+                <option value="apartment">Apartment</option>
+                <option value="commercial">Commercial</option>
+                <option value="flatmates">Flat Mates</option>
+                </>
+            )
+          }
+                  </select>
       </div>
       <div className="mb-5">
         <label htmlFor="bedrooms" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
@@ -421,6 +445,22 @@ const PropertyForm = () => {
           required
         />
       </div>
+
+      <div className="mb-5">
+        <label htmlFor="contactNo" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          Contact Mobile No.<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <input
+          type="text"
+          name="contactNo"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.contactNo || ""}
+          onChange={handleFormData}
+          placeholder='Contact Mobile No.'
+          required
+        />
+      </div>
+
       <div className="mb-5">
         <label htmlFor="address" className="relative  block mb-2 text-md font-semibold text-white-900 dark:text-black">
           Property Address<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
@@ -450,6 +490,27 @@ const PropertyForm = () => {
           placeholder=' Property BHK'
           required
         />
+      </div>
+
+      <div className="mb-5">
+        <label htmlFor="city" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+          City<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <select
+          name="city"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.city || ""}
+          onChange={handleFormData}
+          required
+        >
+          <option value="">Select</option>
+          <option value="indore">Indore</option>
+          <option value="delhi">Delhi</option>
+          <option value="banglore">Banglore</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="pune">Pune</option>
+        </select>
       </div>
 
 
@@ -516,26 +577,7 @@ const PropertyForm = () => {
           <option value="unfurnished">Unfurnished</option>
         </select>
       </div>
-      <div className="mb-5">
-        <label htmlFor="city" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
-          City<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
-        </label>
-        <select
-          name="city"
-          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={formData.city || ""}
-          onChange={handleFormData}
-          required
-        >
-          <option value="">Select</option>
-          <option value="indore">Indore</option>
-          <option value="delhi">Delhi</option>
-          <option value="banglore">Banglore</option>
-          <option value="kolkata">Kolkata</option>
-          <option value="mumbai">Mumbai</option>
-          <option value="pune">Pune</option>
-        </select>
-      </div>
+      
       <div className="mb-5 flex items-center pt-4 pb-4">
         <div className="flex items-center ">
           <input
