@@ -32,6 +32,34 @@ export async function POST(req , res) {
         'supercorridor'
       ];
 
+    const pune_landrmark=[
+
+      'Vittal Nagar',
+      'Pimpri Chinchwad',
+      'Wakad',
+      'Hinjewadi',
+      'Baner',
+      'Wagholi',
+      'Viman Nagar',
+      'Kharadi',
+      'Hadapsar',
+      'Shivaji Nagar',
+      'Koregaon Park',
+      'Gopal Patti',
+      'Autadwadi',
+      'Uruli Devachi',
+      'Kondhwa',
+      'Dhankawadi',
+      'Khadewadi',
+      'Dattawadi',
+      'Swar Gate',
+      'Magarpatta',
+      'Gokhale Nagar',
+      'Kalyani Nagar',
+      'Kothrud'
+
+    ]
+
     const categories = [{
         name: "Indore", isSubcategories: true, subcategories: [
           
@@ -40,7 +68,16 @@ export async function POST(req , res) {
       
         ]
       }
-        , { name: "Delhi", isSubcategories: false }, { name: "Kolkata", isSubcategories: false }, { name: "Mumbai", isSubcategories: false }, { name: "Pune", isSubcategories: false }]
+        , 
+        { name: "Pune", isSubcategories: true, subcategories: [
+          
+          ...pune_landrmark
+  
+        
+          ] }, 
+        
+        
+        { name: "Kolkata", isSubcategories: false }, { name: "Mumbai", isSubcategories: false }, { name: "Delhi", isSubcategories: false }]
       
   
     return NextResponse.json({categoryDetails:categories,result:true});

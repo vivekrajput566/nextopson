@@ -19,7 +19,7 @@ const PropertyForm = () => {
   
   const [submitButtonStatus, setSubmitButtonStatus]= useState(false);
 
-  const landmark = [
+  const landmark ={ indore :[
     'dhabli',
     'niranjanpur',
     'nipania',
@@ -34,7 +34,34 @@ const PropertyForm = () => {
     'vijaynagar',
     'palasia',
     'supercorridor'
-  ];
+  ],
+  pune:
+  [
+    'Vittal Nagar',
+    'Pimpri Chinchwad',
+    'Wakad',
+    'Hinjewadi',
+    'Baner',
+    'Wagholi',
+    'Viman Nagar',
+    'Kharadi',
+    'Hadapsar',
+    'Shivaji Nagar',
+    'Koregaon Park',
+    'Gopal Patti',
+    'Autadwadi',
+    'Uruli Devachi',
+    'Kondhwa',
+    'Dhankawadi',
+    'Khadewadi',
+    'Dattawadi',
+    'Swar Gate',
+    'Magarpatta',
+    'Gokhale Nagar',
+    'Kalyani Nagar',
+    'Kothrud'
+  ]
+}
 
   var b=1;
   const handleImageChange =async (e) => {
@@ -508,12 +535,13 @@ const PropertyForm = () => {
         >
           <option value="">Select</option>
           <option value="indore">Indore</option>
+          <option value="pune">Pune</option>
          
         </select>
       </div>
 
 
-      <div className="mb-5">
+      <div className={`mb-5 ${!formData.city ? 'hidden' : 'block'}`}>
       <label htmlFor="landmark" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
         Property Landmark<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
       </label>
@@ -525,7 +553,7 @@ const PropertyForm = () => {
         required
       >
         <option value="" disabled>Select Property Landmark</option>
-        {landmark.map((location, index) => (
+        {landmarks.formData.city.map((location, index) => (
           <option key={index} value={location}>{location}</option>
         ))}
       </select>
