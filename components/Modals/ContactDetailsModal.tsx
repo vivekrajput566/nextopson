@@ -35,12 +35,14 @@ const ContactDetailsModal = ({setIsContactDetails,personalDetails}:any) => {
                     <h4 className='text-gray-600 font-medium sm:text-base text-sm'>{personalDetails?.username}</h4>
                     </div>}
                     <div className='flex items-center gap-1'>
-                    <h4 className='sm:text-base text-sm font-semibold'>Email :</h4>
+                    <h4 className='sm:text-base text-sm font-semibold'>Address:</h4>
                     <h4 className='text-gray-600 font-medium sm:text-base text-sm'>{personalDetails?.address}</h4>
                     </div>
+                    {/* {contactno} */}
+                    {/* {personalDetails?.contactno==="null"} */}
                     <div className='flex items-center gap-1'>
                     <h4 className='sm:text-base text-sm font-semibold'>Phone number :</h4>
-                    <h4 className='text-gray-600 font-medium sm:text-base text-sm'>{personalDetails?.mobileno}</h4>
+                    <h4 className='text-gray-600 font-medium sm:text-base text-sm'>{personalDetails?.contactno==="null"?personalDetails?.mobileno:personalDetails?.contactno}</h4>
                     </div>
                     {/* <h4>sonal123@gmail.com</h4>
                     <h4>1234567890</h4>

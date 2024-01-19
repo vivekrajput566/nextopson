@@ -89,11 +89,11 @@ const SearchBar = () => {
 //   };
 
 const handleKeyUp = (e:any) => {
-    console.log("inside handleKeyUp");
+    // console.log("inside handleKeyUp");
 
   if (e.key === 'Enter') {
     // log
-      console.log("inside then");
+      // console.log("inside then");
 
     fetchSingleCityData(searchedTerm)
       .then((result) => {
@@ -112,7 +112,7 @@ const handleCrossClick = () => {
   setSearchedTerm('');
   setIsSearchResults(false);
 };
-  console.log(searchResults,"searchResults");
+  // console.log(searchResults,"searchResults");
   
 
   return (
@@ -185,8 +185,8 @@ const handleCrossClick = () => {
              {
                 searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
                  return <Link href={`/all-properties/${item.landmark}`}
-                 onClick={()=>console.log("clicked")
-                 }
+                //  onClick={()=>console.log("clicked")
+                //  }
                  key={idx}
                    className="text-sm bg-white w-full py-1.5   cursor-pointer border-t border-t-gray-200  px-6">
                    {item.landmark}
@@ -206,7 +206,7 @@ const handleCrossClick = () => {
             {searchedTerm&&(searchResults&&!searchResults?.result)&&
             <div className='  absolute -left-7 top-[42px] px-3 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  '>
               {/* fbgfdgfdh */}
-              No results found 
+              No results found with &#8223;{searchedTerm}&#8221;
               {/* {searchResults.ProductDetails} */}
 
               </div>

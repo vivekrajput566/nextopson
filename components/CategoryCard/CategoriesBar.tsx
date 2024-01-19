@@ -10,9 +10,9 @@ interface Props {
 }
 
 const CategoriesBar: FC<Props> = ({categories = null,hoveredCategory = 0,setHoveredCategory,}) => {
-    console.log("categories from bar", categories);
-    console.log("CategoriesBar hovered", hoveredCategory);
-    console.log(categories.categoryDetails[hoveredCategory]?.isSubcategories);
+    // console.log("categories from bar", categories);
+    // console.log("CategoriesBar hovered", hoveredCategory);
+    // console.log(categories.categoryDetails[hoveredCategory]?.isSubcategories);
     
 
     return (

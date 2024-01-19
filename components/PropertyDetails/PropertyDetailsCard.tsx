@@ -37,17 +37,17 @@ const formattedTime =
   minutes > 0 ? `${minutes} (minutes) ago` :
   `${seconds} (seconds) ago`;
 
-console.log(formattedTime,"time----------");
+// console.log(formattedTime,"time----------");
 
   const fetchPersonalDetails = async () => {
     // console.log(slug, "slug");
-    console.log("fetchSingleCityData");
+    // console.log("fetchSingleCityData");
     try {
-        console.log("fetchSinglePropertyData try");
+        // console.log("fetchSinglePropertyData try");
         const form = new FormData();
         // const cityName = slug
         form.append("productId", singleCity?.productId);
-        console.log("inside try");
+        // console.log("inside try");
         const res = await fetch('http://localhost:3000/api/backend/personalDetails',
             {
                 method: "POST",
@@ -61,7 +61,7 @@ console.log(formattedTime,"time----------");
         }
         const data = await res.json();
 setPersonalDetails(data.personalDetails)        
-console.log("data from details", data);
+// console.log("data from details", data);
         return data
     } catch (error) {
         console.error("Error during fetch:", error);

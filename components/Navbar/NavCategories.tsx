@@ -35,10 +35,10 @@ const NavCategories = () => {
     queryKey: ["dropDownCategories"],
     queryFn: () => fecthDropDownData(),
   });
-  console.log(dropDownCategories,"dropDownCategories");
+  // console.log(dropDownCategories,"dropDownCategories");
 
 
-  console.log("tab", tab);
+  // console.log("tab", tab);
 
   return (
     <div className='md:block hidden bg-[#f3f5f7]'>
@@ -46,18 +46,18 @@ const NavCategories = () => {
         {dropDownCategories&&dropDownCategories?.categoryDetails.map((categoryData: any, index: number)=>{
           return <div className={`flex gap-2 items-center  xl:px-10 px-4 py-3 relative `}
           onMouseEnter={() => {
-            console.log("clickekd", index);
+            // console.log("clickekd", index);
             if (
               categoryData?.isSubcategories &&
               categoryData?.subcategories &&
               categoryData?.subcategories?.length !== 0
             ) {
-              console.log("inside clicked if");
+              // console.log("inside clicked if");
               setTab(index + 1);
-              console.log(tab, "taab from if");
+              // console.log(tab, "taab from if");
               setHoveredCategory(index);
             } else {
-              console.log("inside lse");
+              // console.log("inside lse");
               setTab(index + 1);
               setHoveredCategory(index);
               // setHoveredCategory(null);
@@ -70,7 +70,7 @@ const NavCategories = () => {
           >
              <div className='cursor-pointer flex gap-2 items-center '>
               <h4 className={`text-gray-600 text-sm`}>{categoryData.name}</h4>
-              <div><IoChevronDownOutline className={`text-[#727272] text-base `} /></div>
+              <div><IoChevronDownOutline className={`text-[#727272]  text-base ${tab === index + 1&&"rotate-180"} `} /></div>
             </div>
             {hovershow && (hoveredCategory !== null && tab === index + 1)&&
             <div className=' border border-[red]'>

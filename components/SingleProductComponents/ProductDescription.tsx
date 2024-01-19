@@ -185,10 +185,10 @@ console.log("data from details", data);
 
                 {/* <div className="flex flex-col gap-1 sm:gap-2 md:gap-3"> */}
           {!(singlePropertyData?.ProductDetails?.propertyType==="null")&&  <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-            Property Type : {singlePropertyData?.ProductDetails?.propertyType}
+            Property Type : <span className="text-gray-600">{singlePropertyData?.ProductDetails?.propertyType}</span>
             </p>}
             <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-            PropertyFor : {singlePropertyData?.ProductDetails?.propertyFor}
+            Property For : <span className="text-gray-600">{singlePropertyData?.ProductDetails?.propertyFor}</span>
             </p>
           {/* </div> */}
 

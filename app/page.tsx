@@ -44,10 +44,10 @@ import Image from 'next/image'
 // import { AuthOptions } from './api/authOptions'
 
 async function getData() {
-  console.log("hi");
+  // console.log("hi");
 
   try {
-    console.log("inside try");
+    // console.log("inside try");
     const res = await fetch('http://localhost:3000/api/backend/showProperties',
     { method: "POST", cache: "no-cache" }
     );
