@@ -52,7 +52,7 @@ export async function POST(req , res) {
             parkingAvailable: 1,
             propertyType: 1,
             createdAt: 1,
-            filename:'$images.fileName'
+            images:'$images.fileName'
           
           }
       }
