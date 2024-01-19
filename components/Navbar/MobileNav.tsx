@@ -5,6 +5,8 @@ import { useState } from "react";
 // import { useDispatch } from "react-redux";
 import SideMenu from "./SideMenu";
 import { AiOutlineMenu } from "react-icons/ai";
+import logo from "../../images/newLogo2.jpg"
+import Link from "next/link";
 
 const MobileNav = () => {
 //   const isScrolled = useScrollDirection();
@@ -12,7 +14,7 @@ const MobileNav = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div
-      className={`md:hidden  flex items-center justify-between px-body  w-full min-h-[90.97px]`}
+      className={`md:hidden  flex items-center justify-between px-body  w-full min-h-[70.97px] bg-black`}
     >
        <button
         onClick={() => {
@@ -21,7 +23,7 @@ const MobileNav = () => {
           setIsSidebarOpen(true);
         }}
       >
-        <AiOutlineMenu className={"text-2xl"}/>
+        <AiOutlineMenu className={"text-2xl text-white"}/>
         {/* Menu */}
       </button>
       <div className=" gap-3 flex items-center">
@@ -31,7 +33,13 @@ const MobileNav = () => {
             alt="logo"
             className="w-full h-full object-contain"
           /> */}
-          <h1>NEXTOPSON</h1>
+        <Link href={"/"} className=' '>
+          <div className="w-20 h-10 flex items-center justify-center">
+            
+            <Image src={logo} alt="logo " className='w-[100%] h-[100%] '/> 
+            </div>
+            {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
+            </Link>
         </div>
       </div>
      

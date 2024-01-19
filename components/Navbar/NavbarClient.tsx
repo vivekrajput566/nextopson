@@ -10,11 +10,13 @@ import NavCategories from './NavCategories';
 import Link from 'next/link';
 import MobileNav from './MobileNav';
 import { MdDashboard } from "react-icons/md";
-import logo from "../../images/nextopson logo.jpg"
+import logo from "../../images/newLogo2.jpg"
 import Image from 'next/image';
 import { useScrollDirection } from "../../utils/useScroll";
 import FixedNav from './FixedNav';
 import { useSession } from "next-auth/react"
+import {RemoveLayout} from "../../app/remove-layout"
+
 // import {session}
 
 
@@ -24,9 +26,14 @@ const dummyDta=[
 {icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"/#"}]
 
 const NavbarClient = () => {
+    const remove=RemoveLayout()
+    console.log("remove",remove);
   
     
   const isScrolled = useScrollDirection();
+  if(remove){
+    return null
+  }
 
   return (
     <div className=''>
@@ -35,9 +42,10 @@ const NavbarClient = () => {
      <FixedNav/>
      :
      <div className=''>
-     <div className={`px-body hidden md:flex items-center justify-between `}>
+     <div className={`px-body hidden md:flex items-center justify-between  bg-black `}>
          <Link href={"/"} className='w-20 h-10'>
-     <Image src={logo} alt="logo"/> 
+            
+     <Image src={logo} alt="logo " className=''/> 
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
      </Link>
      <div className={`flex items-center`}>
@@ -45,17 +53,17 @@ const NavbarClient = () => {
              return  <Link href={`/dashboard/${item.href}`}
             //  onClick={(e)=>e.preventDefault()}
               key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
-             <div className={`text-2xl font-normal`}>{item.icon}</div>
+             <div className={`text-2xl font-normal text-white`}>{item.icon}</div>
              <div className={`flex flex-col `}>
-                 <h2 className='text-sm font-semibold'>{item.heading}</h2>
-                 <p className='text-[#999999] text-xs'>{item.text}</p>
+                 <h2 className='text-sm font-semibold text-white'>{item.heading}</h2>
+                 <p className=' text-xs text-white'>{item.text}</p>
              </div>
          </Link>
          })}
          <Link href={"/dashboard"} className='cursor-pointer'>
          <div className={`flex items-center gap-x-3  px-8 cursor-pointer`}>
-             <div><MdDashboard className={`text-2xl`}/></div>
-             <h2 className={`text-sm font-semibold`}>Dashboard</h2>
+             <div><MdDashboard className={`text-2xl text-white`}/></div>
+             <h2 className={`text-sm font-semibold text-white`}>Dashboard</h2>
          </div>
          </Link>
         </div>

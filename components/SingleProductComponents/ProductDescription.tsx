@@ -13,6 +13,7 @@ import apple3 from "../../images/aprt01.jpg";
 import { IoStarOutline } from "react-icons/io5";
 import ContactDetailsModal from "../Modals/ContactDetailsModal";
 import dfd from "../../public/productPhotos/9c5101e2-a01c-44eb-ae15-b0457300dbc5.webp"
+import {constant} from "../../utils/constants"
 // import fg from "../../public/productPhotos/"
 // 9cdf1405-64d8-4dc2-8a12-51fa41bfdef4
 
@@ -80,7 +81,7 @@ console.log("data from details", data);
               <Image
                 src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):apple}
+                  require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):constant?.errImage}
                
                 // src={dfd}
                 alt=""
@@ -325,7 +326,25 @@ console.log("data from details", data);
           </div> */}
         </div>
         </div>
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full ">
+        {
+          singlePropertyData?.ProductPhotos&&
+          singlePropertyData?.ProductPhotos.length>0&&
+          <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full">
+          {
+            singlePropertyData?.ProductPhotos&&
+            singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
+              return <div>
+                <Image src={singlePropertyData?.ProductPhotos&&
+                  singlePropertyData?.ProductPhotos.length>0?
+                  require(`../../public/productPhotos/${photos.fileName}.webp`):apple} 
+                  alt=""
+                  className="rounded-xl"/>
+              </div>
+            })
+          }
+          </div>
+        }
+            {/* <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full ">
             
               {Array(2)
                 .fill(0)
@@ -349,7 +368,7 @@ console.log("data from details", data);
                     />
                   </div>
                 ))}
-            </div>
+            </div> */}
       </div>
     </div>
   );

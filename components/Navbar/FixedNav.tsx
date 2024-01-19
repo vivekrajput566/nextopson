@@ -9,9 +9,10 @@ import { MdOutlineMyLocation } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from "../../images/nextopson logo.jpg"
+import logo from "../../images/newLogo2.jpg"
 import { usePathname } from "next/navigation";
 import { fetchSingleCityData } from '@/services/database';
+import {RemoveLayout} from "../../app/remove-layout"
 
 
 
@@ -43,6 +44,9 @@ const searchDummyData=[
   ]
 
 const FixedNav = () => {
+  const remove=RemoveLayout()
+  console.log("remove",remove);
+  
   const pathName = usePathname();
     const [searchResults, setSearchResults] = useState<any>([])
     const [searchedTerm, setSearchedTerm] = useState("")
@@ -86,8 +90,12 @@ const FixedNav = () => {
           });
       }
     };
+
+    if(remove){
+      return null
+    }
   return (
-    <div className={` top-0 w-[100%] bg-white shadow-xl z-30 ${pathName.includes("dashboard")?"hidden":"fixed"}`}>
+    <div className={` top-0 w-[100%] bg-black shadow-xl z-30 fixed`}>
         <div className='flex px-body items-center  justify-between sm:py-3.5 py-2.5'>
             <div className='flex items-center  xl:w-[60%] md:w-[70%] sm:w-[70%] w-[100%] gap-8 '>
         <Link href={"/"} className='w-20 h-10 '>
@@ -107,7 +115,7 @@ const FixedNav = () => {
             }}
             type="text" 
             placeholder='Search here...' 
-            className='outline-0 w-[100%] text-sm md:py-3 py-2.5'/>
+            className='outline-0 w-[100%] text-sm md:py-3 py-2.5 bg-transparent text-white'/>
             </div>
              {/* {searchedTerm &&
               <div onClick={() => setSearchedTerm("")} className="flex items-center justify-center cursor-pointer">
@@ -175,16 +183,16 @@ const FixedNav = () => {
         <div className={`flex items-center `}>
          {dummyDta.map((item:any,idx:number)=>{
              return  <Link href={`/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
-             <div className={`text-2xl font-normal`}>{item.icon}</div>
+             <div className={`text-2xl font-normal text-white`}>{item.icon}</div>
              <div className={`flex flex-col `}>
-                 <h2 className='text-sm font-semibold'>{item.heading}</h2>
-                 <p className='text-[#999999] text-xs'>{item.text}</p>
+                 <h2 className='text-sm font-semibold text-white'>{item.heading}</h2>
+                 <p className=' text-xs text-white'>{item.text}</p>
              </div>
          </Link>
          })}
          <Link href={"/dashboard"} className={`sm:flex hidden items-center gap-x-3 xl:px-8  sm:px-4 px-2`}>
-             <div><MdDashboard className={`text-2xl`}/></div>
-             <h2 className={`text-sm font-semibold`}>Dashboard</h2>
+             <div><MdDashboard className={`text-2xl text-white`}/></div>
+             <h2 className={`text-sm font-semibold text-white`}>Dashboard</h2>
          </Link>
         </div>
         </div>

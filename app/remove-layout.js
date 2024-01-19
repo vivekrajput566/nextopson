@@ -16,10 +16,10 @@ console.log(parts)
 
 if(pathsArray.includes(parts[1])) {
 
-  return false;
+  return true;
 }
 else{
-  return true;
+  return false;
 }
 
   }

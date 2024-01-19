@@ -2,15 +2,19 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
+import {RemoveLayout} from "../../app/remove-layout"
 
 
 const Footer = () => {
   const pathName = usePathname();
+  const remove=RemoveLayout()
+  console.log("remove",remove);
+
+  // ${pathName.includes("dashboard")?"hidden":"block"}
   return (
     <>
-  
     <footer
-      className={` mt-10 bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left ${pathName.includes("dashboard")?"hidden":"block"}`}>
+      className={` mt-10 bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left `}>
       <div
         className="px-body flex items-center justify-center border-b-2 py-6 border-neutral-200  dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
