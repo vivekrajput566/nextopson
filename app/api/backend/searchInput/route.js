@@ -22,13 +22,53 @@ export async function POST(req , res) {
       
           // Access the collection and create the index
          
-          const results = await Propertylisting.find({
-            $or: [
-              { city: { $regex: new RegExp(inputValue, "i") } },
-              { landmark: { $regex: new RegExp(inputValue, "i") } },
-              { address: { $regex: new RegExp(inputValue, "i") } }
-            ]
-          }).select('-mobileno');
+          const results = await Propertylisting.aggregate([
+            {
+                $match: {
+                    $or: [
+                        { city: { $regex: new RegExp(inputValue, "i") } },
+                        { landmark: { $regex: new RegExp(inputValue, "i") } },
+                        { address: { $regex: new RegExp(inputValue, "i") } }
+                    ]
+                }
+            },
+            {
+                $lookup: {
+                    from: 'propertyphotos', 
+                    localField: 'productId',
+                    foreignField: 'productId',
+                    as: 'images'
+                }
+            },
+            {
+                $project: {
+                    
+                  _id: 1,
+                  productId: 1,
+                  username: 1,
+                  contactno: 1,
+                  city: 1,
+                  bhk: 1,
+                  price: 1,
+                  propertyFor: 1,
+                  address: 1,
+                  furniture: 1,
+                  landmark: 1,
+                  airConditioning: 1,
+                  bathrooms: 1,
+                  bedrooms: 1,
+                  carpetArea: 1,
+                  description: 1,
+                  listedBy: 1,
+                  parkingAvailable: 1,
+                  propertyType: 1,
+                  createdAt: 1,
+                  images:'$images.fileName',
+                  
+                }
+            },
+            
+        ]);
           console.log(results);
                     
           if(results.length==0){

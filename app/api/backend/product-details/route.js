@@ -22,7 +22,7 @@ export async function POST(req , res) {
     
     await mongoose.connect(connectionString)
     const productData = await Propertylisting.findOne({productId:productId}).select('-mobileno');
-    const productPhotos = await Propertyphotos.find({productId:productId}).select('fileName');
+    const productPhotos = await Propertyphotos.find({productId:productId}).select('productId');
     
     //console.log(!productData)
     if(!productData){

@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+
 const PropertyForm = () => {
+
+
     
   const [formData, setFormData] = useState({});
 
