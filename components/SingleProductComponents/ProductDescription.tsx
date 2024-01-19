@@ -78,11 +78,11 @@ console.log("data from details", data);
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 ">
             <div className=" flex justify-center items-center bg-[#FAFAFA]   aspect-square ">
               <Image
-                // src={singlePropertyData?.ProductPhotos&&
-                //   singlePropertyData?.ProductPhotos.length>0?
-                //   require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):apple}
+                src={singlePropertyData?.ProductPhotos&&
+                  singlePropertyData?.ProductPhotos.length>0?
+                  require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):apple}
                
-                src={dfd}
+                // src={dfd}
                 alt=""
                 className="w-full h-full object-contain"
                 width={1000}
