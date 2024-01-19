@@ -31,14 +31,14 @@ export async function POST(req , res) {
 
     }
 
-    const countViews=await CountViews(productId);
+    //const countViews=await CountViews(productId);
     //console.log(countViews)
-    if(countViews==false){
+    // if(countViews==false){
 
-      return NextResponse.json({validUser:false});
+    //   return NextResponse.json({validUser:false});
   
 
-    }
+    // }
 
     return NextResponse.json({ProductDetails:productData,ProductPhotos:productPhotos});
   
