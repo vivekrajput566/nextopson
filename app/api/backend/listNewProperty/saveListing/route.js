@@ -88,7 +88,7 @@ export async function POST(req, res) {
      
     
       
-    return NextResponse.json({fsdfsdf:"Fsdfsf"});
+    return NextResponse.json({success:true});
   
 
 

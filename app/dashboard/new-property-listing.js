@@ -246,14 +246,14 @@ const PropertyForm = () => {
            return response.json();
          })
          .then((responseData) => {
+           console.log(responseData);
            if(responseData.success==true){
 
-             console.log(responseData)
-             setShowError("Successfully Listed! Redirecting...")
-             setErrorColor("green-500")
+              console.log(responseData)
+              setShowError("Successfully Listed! Redirecting...")
+              setErrorColor("green-500")
 
-
-             return;
+              return;
        
            }
            if(responseData.success==false){
@@ -505,11 +505,7 @@ const PropertyForm = () => {
         >
           <option value="">Select</option>
           <option value="indore">Indore</option>
-          <option value="delhi">Delhi</option>
-          <option value="banglore">Banglore</option>
-          <option value="kolkata">Kolkata</option>
-          <option value="mumbai">Mumbai</option>
-          <option value="pune">Pune</option>
+         
         </select>
       </div>
 

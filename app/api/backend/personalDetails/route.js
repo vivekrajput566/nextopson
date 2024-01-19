@@ -20,7 +20,7 @@ if (req.method === "POST") {
     const formData = await req.formData();
     const productId= formData.get("productId");
     await mongoose.connect(connectionString)
-    const personalDetails = await Propertylisting.findOne({ productId: productId }, { mobileno: 1, username: 1, address: 1 });
+    const personalDetails = await Propertylisting.findOne({ productId: productId }, { contactno: 1, username: 1, address: 1 });
 
     
     return NextResponse.json({personalDetails:personalDetails});
