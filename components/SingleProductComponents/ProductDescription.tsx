@@ -336,8 +336,10 @@ console.log("data from details", data);
               return <div key={idx}>
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`../../public/productPhotos/${photos.fileName}.webp`):apple} 
+                  require(`../../public/productPhotos/${photos.fileName}.webp`):constant?.errImage} 
                   alt=""
+                  width={1000}
+                  height={1000}
                   className="rounded-xl"/>
               </div>
             })

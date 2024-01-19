@@ -72,6 +72,8 @@ setPersonalDetails(data.personalDetails)
     <div className='flex md:flex-row flex-col gap-x-5 gap-y-3  sm:p-4 p-3 rounded-xl shadow-md'>
 <div className='md:w-[40%] w-[100%] h-auto'>
 <Image 
+ width={1000}
+ height={1000}
  src={singleCity?.images&&
   singleCity?.images.length>0?
   require(`../../public/productPhotos/${singleCity?.images[0]}.webp`):constant?.errImage}
