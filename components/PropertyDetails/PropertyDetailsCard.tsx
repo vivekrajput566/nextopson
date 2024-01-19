@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import ContactDetailsModal from '../Modals/ContactDetailsModal';
 import Link from 'next/link';
 import moment from 'moment';
+import { constant } from '@/utils/constants';
 
 
 
@@ -70,7 +71,12 @@ console.log("data from details", data);
   return (
     <div className='flex md:flex-row flex-col gap-x-5 gap-y-3  sm:p-4 p-3 rounded-xl shadow-md'>
 <div className='md:w-[40%] w-[100%] h-auto'>
-<Image src={building} alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl '/>
+<Image 
+ src={singleCity?.images&&
+  singleCity?.images.length>0?
+  require(`../../public/productPhotos/${singleCity?.images[0]}.webp`):constant?.errImage}
+// src={building} 
+alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl '/>
 </div>
 <div className='md:w-[60%] w-[100%] flex flex-col justify-between gap-4 '>
   <div className=' flex flex-col gap-4 '>
