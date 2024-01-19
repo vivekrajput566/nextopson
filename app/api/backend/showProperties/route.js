@@ -21,15 +21,49 @@ export async function POST(req , res) {
    // const productId= formData.get("productId");
     await mongoose.connect(connectionString)
     const productData = await Propertylisting.aggregate([
-       
-        { $sample: { size: 4 } }
-      ]);
+      { $sample: { size: 4 } },
+      {
+          $lookup: {
+              from: 'propertyphotos', // Replace 'propertyphotos' with the actual name of your Propertyphotos collection
+              localField: 'productId', // The field in the PropertyListing collection
+              foreignField: 'productId', // The field in the Propertyphotos collection
+              as: 'images'
+          }
+      },
+      {
+          $project: {
+            _id: 1,
+            productId: 1,
+            username: 1,
+            contactno: 1,
+            city: 1,
+            bhk: 1,
+            price: 1,
+            propertyFor: 1,
+            address: 1,
+            furniture: 1,
+            landmark: 1,
+            airConditioning: 1,
+            bathrooms: 1,
+            bedrooms: 1,
+            carpetArea: 1,
+            description: 1,
+            listedBy: 1,
+            parkingAvailable: 1,
+            propertyType: 1,
+            createdAt: 1,
+            filename:'$images.fileName'
+          
+          }
+      }
+  ]);
+  
     
     return NextResponse.json({ProductDetails:productData});
   
 
   }
-  console.log("server end")
+  
   
 }
 
