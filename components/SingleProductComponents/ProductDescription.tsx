@@ -76,7 +76,7 @@ console.log("data from details", data);
         <div className="flex flex-col md:flex-row justify-center gap-8 sm:gap-12 md:gap-16" >
         <div className="md:w-[45%]  ">
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 ">
-            <div className=" flex justify-center items-center bg-[#FAFAFA]   aspect-square ">
+            <div className=" flex justify-center items-center    aspect-square ">
               <Image
                 src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?

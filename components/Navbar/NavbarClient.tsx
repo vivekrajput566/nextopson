@@ -14,7 +14,8 @@ import logo from "../../images/nextopson logo.jpg"
 import Image from 'next/image';
 import { useScrollDirection } from "../../utils/useScroll";
 import FixedNav from './FixedNav';
-
+import { useSession } from "next-auth/react"
+// import {session}
 
 
 const dummyDta=[
@@ -23,6 +24,8 @@ const dummyDta=[
 {icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"/#"}]
 
 const NavbarClient = () => {
+  
+    
   const isScrolled = useScrollDirection();
 
   return (

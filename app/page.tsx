@@ -40,6 +40,8 @@ import HomeClient from '@/components/HomeComponents/HomeClient'
 import NavbarClient from '@/components/Navbar/NavbarClient'
 import SearchSection from '@/components/Navbar/SearchSection'
 import Image from 'next/image'
+// import { getServerSession } from 'next-auth'
+// import { AuthOptions } from './api/authOptions'
 
 async function getData() {
   console.log("hi");
@@ -65,6 +67,7 @@ async function getData() {
 }
 
 export default async function Home() {
+  // const userInfo=getServerSession(AuthOptions)
   const data = await getData();
   console.log("data from function---------->", data);
 
