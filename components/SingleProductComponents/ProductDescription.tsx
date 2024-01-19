@@ -12,11 +12,15 @@ import apple2  from "../../images/Delhi.webp";
 import apple3 from "../../images/aprt01.jpg";
 import { IoStarOutline } from "react-icons/io5";
 import ContactDetailsModal from "../Modals/ContactDetailsModal";
-// import dfd from "../../public/productPhotos/"
+import dfd from "../../public/productPhotos/9c5101e2-a01c-44eb-ae15-b0457300dbc5.webp"
+// import fg from "../../public/productPhotos/"
+// 9cdf1405-64d8-4dc2-8a12-51fa41bfdef4
 
 
 const ProductDescription = ({ singlePropertyData }: any) => {
   console.log("ProductDescription",ProductDescription);
+  console.log(`../../`);
+  
   
   const [isShowLoginMenu, setShowLoginMenu] = useState(false);
   const [isSubscription, setIsSubscription] = useState(false);
@@ -74,13 +78,13 @@ console.log("data from details", data);
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 ">
             <div className=" flex justify-center items-center bg-[#FAFAFA]   aspect-square ">
               <Image
-                src={singlePropertyData?.ProductPhotos&&
-                  singlePropertyData?.ProductPhotos.length>0?
-                  require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}`):apple}
-                  // `../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}`
-                // src={apple}
+                // src={singlePropertyData?.ProductPhotos&&
+                //   singlePropertyData?.ProductPhotos.length>0?
+                //   require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):apple}
+               
+                src={dfd}
                 alt=""
-                className="w-full h-full"
+                className="w-full h-full object-contain"
                 width={1000}
                 height={1000}
               />
