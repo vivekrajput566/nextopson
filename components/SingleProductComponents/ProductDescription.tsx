@@ -333,7 +333,7 @@ console.log("data from details", data);
           {
             singlePropertyData?.ProductPhotos&&
             singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
-              return <div>
+              return <div key={idx}>
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
                   require(`../../public/productPhotos/${photos.fileName}.webp`):constant?.errImage} 
