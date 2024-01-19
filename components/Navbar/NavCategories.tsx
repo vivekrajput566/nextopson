@@ -44,7 +44,7 @@ const NavCategories = () => {
     <div className='md:block hidden bg-[#f3f5f7]'>
       <div className={`px-body flex justify-center items-center gap-x-4 `}>
         {dropDownCategories&&dropDownCategories?.categoryDetails.map((categoryData: any, index: number)=>{
-          return <div className={`flex gap-2 items-center  xl:px-10 px-4 py-3 relative `}
+          return <div key={index} className={`flex gap-2 items-center  xl:px-10 px-4 py-3 relative `}
           onMouseEnter={() => {
             // console.log("clickekd", index);
             if (
