@@ -92,6 +92,7 @@ const handleKeyUp = (e:any) => {
     console.log("inside handleKeyUp");
 
   if (e.key === 'Enter') {
+    // log
       console.log("inside then");
 
     fetchSingleCityData(searchedTerm)
@@ -180,7 +181,7 @@ const handleCrossClick = () => {
               </div>
             }
             {searchResults&&searchResults.result&&searchResults.ProductDetails.length > 0&&
-             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute -left-7 top-[42px]  rounded-sm z-10 bg-white  w-[100%] border border-[red]">
+             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute -left-7 top-[42px]  rounded-sm z-10 bg-white  w-[100%] ">
              {
                 searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
                  return <Link href={`/all-properties/${item.landmark}`}
@@ -195,12 +196,20 @@ const handleCrossClick = () => {
            </div>
            
             }
-             {searchedTerm&&searchResults&&!searchResults?.result&&searchResults?.ProductDetails?.length===0&&
+             {/* {searchedTerm&&searchResults&&!searchResults?.result&&searchResults?.ProductDetails?.length===0&&
                             
           
           <div className=" absolute -left-7 top-[42px] px-3 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  border border-[red]">
           {searchResults.ProductDetails}
         </div>
+            } */}
+            {searchedTerm&&(searchResults&&!searchResults?.result)&&
+            <div className='  absolute -left-7 top-[42px] px-3 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  '>
+              {/* fbgfdgfdh */}
+              No results found 
+              {/* {searchResults.ProductDetails} */}
+
+              </div>
             }
            
          

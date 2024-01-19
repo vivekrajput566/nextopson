@@ -10,13 +10,16 @@ import { RxCross1 } from "react-icons/rx";
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from "../../images/nextopson logo.jpg"
+import { usePathname } from "next/navigation";
+import { fetchSingleCityData } from '@/services/database';
+
 
 
 
 const dummyDta=[
     // {icon:<IoBagCheckOutline/>,heading:"Become A Member",text:"Additional 10% off on stays"},
-{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates"},
-{icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now"}]
+{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
+{icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"#"}]
 
 const searchDummyData=[
     {id:1,name:"ayush"},
@@ -40,7 +43,8 @@ const searchDummyData=[
   ]
 
 const FixedNav = () => {
-    const [searchResults, setSearchResults] = useState([])
+  const pathName = usePathname();
+    const [searchResults, setSearchResults] = useState<any>([])
     const [searchedTerm, setSearchedTerm] = useState("")
     const [isSearchResult, setIsSearchResults] = useState(false)
     const [isNoResultVisible, setIsNoResultVisible] = useState(false);
@@ -62,8 +66,28 @@ const FixedNav = () => {
           setIsNoResultVisible(false);
         }
       };
+
+      const handleKeyUp = (e:any) => {
+        console.log("inside handleKeyUp");
+    
+      if (e.key === 'Enter') {
+        // log
+          console.log("inside then");
+    
+        fetchSingleCityData(searchedTerm)
+          .then((result) => {
+            setSearchResults(result);
+            setIsSearchResults(true);
+          })
+          .catch((error) => {
+            console.error('Error in fetchSingleCityData:', error);
+            setSearchResults({ result: false, ProductDetails: [] });
+            setIsSearchResults(true);
+          });
+      }
+    };
   return (
-    <div className='fixed top-0 w-[100%] bg-white shadow-xl z-30'>
+    <div className={` top-0 w-[100%] bg-white shadow-xl z-30 ${pathName.includes("dashboard")?"hidden":"fixed"}`}>
         <div className='flex px-body items-center  justify-between sm:py-3.5 py-2.5'>
             <div className='flex items-center  xl:w-[60%] md:w-[70%] sm:w-[70%] w-[100%] gap-8 '>
         <Link href={"/"} className='w-20 h-10 '>
@@ -75,27 +99,32 @@ const FixedNav = () => {
                 <div className='flex items-center gap-2 justify-between w-[100%] '>
             <FiSearch className={`text-gray-500 text-xl`}/>
             <input
-             value={searchedTerm}
-             onChange={(e) => {
-               setSearchedTerm(e.target.value)
-               renderSearchResults(e.target.value)
-             }} 
+            value={searchedTerm}
+            onKeyUp={handleKeyUp}  
+            onChange={(e) => {
+              setSearchedTerm(e.target.value);
+              // renderSearchResults(e.target.value);
+            }}
             type="text" 
             placeholder='Search here...' 
             className='outline-0 w-[100%] text-sm md:py-3 py-2.5'/>
             </div>
-             {searchedTerm &&
-              <div onClick={() => setSearchedTerm("")} className="flex items-center justify-center cursor-pointer">
-                <RxCross1 className=" text-[red] text-base" />
-              </div>
-            }
-          </div>
-          {/* {searchedTerm &&
+             {/* {searchedTerm &&
               <div onClick={() => setSearchedTerm("")} className="flex items-center justify-center cursor-pointer">
                 <RxCross1 className=" text-[red] text-base" />
               </div>
             } */}
-          {searchedTerm && isSearchResult && searchResults && searchResults.length > 0 &&
+             {searchedTerm &&
+              <div onClick={() => {
+                setSearchedTerm("")
+                setSearchResults({})
+              }} className="flex items-center justify-center cursor-pointer">
+                <RxCross1 className=" text-[red] text-base" />
+              </div>
+            }
+          </div>
+         
+          {/* {searchedTerm && isSearchResult && searchResults && searchResults.length > 0 &&
               <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[58px] sm:top-[55px] top-[50px]  rounded-sm z-10 bg-white  w-[100%]">
                 {
                   searchResults && searchResults.length > 0 && searchResults.map((item: any, idx: any) => {
@@ -110,29 +139,53 @@ const FixedNav = () => {
                   })
                 }
               </div>
-            }
-            {searchedTerm && isNoResultVisible && (
+            } */}
+
+{searchResults&&searchResults.result&&searchResults.ProductDetails.length > 0&&
+             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[58px] sm:top-[55px] top-[50px]  rounded-sm z-10 bg-white  w-[100%] ">
+             {
+                searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
+                 return <Link href={`/all-properties/${item.landmark}`}
+                 onClick={()=>console.log("clicked")
+                 }
+                 key={idx}
+                   className="text-sm bg-white w-full py-1.5   cursor-pointer border-t border-t-gray-200  px-6">
+                   {item.landmark}
+                 </Link>
+               })
+             }
+           </div>
+}
+            {/* {searchedTerm && isNoResultVisible && (
               <div className=" absolute left-0 md:top-[58px] sm:top-[55px] top-[50px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm  ">
                 No results found with <span className='text-[red]'>&#8223;{searchedTerm}&#8221;</span>
               </div>
-            )}
+            )} */}
+              {searchedTerm&&(searchResults&&!searchResults?.result)&&
+            <div className='  absolute left-0 md:top-[58px] sm:top-[55px] top-[50px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm   '>
+              {/* fbgfdgfdh */}
+              No results found with &#8223;{searchedTerm}&#8221;
+              {/* {searchResults.ProductDetails} */}
+
+              </div>
+            }
           </div>
           </div>
         
         <div className={`flex items-center `}>
          {dummyDta.map((item:any,idx:number)=>{
-             return  <div key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             return  <Link href={`/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
              <div className={`text-2xl font-normal`}>{item.icon}</div>
              <div className={`flex flex-col `}>
                  <h2 className='text-sm font-semibold'>{item.heading}</h2>
                  <p className='text-[#999999] text-xs'>{item.text}</p>
              </div>
-         </div>
+         </Link>
          })}
-         <div className={`sm:flex hidden items-center gap-x-3 xl:px-8  sm:px-4 px-2`}>
+         <Link href={"/dashboard"} className={`sm:flex hidden items-center gap-x-3 xl:px-8  sm:px-4 px-2`}>
              <div><MdDashboard className={`text-2xl`}/></div>
              <h2 className={`text-sm font-semibold`}>Dashboard</h2>
-         </div>
+         </Link>
         </div>
         </div>
     </div>

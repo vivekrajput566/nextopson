@@ -8,17 +8,17 @@ import Members from './Members'
 import SearchBar from '../Navbar/SearchBar'
 import SearchSection from '../Navbar/SearchSection'
 interface Props{
-  singlePropertyData:any
+  // singlePropertyData:any
 }
 
-const HomeClient:FC<Props> = ({singlePropertyData}) => {
-  console.log("hii client",singlePropertyData);
+const HomeClient:FC<Props> = () => {
+  // console.log("hii client",singlePropertyData);
   
   return (
     <div className='flex flex-col sm:gap-14 gap-10'>
       <SearchSection/>
       <Categories/>
-      <ProductCarousel singlePropertyData={singlePropertyData}/>
+      <ProductCarousel  title={"Top Projects"}/>
       <Members/>
       {/* <Agents/> */}
       <Faq/>

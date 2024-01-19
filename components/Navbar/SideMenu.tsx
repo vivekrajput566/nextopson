@@ -11,6 +11,8 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
 import { BiSolidLogIn } from "react-icons/bi";
 import { FaFileContract } from "react-icons/fa6";
+import { MdDashboard } from "react-icons/md";
+
 
 const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
 //   const dispatch = useDispatch();
@@ -62,7 +64,7 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
                 </div>
                <p className=""> Home</p>
               </Link>
-              <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 ">
+              <Link href={"/new-listing-form"} className="text-base font-semibold flex items-center gap-3 ">
                 <div>
                 <FaBuilding className={"text-2xl "}/>
                 </div>
@@ -93,7 +95,7 @@ List Your Property
                 <p className="">About</p>
               </Link>
               <Link
-                href={"/#"}
+                href={"/dashboard"}
                 className="text-base font-semibold flex items-center gap-2 "
                 onClick={(e) => {
                   e.preventDefault();
@@ -101,8 +103,9 @@ List Your Property
                 //   dispatch(openLoginModal());
                 }}
               >
-                <p><BiSolidLogIn className={"text-3xl "}/></p>
-               <p className=""> Login/Sign up</p>
+                <div><MdDashboard className={`text-2xl`}/></div>
+                {/* <p><BiSolidLogIn className={"text-3xl "}/></p> */}
+               <p className="">Dashboard</p>
               </Link>
              
              

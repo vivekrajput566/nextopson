@@ -70,7 +70,7 @@ export default async function Home() {
 
   return (
     <div>
-      <HomeClient singlePropertyData={data}/>
+      <HomeClient />
     </div>
   );
 }

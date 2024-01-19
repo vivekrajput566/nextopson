@@ -5,6 +5,7 @@ import ProductQualities from './ProductQualities'
 import RelatedProducts from './RelatedProducts'
 import { useQuery } from '@tanstack/react-query'
 import { fetchSinglePropertyData } from '@/services/database'
+import ProductCarousel from '../HomeComponents/ProductCarousel'
 
 const SingleProductInfo = ({ params }: any) => {
   const { data: singlePropertyData} = useQuery({
@@ -14,10 +15,11 @@ const SingleProductInfo = ({ params }: any) => {
   console.log(singlePropertyData,"SingleProductInfo");
   
   return (
-    <div>
+    <div className='flex flex-col sm:gap-20 gap-10 '>
         <ProductDescription singlePropertyData={singlePropertyData}/>
-        <ProductQualities singlePropertyData={singlePropertyData}/>
-        <RelatedProducts title="Related Products"/>
+        {/* <ProductQualities singlePropertyData={singlePropertyData}/> */}
+        <ProductCarousel title={'Related Products'} />
+        {/* <RelatedProducts title="Related Products"/> */}
     </div>
   )
 }

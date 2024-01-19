@@ -4,6 +4,8 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import CategoriesBar from '../CategoryCard/CategoriesBar';
 import { Transition } from "@headlessui/react";
 import OutsideClickHandler from "../../utils/OutsideClickHandler";
+import { useQuery } from '@tanstack/react-query';
+import { fecthDropDownData } from '@/services/database';
 
 
 
@@ -29,13 +31,105 @@ const NavCategories = () => {
   const hovershow = useState(true);
   const [tab, setTab] = useState(0);
 
+  const { data: dropDownCategories} = useQuery({
+    queryKey: ["dropDownCategories"],
+    queryFn: () => fecthDropDownData(),
+  });
+  console.log(dropDownCategories,"dropDownCategories");
+
 
   console.log("tab", tab);
 
   return (
     <div className='md:block hidden bg-[#f3f5f7]'>
       <div className={`px-body flex justify-center items-center gap-x-4 `}>
-        {categories.map((categoryData: any, index: number) => {
+        {dropDownCategories&&dropDownCategories?.categoryDetails.map((categoryData: any, index: number)=>{
+          return <div className={`flex gap-2 items-center  xl:px-10 px-4 py-3 relative `}
+          onMouseEnter={() => {
+            console.log("clickekd", index);
+            if (
+              categoryData?.isSubcategories &&
+              categoryData?.subcategories &&
+              categoryData?.subcategories?.length !== 0
+            ) {
+              console.log("inside clicked if");
+              setTab(index + 1);
+              console.log(tab, "taab from if");
+              setHoveredCategory(index);
+            } else {
+              console.log("inside lse");
+              setTab(index + 1);
+              setHoveredCategory(index);
+              // setHoveredCategory(null);
+            }
+          }}
+          onMouseLeave={() => {
+            setHoveredCategory(null);
+            setTab(0);
+          }}
+          >
+             <div className='cursor-pointer flex gap-2 items-center '>
+              <h4 className={`text-gray-600 text-sm`}>{categoryData.name}</h4>
+              <div><IoChevronDownOutline className={`text-[#727272] text-base `} /></div>
+            </div>
+            {hovershow && (hoveredCategory !== null && tab === index + 1)&&
+            <div className=' border border-[red]'>
+               {/* <OutsideClickHandler
+                        onClick={() => {
+                          setHoveredCategory(null);
+                          setTab(0);
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredCategory(null);
+                          setTab(0);
+                        }}
+                      > */}
+                    <CategoriesBar
+                      // type={
+                      //   hoveredCategory === "shopby"
+                      //     ? hoveredCategory
+                      //     : null
+                      // }
+                      categories={dropDownCategories}
+                      hoveredCategory={hoveredCategory}
+                      setHoveredCategory={setHoveredCategory}
+                    />
+                    {/* </OutsideClickHandler> */}
+            </div>
+              // (
+              //   <Transition
+              //     // appear={true}
+              //     show={hoveredCategory !== null && tab === index + 1}
+              //   >
+                 
+              //       <OutsideClickHandler
+              //           onClick={() => {
+              //             setHoveredCategory(null);
+              //             setTab(0);
+              //           }}
+              //           onMouseLeave={() => {
+              //             setHoveredCategory(null);
+              //             setTab(0);
+              //           }}
+              //         >
+              //       <CategoriesBar
+              //         // type={
+              //         //   hoveredCategory === "shopby"
+              //         //     ? hoveredCategory
+              //         //     : null
+              //         // }
+              //         categories={dropDownCategories}
+              //         hoveredCategory={hoveredCategory}
+              //         setHoveredCategory={setHoveredCategory}
+              //       />
+              //       </OutsideClickHandler>
+                  
+              //   </Transition>
+              // )
+              }
+          </div>
+        })}
+        {/* {dropDownCategories&&dropDownCategories?.categoryDetails.map((categoryData: any, index: number) => {
           return <div
             onMouseEnter={() => {
               console.log("clickekd", index);
@@ -71,15 +165,7 @@ const NavCategories = () => {
                   appear={true}
                   show={hoveredCategory !== null && tab === index + 1}
                 >
-                  {/* <Transition.Child
-                    className="flex flex-col absolute left-0     z-30  transition duration-300"
-                    enter="ease-in-out"
-                    enterFrom=" opacity-0"
-                    enterTo=" opacity-100"
-                    leave="ease-out"
-                    leaveFrom=" opacity-100"
-                    leaveTo=" opacity-0"
-                  > */}
+                 
                     <OutsideClickHandler
                         onClick={() => {
                           setHoveredCategory(null);
@@ -96,16 +182,16 @@ const NavCategories = () => {
                       //     ? hoveredCategory
                       //     : null
                       // }
-                      categories={categories}
+                      categories={dropDownCategories}
                       hoveredCategory={hoveredCategory}
                       setHoveredCategory={setHoveredCategory}
                     />
                     </OutsideClickHandler>
-                  {/* </Transition.Child> */}
+                  
                 </Transition>
               )}
           </div>
-        })}
+        })} */}
       </div>
     </div>
   )

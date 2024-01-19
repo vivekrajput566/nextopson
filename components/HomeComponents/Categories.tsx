@@ -76,7 +76,7 @@ const Categories = () => {
 
 <div className={`px-body   `}>
 <div className="flex justify-between items-center">
-<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>Explore Real Estate In Popular Indian Cities</h2>
+<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>Popular Indian Cities</h2>
   <div className="flex gap-2">
     <button
       className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"

@@ -19,8 +19,8 @@ import FixedNav from './FixedNav';
 
 const dummyDta=[
     // {icon:<IoBagCheckOutline/>,heading:"Become A Member",text:"Additional 10% off on stays"},
-{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates"},
-{icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now"}]
+{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
+{icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"/#"}]
 
 const NavbarClient = () => {
   const isScrolled = useScrollDirection();
@@ -39,18 +39,22 @@ const NavbarClient = () => {
      </Link>
      <div className={`flex items-center`}>
          {dummyDta.map((item:any,idx:number)=>{
-             return  <div key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             return  <Link href={`/dashboard/${item.href}`}
+            //  onClick={(e)=>e.preventDefault()}
+              key={idx} className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
              <div className={`text-2xl font-normal`}>{item.icon}</div>
              <div className={`flex flex-col `}>
                  <h2 className='text-sm font-semibold'>{item.heading}</h2>
                  <p className='text-[#999999] text-xs'>{item.text}</p>
              </div>
-         </div>
+         </Link>
          })}
-         <div className={`flex items-center gap-x-3  px-8`}>
+         <Link href={"/dashboard"} className='cursor-pointer'>
+         <div className={`flex items-center gap-x-3  px-8 cursor-pointer`}>
              <div><MdDashboard className={`text-2xl`}/></div>
              <h2 className={`text-sm font-semibold`}>Dashboard</h2>
          </div>
+         </Link>
         </div>
      </div>
      <NavCategories/>

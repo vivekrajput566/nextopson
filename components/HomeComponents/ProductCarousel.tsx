@@ -7,11 +7,18 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForward } from "react-icons/io5";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProjectsData } from "@/services/database";
 
 interface Props{
-  singlePropertyData:any
+  title:any
 }
-const ProductCarousel:FC<Props> = (singlePropertyData) => {
+const ProductCarousel:FC<Props> = ({title}) => {
+  const { data: projectsData} = useQuery({
+    queryKey: ["projectsData"],
+    queryFn: () => fetchProjectsData(),
+  });
+  console.log(projectsData,"ProductCarousel--------");
   // console.log("hii ProductCarousel ",singlePropertyData.singlePropertyData?.ProductDetails);
 
   const slider = useRef<any>(null);
@@ -74,7 +81,7 @@ const ProductCarousel:FC<Props> = (singlePropertyData) => {
 
 <div className={`px-body   `}>
 <div className="flex justify-between items-center">
-<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>Top Projects</h2>
+<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>{title}</h2>
   <div className="flex gap-2">
     <button
       className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"
@@ -99,7 +106,7 @@ const ProductCarousel:FC<Props> = (singlePropertyData) => {
   </div>
 </div>
 <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
-  {singlePropertyData&&singlePropertyData?.singlePropertyData?.ProductDetails&&singlePropertyData?.singlePropertyData?.ProductDetails.map((singleProperty:any,idx:number)=>{
+  {projectsData&&projectsData?.ProductDetails&&projectsData?.ProductDetails.length>0&&projectsData?.ProductDetails?.map((singleProperty:any,idx:number)=>{
     return  <div key={idx} className="px-2">
     <ProductCard singleProperty={singleProperty}/>
     </div>

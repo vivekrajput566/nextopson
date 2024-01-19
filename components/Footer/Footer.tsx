@@ -1,13 +1,16 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
+import { usePathname } from "next/navigation";
+
 
 const Footer = () => {
+  const pathName = usePathname();
   return (
     <>
   
     <footer
-      className="  mt-10 bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+      className={` mt-10 bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left ${pathName.includes("dashboard")?"hidden":"block"}`}>
       <div
         className="px-body flex items-center justify-center border-b-2 py-6 border-neutral-200  dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
@@ -135,9 +138,9 @@ const Footer = () => {
               >Pricing</a>
             </p>
           
-            <Link href={{ pathname: "/account", query: { tab: "my-profile" } }} >
+            {/* <Link href={{ pathname: "/account", query: { tab: "my-profile" } }} >
                 <p className={`mb-4 text-neutral-600 dark:text-neutral-200`}>Your Account</p>
-            </Link>
+            </Link> */}
             {/* <p className="mb-4">
               <a className="text-neutral-600 dark:text-neutral-200"
               >Your Account</a>
