@@ -553,7 +553,7 @@ const PropertyForm = () => {
         required
       >
         <option value="" disabled>Select Property Landmark</option>
-        {landmarks.formData.city.map((location, index) => (
+        {landmark.formData.city.map((location, index) => (
           <option key={index} value={location}>{location}</option>
         ))}
       </select>
