@@ -552,10 +552,16 @@ const PropertyForm = () => {
         onChange={handleFormData}
         required
       >
-        <option value="" disabled>Select Property Landmark</option>
-        {landmark.formData.city.map((location, index) => (
-          <option key={index} value={location}>{location}</option>
-        ))}
+        {landmark.formData && landmark.formData.city ? (
+    <>
+      <option value="" disabled>Select Property Landmark</option>
+      {landmark.formData.city.map((location, index) => (
+        <option key={index} value={location}>
+          {location}
+        </option>
+      ))}
+    </>
+  ) : null}
       </select>
     </div>
       
