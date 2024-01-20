@@ -64,7 +64,7 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
                 </div>
                <p className=""> Home</p>
               </Link>
-              <Link href={"/new-listing-form"} className="text-base font-semibold flex items-center gap-3 ">
+              <Link href={"/dashboard/new-listing-form"} className="text-base font-semibold flex items-center gap-3 ">
                 <div>
                 <FaBuilding className={"text-2xl "}/>
                 </div>
@@ -98,7 +98,7 @@ List Your Property
                 href={"/dashboard"}
                 className="text-base font-semibold flex items-center gap-2 "
                 onClick={(e) => {
-                  e.preventDefault();
+                  // e.preventDefault();
                   setIsSidebarOpen(false);
                 //   dispatch(openLoginModal());
                 }}

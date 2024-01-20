@@ -74,7 +74,7 @@ const FixedNav = () => {
       const handleKeyUp = (e:any) => {
         console.log("inside handleKeyUp");
     
-      if (e.key === 'Enter') {
+      if (searchedTerm) {
         // log
           console.log("inside then");
     
@@ -150,7 +150,7 @@ const FixedNav = () => {
             } */}
 
 {searchResults&&searchResults.result&&searchResults.ProductDetails.length > 0&&
-             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[58px] sm:top-[55px] top-[50px]  rounded-sm z-10 bg-white  w-[100%] ">
+             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[47px] sm:top-[43px] top-[43px]  rounded-sm z-10 bg-white  w-[100%] ">
              {
                 searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
                  return <Link href={`/all-properties/${item.landmark}`}
@@ -170,7 +170,7 @@ const FixedNav = () => {
               </div>
             )} */}
               {searchedTerm&&(searchResults&&!searchResults?.result)&&
-            <div className='  absolute left-0 md:top-[58px] sm:top-[55px] top-[50px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm   '>
+            <div className='  absolute left-0 sm:top-[43px] top-[43px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm   '>
               {/* fbgfdgfdh */}
               No results found with &#8223;{searchedTerm}&#8221;
               {/* {searchResults.ProductDetails} */}
@@ -182,7 +182,7 @@ const FixedNav = () => {
         
         <div className={`flex items-center `}>
          {dummyDta.map((item:any,idx:number)=>{
-             return  <Link href={`/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             return  <Link href={`/dashboard/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
              <div className={`text-2xl font-normal text-white`}>{item.icon}</div>
              <div className={`flex flex-col `}>
                  <h2 className='text-sm font-semibold text-white'>{item.heading}</h2>
