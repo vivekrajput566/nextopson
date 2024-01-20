@@ -10,6 +10,7 @@ import { Propertyphotos } from "@/app/database/models/propertyPhotos";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
+
 export async function POST(req , res) {
 
 
@@ -17,13 +18,22 @@ export async function POST(req , res) {
     
 if (req.method === "POST") {
   
+
+
+    const sessionData=await getServerSession(AuthOptions);
+
+    if(!sessionData){
+    
+      return NextResponse.json({personalDetails:[],validUser:false});
+    
+    }
     const formData = await req.formData();
     const productId= formData.get("productId");
     await mongoose.connect(connectionString)
     const personalDetails = await Propertylisting.findOne({ productId: productId }, { contactno: 1,mobileno: 1, username: 1, address: 1 });
 
     
-    return NextResponse.json({personalDetails:personalDetails});
+    return NextResponse.json({personalDetails:personalDetails,validUser:true});
   
 
   }

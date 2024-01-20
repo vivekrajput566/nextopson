@@ -1,5 +1,5 @@
+"use client"
 import React from 'react'
-
 import Image from 'next/image'
 import { IoCreateOutline } from "react-icons/io5";
 import '../../globals.css'

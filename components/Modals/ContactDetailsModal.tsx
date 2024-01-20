@@ -4,15 +4,12 @@ import { RxCross1 } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import Loader from '../loader/Loader';
 
-import { useSession } from 'next-auth/react';
 
 
 const ContactDetailsModal = ({setIsContactDetails,personalDetails}:any) => {
     console.log(personalDetails,"from modal");
 
-    const { data: session, status } = useSession()
-    
-    console.log(status);
+  
     
     const [isDetails,setIsDetails]=useState(false)
     

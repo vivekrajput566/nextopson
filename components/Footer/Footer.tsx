@@ -9,6 +9,11 @@ const Footer = () => {
   const pathName = usePathname();
   const remove=RemoveLayout()
   console.log("remove",remove);
+  const removeLayout =RemoveLayout();
+  if(removeLayout){
+      return null;
+  }
+
 
   // ${pathName.includes("dashboard")?"hidden":"block"}
   return (
