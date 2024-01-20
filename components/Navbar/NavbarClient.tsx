@@ -43,9 +43,9 @@ const NavbarClient = () => {
      :
      <div className=''>
      <div className={`px-body hidden md:flex items-center justify-between  bg-[#0d0d0d] `}>
-         <Link href={"/"} className='w-20 '>
+         <Link href={"/"} className='w-[150px] '>
             
-     <Image src={logo} alt="logo " className=''/> 
+     <Image src={logo} alt="logo " className='w-[100%] h-[100%] object-fill'/> 
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
      </Link>
      <div className={`flex items-center`}>

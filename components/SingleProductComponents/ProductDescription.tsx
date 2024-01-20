@@ -344,14 +344,14 @@ console.log("data from details", data);
           {
             singlePropertyData?.ProductPhotos&&
             singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
-              return <div key={idx}>
+              return <div key={idx} className="">
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
                   require(`../../public/productPhotos/${photos.fileName}.webp`):constant?.errImage} 
                   alt=""
                   width={1000}
                   height={1000}
-                  className="rounded-xl"/>
+                  className="rounded-xl w-[100%] h-[100%] object-fill"/>
               </div>
             })
           }
