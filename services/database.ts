@@ -7,7 +7,7 @@ export const fetchSinglePropertyData = async (slug: any) => {
         const productId = slug
         form.append("productId", productId);
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/product-details',
+        const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/product-details',
             {
                 method: "POST",
                 body: form,
@@ -35,7 +35,7 @@ export const fetchSingleCityData = async (slug: any) => {
         const cityName = slug
         form.append("inputValue", cityName);
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/searchInput',
+        const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/searchInput',
             {
                 method: "POST",
                 body: form,
@@ -57,7 +57,7 @@ export const fetchSingleCityData = async (slug: any) => {
 export const fecthCategoriesData=async()=>{
     try {
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/cities',
+        const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/cities',
         { method: "POST", cache: "no-cache" }
         );
         
@@ -78,7 +78,7 @@ export const fecthCategoriesData=async()=>{
 export const fecthDropDownData=async()=>{
     try {
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/categories',
+        const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/categories',
         { method: "POST", cache: "no-cache" }
         );
         
@@ -101,7 +101,7 @@ export async function fetchProjectsData() {
   
     try {
       console.log("inside try");
-      const res = await fetch('http://localhost:3000/api/backend/showProperties',
+      const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/showProperties',
       { method: "POST", cache: "no-cache" }
       );
       

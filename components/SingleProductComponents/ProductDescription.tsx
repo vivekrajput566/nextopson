@@ -49,7 +49,7 @@ const ProductDescription = ({ singlePropertyData }: any) => {
         // const cityName = slug
         form.append("productId",singlePropertyData?.ProductDetails?.productId);
         console.log("inside try");
-        const res = await fetch('http://localhost:3000/api/backend/personalDetails',
+        const res = await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/personalDetails',
             {
                 method: "POST",
                 body: form,
