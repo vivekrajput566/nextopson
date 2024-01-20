@@ -62,9 +62,10 @@ const formattedTime =
             return null;
         }
         const data = await res.json();
-setPersonalDetails(data.personalDetails)          
-// console.log("data from details", data); 
-console.log(data);                   
+setPersonalDetails(data.personalDetails) 
+
+ console.log("data from details", data); 
+                   
         return data
     } catch (error) {
         console.error("Error during fetch:", error);
