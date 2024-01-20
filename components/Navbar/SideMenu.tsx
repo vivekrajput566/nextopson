@@ -64,7 +64,13 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
                 </div>
                <p className=""> Home</p>
               </Link>
-              <Link href={"/new-listing-form"} className="text-base font-semibold flex items-center gap-3 ">
+              <Link href={"/dashboard/new-listing-form"}
+                  onClick={(e) => {
+                    // e.preventDefault();
+                    setIsSidebarOpen(false);
+                  //   dispatch(openLoginModal());
+                  }}
+               className="text-base font-semibold flex items-center gap-3 ">
                 <div>
                 <FaBuilding className={"text-2xl "}/>
                 </div>
@@ -75,13 +81,19 @@ List Your Property
               </Link>
              
              
-              <Link href={"/#"} className="text-base font-semibold flex items-center gap-4 ">
+              <Link href={"/#"}
+                  onClick={(e) => {
+                    // e.preventDefault();
+                    setIsSidebarOpen(false);
+                  //   dispatch(openLoginModal());
+                  }}
+               className="text-base font-semibold flex items-center gap-4 ">
                 <div>
                 <FaPhoneAlt className={"text-xl "} />
                 </div>
                <p className="">0124-4356436</p>
               </Link>
-              <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 "
+              {/* <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 "
                 onClick={() => {
                   document.body.classList.remove("no-scroll");
                   // dispatch(closeSideMenu());
@@ -89,16 +101,15 @@ List Your Property
                 }}
               >
                 <div>
-                {/* <BsFillFileEarmarkTextFill className={"text-3xl"}/> */}
                 <FaFileContract className={"text-2xl "}/>
                 </div>
                 <p className="">About</p>
-              </Link>
+              </Link> */}
               <Link
                 href={"/dashboard"}
                 className="text-base font-semibold flex items-center gap-2 "
                 onClick={(e) => {
-                  e.preventDefault();
+                  // e.preventDefault();
                   setIsSidebarOpen(false);
                 //   dispatch(openLoginModal());
                 }}

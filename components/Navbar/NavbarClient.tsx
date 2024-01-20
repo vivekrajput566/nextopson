@@ -10,7 +10,7 @@ import NavCategories from './NavCategories';
 import Link from 'next/link';
 import MobileNav from './MobileNav';
 import { MdDashboard } from "react-icons/md";
-import logo from "../../images/newLogo2.jpg"
+import logo from "../../images/newLogo3.jpg"
 import Image from 'next/image';
 import { useScrollDirection } from "../../utils/useScroll";
 import FixedNav from './FixedNav';
@@ -42,8 +42,8 @@ const NavbarClient = () => {
      <FixedNav/>
      :
      <div className=''>
-     <div className={`px-body hidden md:flex items-center justify-between  bg-black `}>
-         <Link href={"/"} className='w-20 h-10'>
+     <div className={`px-body hidden md:flex items-center justify-between  bg-[#0d0d0d] `}>
+         <Link href={"/"} className='w-20 '>
             
      <Image src={logo} alt="logo " className=''/> 
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}

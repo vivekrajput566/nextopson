@@ -79,40 +79,47 @@ const ProductCarousel:FC<Props> = ({title}) => {
   };
   return (
 
-<div className={`px-body   `}>
-<div className="flex justify-between items-center">
-<h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>{title}</h2>
-  <div className="flex gap-2">
-    <button
-      className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"
-      onClick={() => {
-        if (slider) {
-          slider.current?.slickPrev();
-        }
-      }}
-    >
-      <IoArrowBackSharp />
-    </button>
-    <button
-      onClick={() => {
-        if (slider) {
-          slider.current?.slickNext();
-        }
-      }}
-      className="bg-[#4B2C10] w-8 text-white h-8 flex justify-center items-center"
-    >
-      <IoArrowForward />
-    </button>
-  </div>
-</div>
-<Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
-  {projectsData&&projectsData?.ProductDetails&&projectsData?.ProductDetails.length>0&&projectsData?.ProductDetails?.map((singleProperty:any,idx:number)=>{
-    return  <div key={idx} className="px-2">
-    <ProductCard singleProperty={singleProperty}/>
+<>
+{projectsData?.ProductDetails
+&&projectsData?.ProductDetails.length>0&&
+  <div className={`px-body   `}>
+    <div className="  ">
+  <div className="flex justify-between items-center">
+  <h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>{title}</h2>
+    <div className="flex gap-2">
+      <button
+        className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"
+        onClick={() => {
+          if (slider) {
+            slider.current?.slickPrev();
+          }
+        }}
+      >
+        <IoArrowBackSharp />
+      </button>
+      <button
+        onClick={() => {
+          if (slider) {
+            slider.current?.slickNext();
+          }
+        }}
+        className="bg-[#4B2C10] w-8 text-white h-8 flex justify-center items-center"
+      >
+        <IoArrowForward />
+      </button>
     </div>
-  })}
-</Slider>
-</div>
+  </div>
+  <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
+    {projectsData&&projectsData?.ProductDetails&&projectsData?.ProductDetails.length>0&&projectsData?.ProductDetails?.map((singleProperty:any,idx:number)=>{
+      return  <div key={idx} className="px-2">
+      <ProductCard singleProperty={singleProperty}/>
+      </div>
+    })}
+  </Slider>
+  </div>
+  </div>
+}
+</>
   )
 }
 

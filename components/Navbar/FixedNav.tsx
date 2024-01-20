@@ -9,7 +9,7 @@ import { MdOutlineMyLocation } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from "../../images/newLogo2.jpg"
+import logo from "../../images/newLogo3.jpg"
 import { usePathname } from "next/navigation";
 import { fetchSingleCityData } from '@/services/database';
 import {RemoveLayout} from "../../app/remove-layout"
@@ -74,7 +74,7 @@ const FixedNav = () => {
       const handleKeyUp = (e:any) => {
         console.log("inside handleKeyUp");
     
-      if (e.key === 'Enter') {
+      if (searchedTerm) {
         // log
           console.log("inside then");
     
@@ -95,10 +95,10 @@ const FixedNav = () => {
       return null
     }
   return (
-    <div className={` top-0 w-[100%] bg-black shadow-xl z-30 fixed`}>
+    <div className={` top-0 w-[100%] bg-[#0d0d0d] shadow-xl z-30 fixed`}>
         <div className='flex px-body items-center  justify-between sm:py-3.5 py-2.5'>
             <div className='flex items-center  xl:w-[60%] md:w-[70%] sm:w-[70%] w-[100%] gap-8 '>
-        <Link href={"/"} className='w-20 h-10 '>
+        <Link href={"/"} className='w-20  '>
      <Image src={logo} alt="logo" className='h-[100%] w-[100%] object-fill'/> 
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
      </Link>
@@ -150,7 +150,7 @@ const FixedNav = () => {
             } */}
 
 {searchResults&&searchResults.result&&searchResults.ProductDetails.length > 0&&
-             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[58px] sm:top-[55px] top-[50px]  rounded-sm z-10 bg-white  w-[100%] ">
+             <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute left-0 md:top-[47px] sm:top-[43px] top-[43px]  rounded-sm z-10 bg-white  w-[100%] ">
              {
                 searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
                  return <Link href={`/all-properties/${item.landmark}`}
@@ -170,7 +170,7 @@ const FixedNav = () => {
               </div>
             )} */}
               {searchedTerm&&(searchResults&&!searchResults?.result)&&
-            <div className='  absolute left-0 md:top-[58px] sm:top-[55px] top-[50px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm   '>
+            <div className='  absolute left-0 sm:top-[43px] top-[43px] px-4 py-3 rounded-sm z-10 bg-white shadow-xl  w-[100%] text-sm   '>
               {/* fbgfdgfdh */}
               No results found with &#8223;{searchedTerm}&#8221;
               {/* {searchResults.ProductDetails} */}
@@ -182,7 +182,7 @@ const FixedNav = () => {
         
         <div className={`flex items-center `}>
          {dummyDta.map((item:any,idx:number)=>{
-             return  <Link href={`/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             return  <Link href={`/dashboard/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
              <div className={`text-2xl font-normal text-white`}>{item.icon}</div>
              <div className={`flex flex-col `}>
                  <h2 className='text-sm font-semibold text-white'>{item.heading}</h2>

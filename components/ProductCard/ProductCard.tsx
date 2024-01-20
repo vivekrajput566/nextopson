@@ -7,20 +7,22 @@ import Link from 'next/link';
 import {constant} from "../../utils/constants"
 
 const ProductCard = (singleProperty: any) => {
-  // console.log(singleProperty,"from card");/
+  console.log(singleProperty,"from card");
 
   return (
     <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
-      <div className='relative'>
+      <div className='relative mb-5'>
         {/* <div className={`absolute top-3 right-3`}><IoStarOutline className={"text-xl text-white font-semibold"}/></div> */}
         <div className='project-detail-body flex  flex-col  rounded-lg justify-center shadow-md p-1 text-black' >
-          <div className='project-detail-photos-body '>
+          <div className='project-detail-photos-body  md:h-[250px] h-[200px]'>
             <Image 
              src={singleProperty?.singleProperty&&
-              singleProperty?.singleProperty?.images.length>0?
+              singleProperty?.singleProperty?.images?.length>0?
               require(`../../public/productPhotos/${singleProperty?.singleProperty?.images[0]}.webp`):constant?.errImage}
             // src={building} 
-            width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} alt='delhi property' className='rounded-md' />
+            width={1000} height={1000} 
+           
+             alt='delhi property' className='rounded-md w-[100%] h-[100%]'  />
           </div>
           <div className='blabla flex flex-col gap-1   justify-start px-2 py-2 '>
             <div className='flex flex-col '>
