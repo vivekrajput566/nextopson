@@ -20,11 +20,11 @@ export async function POST(req , res) {
                 name:"Delhi",
                 photo:"Delhi.webp"
             },
-            {
-                name:"Banglore",
-                photo:"Bangalore.webp"
+            // {
+            //     name:"Banglore",
+            //     photo:"Bangalore.webp"
         
-             },
+            //  },
              {
                 name:"Kolkata",
                 photo:"Kolkata.webp"
