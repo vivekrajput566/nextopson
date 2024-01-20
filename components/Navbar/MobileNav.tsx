@@ -5,7 +5,7 @@ import { useState } from "react";
 // import { useDispatch } from "react-redux";
 import SideMenu from "./SideMenu";
 import { AiOutlineMenu } from "react-icons/ai";
-import logo from "../../images/newLogo2.jpg"
+import logo from "../../images/newLogo3.jpg"
 import Link from "next/link";
 
 const MobileNav = () => {
@@ -14,7 +14,7 @@ const MobileNav = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div
-      className={`md:hidden  flex items-center justify-between px-body  w-full min-h-[70.97px] bg-black`}
+      className={`md:hidden  flex items-center justify-between px-body  w-full min-h-[70.97px] bg-[#0d0d0d]`}
     >
        <button
         onClick={() => {
@@ -34,7 +34,7 @@ const MobileNav = () => {
             className="w-full h-full object-contain"
           /> */}
         <Link href={"/"} className=' '>
-          <div className="w-20 h-10 flex items-center justify-center">
+          <div className="w-20  flex items-center justify-center">
             
             <Image src={logo} alt="logo " className='w-[100%] h-[100%] '/> 
             </div>
