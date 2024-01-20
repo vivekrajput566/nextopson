@@ -14,6 +14,8 @@ import { IoStarOutline } from "react-icons/io5";
 import ContactDetailsModal from "../Modals/ContactDetailsModal";
 import dfd from "../../public/productPhotos/9c5101e2-a01c-44eb-ae15-b0457300dbc5.webp"
 import {constant} from "../../utils/constants"
+import { useRouter } from 'next/navigation';
+
 // import fg from "../../public/productPhotos/"
 // 9cdf1405-64d8-4dc2-8a12-51fa41bfdef4
 
@@ -22,11 +24,14 @@ const ProductDescription = ({ singlePropertyData }: any) => {
   console.log("ProductDescription",ProductDescription);
   console.log(`../../`);
   
+  const router = useRouter()
   
   const [isShowLoginMenu, setShowLoginMenu] = useState(false);
   const [isSubscription, setIsSubscription] = useState(false);
   const [isContactDetails,setIsContactDetails]=useState(false)
   const [personalDetails,setPersonalDetails]=useState({})
+  const [isUser,setIsUser]=useState(false)
+
  
   const [selectedImage, setSelectedImage] = useState();
   const [selectedVariant, setSelectedVariant] = useState(0);
@@ -61,7 +66,13 @@ const ProductDescription = ({ singlePropertyData }: any) => {
             return null;
         }
         const data = await res.json();
-setPersonalDetails(data.personalDetails)        
+        if (data.validUser) {
+          setIsUser(true)
+          setPersonalDetails(data.personalDetails)
+        } else {
+          router.replace("/login")
+        }
+// setPersonalDetails(data.personalDetails)        
 console.log("data from details", data);
         return data
     } catch (error) {
@@ -290,7 +301,7 @@ console.log("data from details", data);
             >
              Contact
             </button>
-            {isContactDetails&&<ContactDetailsModal setIsContactDetails={setIsContactDetails} personalDetails={personalDetails}/>}
+            {isUser&&isContactDetails&&<ContactDetailsModal setIsContactDetails={setIsContactDetails} personalDetails={personalDetails}/>}
             {/* <div
               className="border border-[#BFBFBF] gap-1 sm:gap-1.5 md:gap-2 aspect-square h-8 sm:h-12 md:h-16 flex items-center justify-center font-medium rounded-lg cursor-pointer "
             

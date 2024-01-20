@@ -7,7 +7,7 @@ import Link from 'next/link';
 import {constant} from "../../utils/constants"
 
 const ProductCard = (singleProperty: any) => {
-  console.log(singleProperty,"from card");
+  // console.log(singleProperty,"from card");
 
   return (
     <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
