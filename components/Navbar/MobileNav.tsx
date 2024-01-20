@@ -34,7 +34,7 @@ const MobileNav = () => {
             className="w-full h-full object-contain"
           /> */}
         <Link href={"/"} className=' '>
-          <div className="w-20  flex items-center justify-center">
+          <div className="w-[100px]  flex items-center justify-center">
             
             <Image src={logo} alt="logo " className='w-[100%] h-[100%] '/> 
             </div>

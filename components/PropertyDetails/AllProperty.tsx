@@ -84,13 +84,16 @@ const AllProperty = ({ params }: any) => {
              <div className='w-2 border-l-2 border-l-black h-5'></div>
              <h1 className='md:text-2xl text-xl font-semibold'>Property in {params.slug}</h1>
          </div>}
-          {
+         <div className='flex flex-col sm:gap-10 gap-5'>
+         {
    singleCityData?.ProductDetails.map((item:any,idx:number)=>{
      return <div key={idx}>
        <PropertyDetailsCard singleCity={item}/>
         </div>
    })
  }
+         </div>
+        
            
     </>
   ):isLoading?(

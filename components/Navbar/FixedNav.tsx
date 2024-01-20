@@ -97,12 +97,12 @@ const FixedNav = () => {
   return (
     <div className={` top-0 w-[100%] bg-[#0d0d0d] shadow-xl z-30 fixed`}>
         <div className='flex px-body items-center  justify-between sm:py-3.5 py-2.5'>
-            <div className='flex items-center  xl:w-[60%] md:w-[70%] sm:w-[70%] w-[100%] gap-8 '>
-        <Link href={"/"} className='w-20  '>
+            <div className='flex items-center  xl:w-[60%] md:w-[70%] sm:w-[70%] w-[100%] gap-8  '>
+        <Link href={"/"} className='w-[150px]  '>
      <Image src={logo} alt="logo" className='h-[100%] w-[100%] object-fill'/> 
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
      </Link>
-         <div className={' flex relative gap-3 items-center  2xl:w-[100%] md:w-[50%] w-[100%]  '}>
+         <div className={' flex relative gap-3 items-center  2xl:w-[85%] md:w-[50%] w-[100%]  '}>
             <div className={`flex relative gap-3 items-center  w-[100%] border px-4 rounded-md`}>
                 <div className='flex items-center gap-2 justify-between w-[100%] '>
             <FiSearch className={`text-gray-500 text-xl`}/>
