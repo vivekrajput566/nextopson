@@ -1,12 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation'
 
 
 const PropertyForm = () => {
 
 
-    
+  const router = useRouter();
+
   const [formData, setFormData] = useState({});
 
   const [showError, setShowError] = useState("");
@@ -149,6 +151,7 @@ const PropertyForm = () => {
       const {
         airConditioning,
         address,
+        username,
         bhk,
         bathrooms,
         bedrooms,
@@ -162,13 +165,14 @@ const PropertyForm = () => {
         propertyFor,
         propertyType,
         city,
-        contactNo
+        contactno
       } = formData;
 
    
       if (
         !address ||
         !bathrooms ||
+        !username ||
         !bhk ||
         !bedrooms ||
         !description ||
@@ -179,7 +183,7 @@ const PropertyForm = () => {
         !propertyFor ||
         !propertyType ||
         !city ||
-        !contactNo
+        !contactno
       ) {
        
         
@@ -190,15 +194,21 @@ const PropertyForm = () => {
 
       }
 
-      if (isNaN(bathrooms) || isNaN(bedrooms) || isNaN(price)) {
+      if (isNaN(bathrooms) || isNaN(contactno) || isNaN(bedrooms) || isNaN(price)) {
         
         setShowError("Numeric values are expected for certain fields");
         setSubmitButtonStatus(false);
         return false;
       }
-      if (bathrooms<0 || bedrooms<0 || price<0) {
+      if (bathrooms<0 || bedrooms<0 || price<0 ) {
         
         setShowError("Numbers Should Be Positive");
+        setSubmitButtonStatus(false);
+        return false;
+      }
+      if (contactno.length!=10) {
+        
+        setShowError("Enter Correct Contact no.");
         setSubmitButtonStatus(false);
         return false;
       }
@@ -276,12 +286,24 @@ const PropertyForm = () => {
            return response.json();
          })
          .then((responseData) => {
-           console.log(responseData);
+           console.log(responseData.validUser);
+           
+           if(!responseData.validUser){
+            setShowError("Something went wrong! Redirecting to the login page!")
+            setErrorColor("red-500")
+            router.replace('/login'); 
+            setSubmitButtonStatus(false);
+
+            return; 
+      
+          }
            if(responseData.success==true){
 
               console.log(responseData)
               setShowError("Successfully Listed! Redirecting...")
-              setErrorColor("green-500")
+              setErrorColor("green-400")
+              router.replace('/dashboard');
+            
 
               return;
        
@@ -305,7 +327,8 @@ const PropertyForm = () => {
            
          })
          .catch((error) => {
-          setShowError("Something went wrong try again later!")
+          console.log(error)
+          setShowError("Something went wrong try again later!!!")
           setErrorColor("red-500")
           setSubmitButtonStatus(false);
           return; 
@@ -378,6 +401,23 @@ const PropertyForm = () => {
     
         <form className=" mx-auto w-[80%] lg:w-3/4 text-black mt-4" >
       {/* Basic Details */}
+
+      <div className="mb-5">
+        <label htmlFor="username" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+         Username<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
+        </label>
+        <input
+          type="text"
+          name="username"
+          className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          value={formData.username || ""}
+          onChange={handleFormData}
+          placeholder='Username'
+          required
+          
+        />
+      </div>
+
       <div className="mb-5">
         <label htmlFor="propertyFor" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
         Property for sale or rent<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
@@ -477,14 +517,14 @@ const PropertyForm = () => {
       </div>
 
       <div className="mb-5">
-        <label htmlFor="contactNo" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
+        <label htmlFor="contactno" className="relative block mb-2 text-md font-semibold text-white-900 dark:text-black">
           Contact Mobile No.<span className='absolute top-0 text-red-500 font-bold text-lg'>*</span>
         </label>
         <input
           type="text"
-          name="contactNo"
+          name="contactno"
           className="shadow-sm bg-white-50 border border-white-300 text-white-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-white-600 dark:placeholder-white-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          value={formData.contactNo || ""}
+          value={formData.contactno || ""}
           onChange={handleFormData}
           placeholder='Contact Mobile No.'
           required
@@ -552,10 +592,11 @@ const PropertyForm = () => {
         onChange={handleFormData}
         required
       >
-        {landmark.formData && landmark.formData.city ? (
+        {formData.city && landmark[formData.city] ? (
     <>
+      
       <option value="" disabled>Select Property Landmark</option>
-      {landmark.formData.city.map((location, index) => (
+      {landmark[formData.city].map((location, index) => (
         <option key={index} value={location}>
           {location}
         </option>
@@ -672,9 +713,9 @@ const PropertyForm = () => {
       <div className="text-center md:text-left flex items-center justify-center">
          
             {submitButtonStatus?(
-               <button 
+               <div 
                className="mt-4 bg-blue-600 hover:bg-blue-700 w-full py-4 text-white uppercase rounded text-xs tracking-wider"
-               type="submit"
+               
              >
             
             <div role="status" className=" w-full flex justify-center items-center ">
@@ -684,7 +725,7 @@ const PropertyForm = () => {
             </svg>
             <span className="sr-only">Loading...</span>
           </div>
-          </button>
+          </div>
           ):
           (
             <button

@@ -1,9 +1,12 @@
+
 import { Inter } from 'next/font/google'
 
 import Sidebar from './sidebar'
 import DashboardHeader from './dashboard-header/page'
 
-
+import { NextAuthProvider } from './nextAuthProvider/nextAuthProvider';
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "../api/authOptions";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,27 +17,38 @@ export const metadata = {
 
 export default function RootLayout({ children}) {
 
- 
+  const session= getServerSession(AuthOptions);
+  if(!session){
+    redirect("/")
+  }
+  else{
+    console.log("logged in");
+  }
 
   return(
 
     <>
     
-    <html lang="en">
+    <html>
       
-      <body>
+      <body suppressHydrationWarning={false}>
 
-      <div className='dashboard flex h-screen overflow-y-scroll '> 
+      <div className='dashboard flex h-screen justify-center overflow-y-scroll '> 
         <div className='sidebar-menu-dashboard hidden lg:w-1/4 lg:block'>
 
           <Sidebar />
 
         </div>
 
-        <div className='no-scrollbar dashboard-content w-full flex-col items-center justify-center overflow-y-scroll  p-10 pl-0 pr-0 pt-0 pb-10'>
+        <div className='no-scrollbar dashboard-content w-full flex-col items-center justify-center overflow-y-scroll pb-10'>
         <div className='w-full mb-10'><DashboardHeader />
         </div>
-         {children}
+        <NextAuthProvider>
+
+          {children}
+
+        </NextAuthProvider>
+         
 
         </div>
 

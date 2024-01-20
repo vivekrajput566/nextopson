@@ -10,11 +10,13 @@ import { constant } from '@/utils/constants';
 
 
 
-const PropertyDetailsCard = ({ singleCity }: any) => {
+const PropertyDetailsCard = ({ singleCity }: any ) => {
   console.log("PropertyDetailsCard",singleCity);
+
+
   
-  const [isContactDetails,setIsContactDetails]=useState(false)
- const [personalDetails,setPersonalDetails]=useState({})
+  const [isContactDetails,setIsContactDetails]=useState(false);
+ const [personalDetails,setPersonalDetails]=useState({});   
 
  const createdAt = singleCity?.createdAt ;
  const currentTime = moment();
@@ -60,8 +62,9 @@ const formattedTime =
             return null;
         }
         const data = await res.json();
-setPersonalDetails(data.personalDetails)        
-// console.log("data from details", data);
+setPersonalDetails(data.personalDetails)          
+// console.log("data from details", data); 
+console.log(data);                   
         return data
     } catch (error) {
         console.error("Error during fetch:", error);

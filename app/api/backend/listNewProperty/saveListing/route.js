@@ -65,20 +65,24 @@ export async function POST(req, res) {
      const propertyData = {
       productId: productId,
       mobileno: mobileno,
+      username: formData.get('username'),
+      contactno: formData.get('contactno'),
       city: formData.get('city'),
+      bhk: formData.get('bhk'),
+      price: formData.get('price'),
+      propertyFor: formData.get('propertyFor'),
+      address: formData.get('address'),
+      furniture: formData.get('furniture'),
+      landmark: formData.get('landmark'),
       airConditioning: formData.get('airConditioning'),
       bathrooms: formData.get('bathrooms'),
-      address: formData.get('address'),
       bedrooms: formData.get('bedrooms'),
       carpetArea: formData.get('carpetArea'),
       description: formData.get('description'),
-      furniture: formData.get('furniture'),
       listedBy: formData.get('listedBy'),
       parkingAvailable: formData.get('parkingAvailable'),
-      price: formData.get('price'),
-      propertyFor: formData.get('propertyFor'),
       propertyType: formData.get('propertyType'),
-      landmark: formData.get('landmark'),
+      
     };
 
     console.log(propertyData);
@@ -88,7 +92,7 @@ export async function POST(req, res) {
      
     
       
-    return NextResponse.json({success:true});
+    return NextResponse.json({success:true,validUser:true});
   
 
 

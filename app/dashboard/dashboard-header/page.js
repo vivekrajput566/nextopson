@@ -9,6 +9,9 @@ import { useSpring, animated } from 'react-spring';
 
 function DashboardHeader() {
 
+
+  // const {data}= useSession();
+  // console.log(data)
    
   
   return (
