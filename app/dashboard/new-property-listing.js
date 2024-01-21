@@ -269,7 +269,7 @@ const PropertyForm = () => {
     try{                       
                 
          console.log("here..")
-      const res =  await fetch('/api/backend/listNewProperty/saveListing', {
+      const res =  await fetch(process.env.NEXT_PUBLIC_API_DOMAIN+'/api/backend/listNewProperty/saveListing', {
          method: 'POST',
          body: formDataValues,
        })
