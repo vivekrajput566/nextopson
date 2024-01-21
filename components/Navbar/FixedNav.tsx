@@ -19,7 +19,7 @@ import {RemoveLayout} from "../../app/remove-layout"
 
 const dummyDta=[
     // {icon:<IoBagCheckOutline/>,heading:"Become A Member",text:"Additional 10% off on stays"},
-{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
+// {icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
 {icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"#"}]
 
 const searchDummyData=[
@@ -181,6 +181,13 @@ const FixedNav = () => {
           </div>
         
         <div className={`flex items-center `}>
+        <a href={`/dashboard/new-listing-form`} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             <div className={`text-2xl font-normal text-white`}><HiOutlineBuildingOffice /></div>
+             <div className={`flex flex-col `}>
+                 <h2 className='text-sm font-semibold text-white'>List Your Property</h2>
+                 <p className=' text-xs text-white'>Trusted by 5000 Corporates</p>
+             </div>
+         </a>
          {dummyDta.map((item:any,idx:number)=>{
              return  <Link href={`/dashboard/${item?.href}`} key={idx} className='lg:flex hidden items-center    xl:px-4 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
              <div className={`text-2xl font-normal text-white`}>{item.icon}</div>
@@ -190,10 +197,10 @@ const FixedNav = () => {
              </div>
          </Link>
          })}
-         <Link href={"/dashboard"} className={`sm:flex hidden items-center gap-x-3 xl:px-8  sm:px-4 px-2`}>
+         <a href={"/dashboard"} className={`sm:flex hidden items-center gap-x-3 xl:px-8  sm:px-4 px-2`}>
              <div><MdDashboard className={`text-2xl text-white`}/></div>
              <h2 className={`text-sm font-semibold text-white`}>Dashboard</h2>
-         </Link>
+         </a>
         </div>
         </div>
     </div>

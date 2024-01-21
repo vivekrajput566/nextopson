@@ -15,7 +15,7 @@ import { MdDashboard } from "react-icons/md";
 
 
 const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
   return (
     <div
@@ -40,58 +40,54 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
           }}
         >
           <div
-          onClick={() => {
-            document.body.classList.remove("no-scroll");
-            // dispatch(closeSideMenu());
-            setIsSidebarOpen(false);
-          }}
-           className="absolute right-0 top-0"><RxCross2 className="text-white text-3xl"/></div>
+            onClick={() => {
+              document.body.classList.remove("no-scroll");
+              // dispatch(closeSideMenu());
+              setIsSidebarOpen(false);
+            }}
+            className="absolute right-0 top-0"><RxCross2 className="text-white text-3xl" /></div>
 
           <div
             className={`  bg-white overflow-y-auto h-[100vh]   sm:w-[50%] w-[86%] absolute top-0 left-0  z-50  `}
           >
             <div className="flex flex-col gap-6 sm:gap-5 md:gap-4 px-5 py-5">
               <Link
-               onClick={(e) => {
-                e.preventDefault();
-                setIsSidebarOpen(false);
-              //   dispatch(openLoginModal());
-              }}
-               href={"/"} className="text-base font-semibold flex items-center gap-2 ">
-
-                <div>
-                <IoMdHome className={`text-3xl `}/>
-                </div>
-               <p className=""> Home</p>
-              </Link>
-              <Link href={"/dashboard/new-listing-form"}
-                  onClick={(e) => {
-                    // e.preventDefault();
-                    setIsSidebarOpen(false);
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsSidebarOpen(false);
                   //   dispatch(openLoginModal());
-                  }}
-               className="text-base font-semibold flex items-center gap-3 ">
+                }}
+                href={"/"} className="text-base font-semibold flex items-center gap-2 ">
                 <div>
-                <FaBuilding className={"text-2xl "}/>
+                  <IoMdHome className={`text-3xl `} />
                 </div>
-<p className=""> 
-List Your Property
-
-</p>
+                <p className=""> Home</p>
               </Link>
-             
-             
+              <a href={"/dashboard/new-listing-form"}
+                onClick={(e) => {
+                  // e.preventDefault();
+                  setIsSidebarOpen(false);
+                  //   dispatch(openLoginModal());
+                }}
+                className="text-base font-semibold flex items-center gap-3 ">
+                <div>
+                  <FaBuilding className={"text-2xl "} />
+                </div>
+                <p className="">
+                  List Your Property
+                </p>
+              </a>
               <Link href={"/#"}
-                  onClick={(e) => {
-                    // e.preventDefault();
-                    setIsSidebarOpen(false);
+                onClick={(e) => {
+                  // e.preventDefault();
+                  setIsSidebarOpen(false);
                   //   dispatch(openLoginModal());
-                  }}
-               className="text-base font-semibold flex items-center gap-4 ">
+                }}
+                className="text-base font-semibold flex items-center gap-4 ">
                 <div>
-                <FaPhoneAlt className={"text-xl "} />
+                  <FaPhoneAlt className={"text-xl "} />
                 </div>
-               <p className="">0124-4356436</p>
+                <p className="">0124-4356436</p>
               </Link>
               {/* <Link href={"/#"} className="text-base font-semibold flex items-center gap-3 "
                 onClick={() => {
@@ -105,21 +101,19 @@ List Your Property
                 </div>
                 <p className="">About</p>
               </Link> */}
-              <Link
+              <a
                 href={"/dashboard"}
                 className="text-base font-semibold flex items-center gap-2 "
                 onClick={(e) => {
                   // e.preventDefault();
                   setIsSidebarOpen(false);
-                //   dispatch(openLoginModal());
+                  //   dispatch(openLoginModal());
                 }}
               >
-                <div><MdDashboard className={`text-2xl`}/></div>
+                <div><MdDashboard className={`text-2xl`} /></div>
                 {/* <p><BiSolidLogIn className={"text-3xl "}/></p> */}
-               <p className="">Dashboard</p>
-              </Link>
-             
-             
+                <p className="">Dashboard</p>
+              </a>
             </div>
           </div>
         </OutsideClickHandler>
