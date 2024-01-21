@@ -7,7 +7,7 @@ import { writeFile } from "fs/promises";
 import { Propertyviews } from "@/app/database/models/propertyViews";
 
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AuthOptions } from "../../authOptions";
 
 export async function POST(req,res) {
 

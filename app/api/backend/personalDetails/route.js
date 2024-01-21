@@ -8,7 +8,7 @@ import { Propertylisting } from "@/app/database/models/propertyListing";
 import { Propertyphotos } from "@/app/database/models/propertyPhotos";
 
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AuthOptions } from "../../authOptions";
 
 
 export async function POST(req , res) {
