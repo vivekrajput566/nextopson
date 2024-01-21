@@ -5,8 +5,7 @@ import Sidebar from './sidebar'
 import DashboardHeader from './dashboard-header/page'
 
 import { NextAuthProvider } from './nextAuthProvider/nextAuthProvider';
-import { getServerSession } from "next-auth";
-import { AuthOptions } from "../api/authOptions";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,13 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children}) {
 
-  const session= getServerSession(AuthOptions);
-  if(!session){
-    redirect("/")
-  }
-  else{
-    console.log("logged in");
-  }
+  
 
   return(
 
@@ -43,11 +36,11 @@ export default function RootLayout({ children}) {
         <div className='no-scrollbar dashboard-content w-full flex-col items-center justify-center overflow-y-scroll pb-10'>
         <div className='w-full mb-10'><DashboardHeader />
         </div>
-        <NextAuthProvider>
+        
 
           {children}
 
-        </NextAuthProvider>
+  
          
 
         </div>

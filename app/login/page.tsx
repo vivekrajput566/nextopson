@@ -607,17 +607,17 @@ async function handleForgotPasswordPasswordFormData(e:any){
    
     
     <section className="mt-10 bg-white pt-10 pb-10 flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center  mx-5 md:mx-0 md:my-10">
-      <div className="md:w-1/3 max-w-sm">
+      <div className="hidden lg:block  max-w-sm">
         <Image
       src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
       alt="Sample image"
       width={540} // Assuming original image width
-      height={360} // Assuming original image height
+      height={360} 
       layout="responsive" // Adjust as needed
     />
       </div>
       
-      <div className={`login-form-body ${viewForm=="login"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`login-form-body ${viewForm=="login"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
         
 
       <div className="flex items-center flex-col justify-center">
@@ -718,7 +718,7 @@ async function handleForgotPasswordPasswordFormData(e:any){
 
 
 
-      <div className={`register-form-body ${viewForm=="register"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`register-form-body ${viewForm=="register"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
       <div className="flex items-center flex-col justify-center">
           <div className="rounded-full bg-green-200 p-4">
           <FaUserEdit size={25} color="black"/>
@@ -817,7 +817,7 @@ async function handleForgotPasswordPasswordFormData(e:any){
 
 
 
-      <div className={`otp-form-body ${viewForm=="otp"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`otp-form-body ${viewForm=="otp"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
         <div className="flex items-center flex-col justify-center">
           <div className="rounded-full bg-green-200 p-4">
         <IoMdLock size={25} color="black"/>
@@ -898,7 +898,7 @@ async function handleForgotPasswordPasswordFormData(e:any){
 
 
 
-      <div className={`forgotPassword-mobile-form-body ${viewForm=="forgotPassword-mobile"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`forgotPassword-mobile-form-body ${viewForm=="forgotPassword-mobile"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
         <div className="flex items-center flex-col justify-center">
           <div className="rounded-full bg-green-200 p-4">
           <MdOutlinePassword size={25} color="black"/>
@@ -977,7 +977,7 @@ async function handleForgotPasswordPasswordFormData(e:any){
       </div>
 
 
-      <div className={`forgotPassword-otp-form-body ${viewForm=="forgotPassword-otp"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`forgotPassword-otp-form-body ${viewForm=="forgotPassword-otp"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
         <div className="flex items-center flex-col justify-center">
           <div className="rounded-full bg-green-200 p-4">
           <MdOutlinePassword size={25} color="black"/>
@@ -1056,7 +1056,7 @@ async function handleForgotPasswordPasswordFormData(e:any){
       </div>
 
       
-      <div className={`forgotPassword-password-form-body ${viewForm=="forgotPassword-password"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-20`}>
+      <div className={`forgotPassword-password-form-body ${viewForm=="forgotPassword-password"?'block':'hidden'} md:w-1/2 max-w-md shadow-xl border-2 border-white rounded-md p-2 md:p-20`}>
         <div className="flex items-center flex-col justify-center">
           <div className="rounded-full bg-green-200 p-4">
           <MdOutlinePassword size={25} color="black"/>
