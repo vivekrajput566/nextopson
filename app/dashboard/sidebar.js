@@ -29,7 +29,7 @@ function Sidebar() {
                 <div className='user-icon-body'>
                 <Image
                         className="object-cover rounded-lg  "
-                        src="/dashboard/agent.png"
+                        src="/dashboard/Agent.png"
                         alt=""
                         width={25} 
                         height={25} 

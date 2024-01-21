@@ -24,7 +24,7 @@ export default function RootLayout({ children}) {
     
     <html>
       
-      <body suppressHydrationWarning={false}>
+      <body>
 
       <div className='dashboard flex h-screen justify-center overflow-y-scroll '> 
         <div className='sidebar-menu-dashboard hidden lg:w-1/4 lg:block'>
