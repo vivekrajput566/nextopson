@@ -22,7 +22,7 @@ import {RemoveLayout} from "../../app/remove-layout"
 
 const dummyDta=[
     // {icon:<IoBagCheckOutline/>,heading:"Become A Member",text:"Additional 10% off on stays"},
-{icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
+// {icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
 {icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"/#"}]
 
 const NavbarClient = () => {
@@ -49,6 +49,15 @@ const NavbarClient = () => {
      {/* <button className={` text-black px-6 py-2.5 rounded-md lg:text-3xl text-2xl font-semibold`}>NEXTOPSON</button> */}
      </Link>
      <div className={`flex items-center`}>
+     <a href={`/dashboard/new-listing-form`}
+            //  onClick={(e)=>e.preventDefault()}
+             className='flex items-center  py-3.5  xl:px-8 lg:px-4  px-2 gap-x-3 border-r border-r-[#BFBFBF]'>
+             <div className={`text-2xl font-normal text-white`}><HiOutlineBuildingOffice /></div>
+             <div className={`flex flex-col `}>
+                 <h2 className='text-sm font-semibold text-white'>List Your Property</h2>
+                 <p className=' text-xs text-white'>Trusted by 5000 Corporates</p>
+             </div>
+         </a>
          {dummyDta.map((item:any,idx:number)=>{
              return  <Link href={`/dashboard/${item.href}`}
             //  onClick={(e)=>e.preventDefault()}
@@ -60,12 +69,13 @@ const NavbarClient = () => {
              </div>
          </Link>
          })}
-         <Link href={"/dashboard"} className='cursor-pointer'>
+
+         <a href={"/dashboard"} className='cursor-pointer'>
          <div className={`flex items-center gap-x-3  px-8 cursor-pointer`}>
              <div><MdDashboard className={`text-2xl text-white`}/></div>
              <h2 className={`text-sm font-semibold text-white`}>Dashboard</h2>
          </div>
-         </Link>
+         </a>
         </div>
      </div>
      <NavCategories/>
