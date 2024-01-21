@@ -8,9 +8,33 @@ import { GrView } from "react-icons/gr";
 import { FaRegBuilding } from "react-icons/fa";
 import { TbClick } from "react-icons/tb";
 import { FaRegQuestionCircle } from "react-icons/fa";
+import {useEffect, useState} from 'react'
+
+
 
 
 function Home() {
+
+
+    const homeAnalytics=useState({});
+
+    const fetchHomeAnalytics = async ()=>{
+
+        const res =  await fetch('/api/backend/homeAnalytics', {
+            method: 'POST',
+        })
+        
+        
+        console.log(res);
+
+
+    }
+
+    useEffect(()=>{
+
+        fetchHomeAnalytics();
+
+    },[])
 
 
 
@@ -28,7 +52,7 @@ function Home() {
                 <div className="mt-4 flex items-center justify-center ">
                     <div>
                     <h4 className="text-title-md text-center text-xl font-bold text-black  ">
-                        400K
+                      0
                     </h4>
                     <span className="text-sm font-medium">Total Impression</span>
                     </div>
@@ -47,7 +71,7 @@ function Home() {
                 <div className="mt-4 flex items-center justify-center">
                     <div>
                     <h4 className="text-title-md text-center text-xl font-bold text-black ">
-                        200K
+                        0
                     </h4>
                     <span className="text-sm font-medium">Total Clicks</span>
                     </div>
@@ -66,7 +90,7 @@ function Home() {
                 <div className="mt-4 flex items-center justify-center">
                     <div>
                     <h4 className="text-title-md text-center text-xl font-bold text-black ">
-                        135
+                        0
                     </h4>
                     <span className="text-sm font-medium">Total  Listing</span>
                     </div>
@@ -85,7 +109,7 @@ function Home() {
                 <div className="mt-4 flex items-center justify-center">
                     <div>
                     <h4 className="text-title-md text-center text-xl font-bold text-black ">
-                        400K
+                        0
                     </h4>
                     <span className="text-sm font-medium">Total Enquiry</span>
                     </div>
