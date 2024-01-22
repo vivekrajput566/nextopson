@@ -8,7 +8,7 @@ import { FiAlignLeft } from "react-icons/fi";
 
 function Sidebar() {
     
-    
+   
 
   return (
 
@@ -24,12 +24,12 @@ function Sidebar() {
 
             </div>
 
-            <div className='user-details p-4 flex gap-4 w-full items-center border-b-2 border-slate-500 '>
+            <div className='user-details p-4 flex gap-4 w-full items-center table  whitespace-nowrap border-b-2 border-slate-500 '>
 
-                <div className='user-icon-body'>
+                <div className='user-icon-body align-middle  inline-block'>
                 <Image
                         className="object-cover rounded-lg  "
-                        src="/dashboard/agent.png"
+                        src="/dashboard/Agent.png"
                         alt=""
                         width={25} 
                         height={25} 
@@ -38,7 +38,7 @@ function Sidebar() {
 
                 </div>
 
-                <div className='user-name-body text-xl text-white capitalize'>
+                <div className='user-name-body text-xl align-middle  inline-block text-white capitalize pl-4'>
 
                         vivek rajput
 
@@ -52,8 +52,8 @@ function Sidebar() {
                 
 
             <Link href='/dashboard/home' >
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                      <Image
                         className="object-cover rounded-lg  "
@@ -64,7 +64,7 @@ function Sidebar() {
                         
                         />
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold  text-md align-middle  inline-block pl-4'>
                         Home
 
                     </div>
@@ -74,8 +74,8 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/new-listing-form' >
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                     <Image
                         className="object-cover rounded-lg  "
@@ -86,7 +86,7 @@ function Sidebar() {
                         
                         />
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold  text-md align-middle  inline-block pl-4'>
                         Create Listing
 
                     </div>
@@ -95,8 +95,8 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/your-listings' >
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start  table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                     <Image
                         className="object-cover rounded-sm  "
@@ -108,7 +108,7 @@ function Sidebar() {
                         />
                         
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold align-middle  inline-block  text-md pl-4'>
                        Your Listings
 
                     </div>
@@ -118,8 +118,8 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/payments' >
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                     <Image
                         className="object-cover rounded-sm  "
@@ -130,7 +130,7 @@ function Sidebar() {
                         
                         />
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold align-middle  inline-block  text-md pl-4'>
                        Payment
 
                     </div>
@@ -140,8 +140,8 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/notification' >
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                     <Image
                         className="object-cover rounded-sm "
@@ -153,7 +153,7 @@ function Sidebar() {
                         
                         />
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold  align-middle  inline-block text-md pl-4'>
                        Notification
 
                     </div>
@@ -163,8 +163,8 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/support' >                
-                <div className='home-body flex items-center gap-4 justify-start   p-4 hover:bg-white hover:text-black'>
-                    <div className='home-icon'>
+                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                    <div className='home-icon align-middle  inline-block'>
                             
                     <Image
                         className="object-cover rounded-sm "
@@ -175,7 +175,7 @@ function Sidebar() {
                         
                         />
                     </div>
-                    <div className='home-icon-name font-semibold  text-md'>
+                    <div className='home-icon-name font-semibold  align-middle  inline-block text-md pl-4'>
                       Support
 
                     </div>

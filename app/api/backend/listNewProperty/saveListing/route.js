@@ -6,9 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from "fs/promises";
 import { Propertylisting } from "@/app/database/models/propertyListing";
 import { Propertyphotos } from "@/app/database/models/propertyPhotos";
-
+import AWS from 'aws-sdk';
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "../../../authOptions";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import sharp from 'sharp';
 
 export async function POST(req, res) {
 
@@ -16,17 +18,21 @@ export async function POST(req, res) {
   
     
   if (req.method === "POST") {
+
+
+
        
     const sessionData=await getServerSession(AuthOptions);
     if(!sessionData){
       return NextResponse.json({validUser:false});
     }
     const mobileno=sessionData.user.mobileno;
+    console.log(sessionData)
     await mongoose.connect(connectionString)
    
     const formData = await req.formData();
      
-     const allFile = formData.getAll('files[]');
+     const allFile = await formData.getAll('files[]');
     
     
      //console.log(formData)
@@ -35,30 +41,77 @@ export async function POST(req, res) {
      if(!allFile){
       return NextResponse.json({fsdfsdf:"no file"});
      }
+
+     const client_s3 = new S3Client({
+      region: process.env.AWS_REGION,
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  
+    });
+
+
+
+
      console.log(allFile.length)
      console.log(typeof allFile)
 
      const productId=uuidv4();
+   
+     if (allFile) {
+      const uploads = await Promise.all(
+        Object.entries(allFile).map(async ([key, file]) => {
+          const fileName = uuidv4();
+    
+          const propertyImageData = {
+            productId: productId,
+            mobileno: mobileno,
+            fileName: fileName,
+          };
+    
+          const propertyPhotos = new Propertyphotos(propertyImageData);
+          await propertyPhotos.save(); // Save to database
+    
+          const byteData = await file.arrayBuffer();
+          const buffer = Buffer.from(byteData);
+          const webpBuffer = await sharp(buffer)
+            .webp({ quality: 80 }) // Adjust quality as needed
+            .toBuffer();
+    
+          const response = await client_s3.send(new PutObjectCommand({
+            Bucket: process.env.AWS_BUCKET,
+            Key: `productPhotos/${fileName}.webp`, // Use .webp extension
+            Body: webpBuffer,
+            ContentType: 'image/webp', // Set correct MIME type
+          }));
+          console.log(response);
+        })
+      );
+    }
+    
 
-     Object.entries(allFile).forEach(async ([key, value]) => {
-      
-      const fileName=uuidv4();
 
-      const propertyImageData = {
-        productId: productId,
-        mobileno: mobileno,
-        fileName: fileName,
-      }
 
-      const propertyPhotos = new Propertyphotos(propertyImageData);
-      await propertyPhotos.save();
-      const byteData= await value.arrayBuffer();
-      const buffer = Buffer.from(byteData);
+    //  const productId=uuidv4();
+
+    //  Object.entries(allFile).forEach(async ([key, value]) => {
       
-      const path=`./public/productPhotos/${fileName}.webp`;
-      await writeFile(path,buffer)
+    //   const fileName=uuidv4();
+
+    //   const propertyImageData = {
+    //     productId: productId,
+    //     mobileno: mobileno,
+    //     fileName: fileName,
+    //   }
+
+    //   const propertyPhotos = new Propertyphotos(propertyImageData);
+    //   await propertyPhotos.save();
+    //   const byteData= await value.arrayBuffer();
+    //   const buffer = Buffer.from(byteData);
       
-    });
+    //   const path=`./public/productPhotos/${fileName}.webp`;
+    //   await writeFile(path,buffer)
+      
+    // });
 
     
     
