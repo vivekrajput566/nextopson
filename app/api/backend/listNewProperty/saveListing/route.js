@@ -10,7 +10,7 @@ import AWS from 'aws-sdk';
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "../../../authOptions";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import sharp from 'sharp';
+
 
 export async function POST(req, res) {
 
@@ -73,16 +73,14 @@ export async function POST(req, res) {
     
           const byteData = await file.arrayBuffer();
           const buffer = Buffer.from(byteData);
-          const webpBuffer = await sharp(buffer)
-            .webp({ quality: 80 }) // Adjust quality as needed
-            .toBuffer();
+          
 
 
     
           const response = await client_s3.send(new PutObjectCommand({
             Bucket: process.env.AWS_BUCKET,
             Key: `productPhotos/${fileName}.webp`, // Use .webp extension
-            Body: webpBuffer,
+            Body: buffer,
             ContentType: 'image/webp', // Set correct MIME type
           }));
           console.log(response);
