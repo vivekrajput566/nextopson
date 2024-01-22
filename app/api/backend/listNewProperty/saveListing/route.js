@@ -76,6 +76,8 @@ export async function POST(req, res) {
           const webpBuffer = await sharp(buffer)
             .webp({ quality: 80 }) // Adjust quality as needed
             .toBuffer();
+
+            
     
           const response = await client_s3.send(new PutObjectCommand({
             Bucket: process.env.AWS_BUCKET,
@@ -88,7 +90,7 @@ export async function POST(req, res) {
       );
     }
 
-    
+
     
 
 
