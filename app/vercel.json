@@ -1,0 +1,8 @@
+{
+    "build": {
+      "commands": [
+        "yarn add sharp --ignore-engines"
+      ]
+    }
+  }
+  
