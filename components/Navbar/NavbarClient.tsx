@@ -23,7 +23,7 @@ import {RemoveLayout} from "../../app/remove-layout"
 const dummyDta=[
     // {icon:<IoBagCheckOutline/>,heading:"Become A Member",text:"Additional 10% off on stays"},
 // {icon:<HiOutlineBuildingOffice />,heading:"List Your Property",text:"Trusted by 5000 Corporates",href:"new-listing-form"},
-{icon:<IoCallOutline />,heading:"0124-6201611",text:"Call us to Book now",href:"/#"}]
+{icon:<IoCallOutline />,heading:"8989496989",text:"Call us to Book now",href:"/#"}]
 
 const NavbarClient = () => {
     const remove=RemoveLayout()
