@@ -1,4 +1,4 @@
 {
-    "installCommand": "yarn add sharp --ignore-engines"
-  }
+    "installCommand": "yarn add sharp --ignore-engines --os=linux --cpu=x64"
+}
   
