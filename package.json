@@ -33,7 +33,6 @@
     "react-query": "^3.39.3",
     "react-slick": "^0.29.0",
     "react-spring": "^9.7.3",
-    "sharp": "^0.33.2",
     "slick-carousel": "^1.8.1",
     "uuid": "^9.0.1"
   },
