@@ -153,10 +153,3 @@ export async function POST(req, res) {
  
 }
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '100mb',
-    },
-  },
-}
