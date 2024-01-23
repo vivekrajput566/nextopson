@@ -5,9 +5,20 @@ import building from "../../images/aprt01.jpg"
 import { IoStarOutline } from "react-icons/io5";
 import Link from 'next/link';
 import {constant} from "../../utils/constants"
+import { log } from 'console';
 
 const ProductCard = (singleProperty: any) => {
+  const url=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singleProperty?.singleProperty?.images[0]}`
+  console.log(url,"url");
+  
   console.log(singleProperty,"from card");
+  console.log(process.env.NEXT_PUBLIC_API_DOMAIN);
+  console.log(process.env.NEXT_PUBLIC_IMAGE_URL);
+  
+  
+  // console.log(process.env.AWS_SECRET_ACCESS_KEY+`/${singleProperty?.singleProperty?.images[0]}`,"img url");
+  
+
 
   return (
     <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
@@ -16,9 +27,13 @@ const ProductCard = (singleProperty: any) => {
         <div className='project-detail-body flex  flex-col  rounded-lg justify-center shadow-md p-1 text-black' >
           <div className='project-detail-photos-body  md:h-[250px] h-[200px]'>
             <Image 
-             src={singleProperty?.singleProperty&&
-              singleProperty?.singleProperty?.images?.length>0?
-              require(`${process.env.IMAGE_URL}/${singleProperty?.singleProperty?.images[0]}`):constant?.errImage}
+           src={
+            singleProperty?.singleProperty&&
+            singleProperty?.singleProperty?.images?.length>0?url:constant?.errImage
+          }
+            //  src={singleProperty?.singleProperty&&
+            //   singleProperty?.singleProperty?.images?.length>0?
+            //   ${process.env.NEXT_PUBLIC_IMAGE_URL}/${singleProperty?.singleProperty?.images[0]}`:constant?.errImage}
             // src={building} 
             width={1000} height={1000} 
            
