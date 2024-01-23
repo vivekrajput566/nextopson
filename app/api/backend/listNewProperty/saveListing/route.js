@@ -83,6 +83,7 @@ export async function POST(req, res) {
             Bucket: process.env.AWS_BUCKET,
             Key: `productPhotos/${fileName}.webp`, // Use .webp extension
             Body: webBuffer,
+            ACL: 'public-read',
             ContentType: 'image/webp', // Set correct MIME type
           }));
           console.log(response);
