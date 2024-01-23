@@ -92,7 +92,7 @@ console.log("data from details", data);
               <Image
                 src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`../../public/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}.webp`):constant?.errImage}
+                  require(`${process.env.IMAGE_URL}/${singlePropertyData?.ProductPhotos[0].fileName}`):constant?.errImage}
                
                 // src={dfd}
                 alt=""
@@ -347,7 +347,7 @@ console.log("data from details", data);
               return <div key={idx} className="">
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`../../public/productPhotos/${photos.fileName}.webp`):constant?.errImage} 
+                  require(`${process.env.IMAGE_URL}/productPhotos/${photos.fileName}`):constant?.errImage} 
                   alt=""
                   width={1000}
                   height={1000}
