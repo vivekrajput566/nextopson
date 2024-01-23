@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from "fs/promises";
 import { Propertylisting } from "@/app/database/models/propertyListing";
 import { Propertyphotos } from "@/app/database/models/propertyPhotos";
-import AWS from 'aws-sdk';
+
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "../../../authOptions";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
@@ -14,13 +14,14 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 export async function POST(req, res) {
 
+
   console.log("Fdsfsdf")
   
     
   if (req.method === "POST") {
 
 
-
+    
        
     const sessionData=await getServerSession(AuthOptions);
     if(!sessionData){
@@ -60,6 +61,8 @@ export async function POST(req, res) {
      if (allFile) {
       const uploads = await Promise.all(
         Object.entries(allFile).map(async ([key, file]) => {
+
+          try{
           const fileName = uuidv4();
     
           const propertyImageData = {
@@ -73,10 +76,7 @@ export async function POST(req, res) {
     
           const byteData = await file.arrayBuffer();
           const buffer = Buffer.from(byteData);
-          
-
-
-    
+   
           const response = await client_s3.send(new PutObjectCommand({
             Bucket: process.env.AWS_BUCKET,
             Key: `productPhotos/${fileName}.webp`, // Use .webp extension
@@ -84,6 +84,12 @@ export async function POST(req, res) {
             ContentType: 'image/webp', // Set correct MIME type
           }));
           console.log(response);
+
+          }
+          catch(error){
+            console.log(error);
+          }
+
         })
       );
     }
