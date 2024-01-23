@@ -62,7 +62,6 @@ export async function POST(req, res) {
       const uploads = await Promise.all(
         Object.entries(allFile).map(async ([key, file]) => {
 
-          try{
           const fileName = uuidv4();
     
           const propertyImageData = {
@@ -85,10 +84,7 @@ export async function POST(req, res) {
           }));
           console.log(response);
 
-          }
-          catch(error){
-            console.log(error);
-          }
+  
 
         })
       );
