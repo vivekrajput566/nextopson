@@ -60,7 +60,7 @@ export async function POST(req, res) {
      if (allFile) {
       const uploads = await Promise.all(
         Object.entries(allFile).map(async ([key, file]) => {
-          const fileName = uuidv4();
+          const fileName = uuidv4()+'.webp';
     
           const propertyImageData = {
             productId: productId,
