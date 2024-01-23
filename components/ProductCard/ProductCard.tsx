@@ -7,7 +7,7 @@ import Link from 'next/link';
 import {constant} from "../../utils/constants"
 
 const ProductCard = (singleProperty: any) => {
-  // console.log(singleProperty,"from card");
+  console.log(singleProperty,"from card");
 
   return (
     <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
@@ -18,7 +18,7 @@ const ProductCard = (singleProperty: any) => {
             <Image 
              src={singleProperty?.singleProperty&&
               singleProperty?.singleProperty?.images?.length>0?
-              require(`../../public/productPhotos/${singleProperty?.singleProperty?.images[0]}.webp`):constant?.errImage}
+              require(`${process.env.IMAGE_URL}/${singleProperty?.singleProperty?.images[0]}`):constant?.errImage}
             // src={building} 
             width={1000} height={1000} 
            

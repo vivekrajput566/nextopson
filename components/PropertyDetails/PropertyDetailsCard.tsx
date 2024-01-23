@@ -87,7 +87,7 @@ const PropertyDetailsCard = ({ singleCity }: any) => {
           height={1000}
           src={singleCity?.images &&
             singleCity?.images.length > 0 ?
-            require(`../../public/productPhotos/${singleCity?.images[0]}.webp`) : constant?.errImage}
+            require(`${process.env.IMAGE_URL}/productPhotos/${singleCity?.images[0]}`) : constant?.errImage}
           // src={building} 
           alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
       </div>
