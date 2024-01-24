@@ -1,6 +1,6 @@
 
 "use client";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { BiCheckbox, BiCheckboxChecked, BiLogoFacebook } from "react-icons/bi";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
@@ -15,6 +15,11 @@ import ContactDetailsModal from "../Modals/ContactDetailsModal";
 import dfd from "../../public/productPhotos/9c5101e2-a01c-44eb-ae15-b0457300dbc5.webp"
 import {constant} from "../../utils/constants"
 import { useRouter } from 'next/navigation';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { IoArrowBackSharp } from "react-icons/io5";
+import { IoArrowForward } from "react-icons/io5";
 
 // import fg from "../../public/productPhotos/"
 // 9cdf1405-64d8-4dc2-8a12-51fa41bfdef4
@@ -36,6 +41,63 @@ const ProductDescription = ({ singlePropertyData }: any) => {
  
   const [selectedImage, setSelectedImage] = useState();
   const [selectedVariant, setSelectedVariant] = useState(0);
+
+  const slider = useRef<any>(null);
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1242,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1515,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2.3,
+          slidesToScroll: 2,
+          initialSlide: 1,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1.4,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
+  };
 
   const handleLoginClick = () => {
     setShowLoginMenu(!isShowLoginMenu);
@@ -338,28 +400,81 @@ console.log("data from details", data);
           </div> */}
         </div>
         </div>
-        {
-          singlePropertyData?.ProductPhotos&&
+        <>
+{  singlePropertyData?.ProductPhotos&&
           singlePropertyData?.ProductPhotos.length>0&&
-          <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full">
-          {
+  <div className={`   `}>
+    <div className="  ">
+  <div className="flex justify-end items-center">
+  {/* <h2 className={` md:text-3xl sm:text-2xl text-xl font-bold`}>{title}</h2> */}
+    <div className="flex gap-2">
+      <button
+        className="bg-[#C9C0B7] w-8 text-white h-8 flex justify-center items-center"
+        onClick={() => {
+          if (slider) {
+            slider.current?.slickPrev();
+          }
+        }}
+      >
+        <IoArrowBackSharp />
+      </button>
+      <button
+        onClick={() => {
+          if (slider) {
+            slider.current?.slickNext();
+          }
+        }}
+        className="bg-[#4B2C10] w-8 text-white h-8 flex justify-center items-center"
+      >
+        <IoArrowForward />
+      </button>
+    </div>
+  </div>
+  <Slider {...settings} arrows={false} ref={slider} className={` mt-10 w-full`}>
+  {
             singlePropertyData?.ProductPhotos&&
             singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
   const url2=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${photos.fileName}`
 
-              return <div key={idx} className="">
+              return <div key={idx} className="md:h-[250px] h-[200px]  px-2">
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
                  url2:constant?.errImage} 
                   alt=""
                   width={1000}
                   height={1000}
-                  className="rounded-xl w-[100%] h-[100%] object-contain"/>
+                  className="rounded-xl w-[100%] h-[100%] object-contain "/>
+              </div>
+            })
+          }
+  </Slider>
+  </div>
+  </div>
+}
+</>
+
+        {/* {
+          singlePropertyData?.ProductPhotos&&
+          singlePropertyData?.ProductPhotos.length>0&&
+          <div className="md:grid-cols-4 sm:grid-cols-3 grid-cols-1 grid gap-y-4 gap-x-2 sm:gap-x-3 md:gap-x-4 w-full">
+          {
+            singlePropertyData?.ProductPhotos&&
+            singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
+  const url2=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${photos.fileName}`
+
+              return <div key={idx} className="md:h-[250px] h-[200px] border border-[red]">
+                <Image src={singlePropertyData?.ProductPhotos&&
+                  singlePropertyData?.ProductPhotos.length>0?
+                 url2:constant?.errImage} 
+                  alt=""
+                  width={1000}
+                  height={1000}
+                  className="rounded-xl w-[100%] h-[100%] object-contain border border-green-700"/>
               </div>
             })
           }
           </div>
-        }
+        } */}
             {/* <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full ">
             
               {Array(2)

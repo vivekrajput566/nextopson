@@ -27,7 +27,7 @@ const ProductCarousel:FC<Props> = ({title}) => {
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 4,
     initialSlide: 0,
     responsive: [
       {
@@ -43,7 +43,7 @@ const ProductCarousel:FC<Props> = ({title}) => {
         breakpoint: 1515,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 6,
+          slidesToScroll: 4,
           infinite: true,
           dots: false,
         },
@@ -52,7 +52,7 @@ const ProductCarousel:FC<Props> = ({title}) => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3.5,
-          slidesToScroll: 5,
+          slidesToScroll: 3,
           infinite: true,
           dots: false,
         },
