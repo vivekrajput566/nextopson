@@ -73,7 +73,7 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
                 <div className="flex flex-col gap-2 items-start mt-1">
                   <Link
                     onClick={(e) => {
-                      e.preventDefault();
+                      // e.preventDefault();
                       setIsSidebarOpen(false);
                       document.body.classList.remove("no-scroll");
                     }}

@@ -91,7 +91,7 @@ const PropertyDetailsCard = ({ singleCity }: any) => {
             singleCity?.images.length > 0 ?
            url2 : constant?.errImage}
           // src={building} 
-          alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
+          alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-contain  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
       </div>
       <div className='md:w-[60%] w-[100%] flex flex-col justify-between gap-4 '>
         <div className=' flex flex-col gap-4 '>

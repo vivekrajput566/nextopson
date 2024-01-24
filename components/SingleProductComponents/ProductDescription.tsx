@@ -354,7 +354,7 @@ console.log("data from details", data);
                   alt=""
                   width={1000}
                   height={1000}
-                  className="rounded-xl w-[100%] h-[100%] object-fill"/>
+                  className="rounded-xl w-[100%] h-[100%] object-contain"/>
               </div>
             })
           }

@@ -168,12 +168,12 @@ const SearchBar = () => {
               <div className="max-h-[300px]  overflow-y-scroll shadow-xl flex flex-col gap-2   absolute md:-left-7 -left-3 md:top-[42px] top-[100px]  rounded-sm z-10 bg-white  md:w-[100%] sm:w-[105%] w-[108%]">
                 {
                   searchResults.ProductDetails.length > 0 && searchResults.ProductDetails.map((item: any, idx: any) => {
-                    return <Link href={`/all-properties/${item.landmark}`}
+                    return <Link href={`/all-properties/${item.city}`}
                       //  onClick={()=>console.log("clicked")
                       //  }
                       key={idx}
                       className="text-sm bg-white w-full py-1.5   cursor-pointer border-t border-t-gray-200  px-6">
-                      {item.landmark}
+                      {item.city}
                     </Link>
                   })
                 }

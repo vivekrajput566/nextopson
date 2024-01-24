@@ -37,7 +37,7 @@ const ProductCard = (singleProperty: any) => {
             // src={building} 
             width={1000} height={1000} 
            
-             alt='delhi property' className='rounded-md w-[100%] h-[100%]'  />
+             alt='delhi property' className='rounded-md w-[100%] h-[100%] object-contain'  />
           </div>
           <div className='blabla flex flex-col gap-1   justify-start px-2 py-2 '>
             <div className='flex flex-col '>
