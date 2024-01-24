@@ -91,12 +91,12 @@ const PropertyDetailsCard = ({ singleCity }: any) => {
             singleCity?.images.length > 0 ?
            url2 : constant?.errImage}
           // src={building} 
-          alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
+          alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-contain  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
       </div>
       <div className='md:w-[60%] w-[100%] flex flex-col justify-between gap-4 '>
         <div className=' flex flex-col gap-4 '>
           <div>
-            <h3 className={`font-bold md:text-base text-sm`}>{singleCity?.landmark}</h3>
+            <h3 className={`font-bold md:text-base text-sm capitalize`} >{singleCity?.landmark}</h3>
             <p className={`text-[#616874] md:text-base text-sm `}>{singleCity?.address}</p>
           </div>
           <div className={`flex gap-10 items-center  `}>

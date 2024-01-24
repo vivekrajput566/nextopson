@@ -41,7 +41,7 @@ const ProductCard = (singleProperty: any) => {
               <div className='project-detail-name text-lg font-semibold  capitalize'>
                 {singleProperty?.singleProperty?.landmark}
               </div>
-              <div className='project-detail-content text-gray-500  font-medium text-sm text-light-black lowercase'>
+              <div className='project-detail-content text-gray-500  font-medium text-sm text-light-black lowercase '>
                 {singleProperty?.singleProperty?.address}
               </div>
               <div className='project-detail-content text-gray-800 font-medium text-sm   '>
