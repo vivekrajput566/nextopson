@@ -14,6 +14,8 @@ import { useRouter } from 'next/navigation';
 const PropertyDetailsCard = ({ singleCity }: any) => {
   console.log("PropertyDetailsCard", singleCity);
   const router = useRouter()
+  const url2=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singleCity?.images[0]}`
+
 
 
 
@@ -87,7 +89,7 @@ const PropertyDetailsCard = ({ singleCity }: any) => {
           height={1000}
           src={singleCity?.images &&
             singleCity?.images.length > 0 ?
-            require(`${process.env.IMAGE_URL}/productPhotos/${singleCity?.images[0]}`) : constant?.errImage}
+           url2 : constant?.errImage}
           // src={building} 
           alt='property-image' className='sm:h-[280px] h-[240px] w-[100%] object-fill  sm:rounded-xl rounded-tl-xl rounded-tr-xl ' />
       </div>

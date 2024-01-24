@@ -23,6 +23,7 @@ import { useRouter } from 'next/navigation';
 const ProductDescription = ({ singlePropertyData }: any) => {
   console.log("ProductDescription",ProductDescription);
   console.log(`../../`);
+  const url=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singlePropertyData?.ProductPhotos[0].fileName}`
   
   const router = useRouter()
   
@@ -92,7 +93,7 @@ console.log("data from details", data);
               <Image
                 src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`${process.env.IMAGE_URL}/${singlePropertyData?.ProductPhotos[0].fileName}`):constant?.errImage}
+                 url:constant?.errImage}
                
                 // src={dfd}
                 alt=""
@@ -344,10 +345,12 @@ console.log("data from details", data);
           {
             singlePropertyData?.ProductPhotos&&
             singlePropertyData?.ProductPhotos.slice(1).map((photos:any,idx:number)=>{
+  const url2=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${photos.fileName}`
+
               return <div key={idx} className="">
                 <Image src={singlePropertyData?.ProductPhotos&&
                   singlePropertyData?.ProductPhotos.length>0?
-                  require(`${process.env.IMAGE_URL}/productPhotos/${photos.fileName}`):constant?.errImage} 
+                 url2:constant?.errImage} 
                   alt=""
                   width={1000}
                   height={1000}

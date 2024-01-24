@@ -5,9 +5,20 @@ import building from "../../images/aprt01.jpg"
 import { IoStarOutline } from "react-icons/io5";
 import Link from 'next/link';
 import {constant} from "../../utils/constants"
+import { log } from 'console';
 
 const ProductCard = (singleProperty: any) => {
+  const url=`${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singleProperty?.singleProperty?.images[0]}`
+  console.log(url,"url");
+  
   console.log(singleProperty,"from card");
+  console.log(process.env.NEXT_PUBLIC_API_DOMAIN);
+  console.log(process.env.NEXT_PUBLIC_IMAGE_URL);
+  
+  
+  // console.log(process.env.AWS_SECRET_ACCESS_KEY+`/${singleProperty?.singleProperty?.images[0]}`,"img url");
+  
+
 
   return (
 
