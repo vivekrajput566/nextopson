@@ -52,7 +52,7 @@ function Sidebar() {
                 
 
             <Link href='/dashboard/home' >
-                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
+                <div className='home-body w-full flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                      <Image
@@ -74,7 +74,7 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/new-listing-form' >
-                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
+                <div className='home-body w-full flex items-center gap-4 justify-start table  whitespace-nowrap p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                     <Image
@@ -95,7 +95,7 @@ function Sidebar() {
                 </Link>
 
                 <Link href='/dashboard/your-listings' >
-                <div className='home-body flex items-center gap-4 justify-start  table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                <div className='home-body w-full flex items-center gap-4 justify-start  table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                     <Image
@@ -118,7 +118,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/payments' >
-                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                <div className='home-body flex w-full items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                     <Image
@@ -140,7 +140,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/notification' >
-                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                <div className='home-body w-full flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                     <Image
@@ -163,7 +163,7 @@ function Sidebar() {
 
 
                 <Link href='/dashboard/support' >                
-                <div className='home-body flex items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
+                <div className='home-body flex w-full items-center gap-4 justify-start table  whitespace-nowrap  p-4 hover:bg-white hover:text-black'>
                     <div className='home-icon align-middle  inline-block'>
                             
                     <Image

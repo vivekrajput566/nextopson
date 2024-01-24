@@ -32,7 +32,7 @@ const ProductCard = (singleProperty: any) => {
               singleProperty?.singleProperty?.images?.length>0?
               `${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singleProperty?.singleProperty?.images[0]}`:constant?.errImage}
             // src={building} 
-            width={100} height={100} 
+            width={500} height={500} 
            
              alt='delhi property' className='object-contain rounded-md w-[100%] h-[100%]'  />
           </div>
