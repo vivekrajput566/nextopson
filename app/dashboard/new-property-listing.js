@@ -118,6 +118,8 @@ const PropertyForm = () => {
   const handleFormDataCheckedBox=(e)=>{
 
     const key=e.target.name;
+   
+    
     console.log(e.target.checked);
     const value=e.target.value
     if(e.target.checked){
@@ -221,6 +223,52 @@ const PropertyForm = () => {
 
       return true;
     }
+    
+
+
+    const handleUpload = async (data) => {
+
+
+      if (!images) return;
+
+      const promises = [];
+      for (let i = 0; i < images.length; i++) {
+        
+        promises.push(
+          fetch(data.preSignedUrlArr[i], {
+            method: "PUT",
+            body: images[i],
+            
+            
+          })
+        );
+      }
+    
+      try {
+        await Promise.all(promises);
+        return true;
+        
+      } catch (error) {
+        setSubmitButtonStatus(false);
+        // Handle upload error
+        console.log(error)
+        return false;
+      } finally {
+
+        setSubmitButtonStatus(true);
+        return true;
+
+      }
+    };
+  
+
+
+
+
+
+
+
+
   const  handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -248,15 +296,18 @@ const PropertyForm = () => {
     }
     
     const formDataValues = new FormData();
+    const imageDataValues = new FormData();
 
     Object.entries(formData).forEach(([key, value]) => {
       formDataValues.append(key, value);
     })
 
+    formDataValues.append('allFiles',images.length);
+
       console.log(images)
 
       images.forEach((file, index) => {
-        formDataValues.append(`files[]`, file);
+        imageDataValues.append(`files[]`, file);
       });
 
       formDataValues.forEach((name)=>{
@@ -274,8 +325,8 @@ const PropertyForm = () => {
          body: formDataValues,
        })
          .then((response) => {
-            console.log(response)
-            
+            //console.log(response)
+
             
            if (!response.ok) {
             // setRegisterSpinnerStatus(false)
@@ -285,13 +336,16 @@ const PropertyForm = () => {
            }
            return response.json();
          })
-         .then((responseData) => {
+         .then(async (responseData) => {
            console.log(responseData.validUser);
+           //console.log(responseData.preSignedUrlArr)
            
            if(!responseData.validUser){
             setShowError("Something went wrong! Redirecting to the login page!")
             setErrorColor("red-500")
-            router.replace('/login'); 
+
+
+           // router.replace('/login'); 
             setSubmitButtonStatus(false);
 
             return; 
@@ -299,6 +353,12 @@ const PropertyForm = () => {
           }
            if(responseData.success==true){
 
+            console.log(responseData.preSignedUrlArr)
+          
+              const uploadResult=await handleUpload(responseData)
+            console.log(uploadResult);
+              if(uploadResult){
+                
               console.log(responseData)
               setShowError("Successfully Listed! Redirecting...")
               setErrorColor("green-400")
@@ -306,6 +366,18 @@ const PropertyForm = () => {
             
 
               return;
+              }
+              else{
+
+                setSubmitButtonStatus(false);
+                console.log("after uploading...")
+
+
+                setShowError("Something went wrong try again later!")
+             setErrorColor("red-500")
+             return;
+
+              }
        
            }
            if(responseData.success==false){
@@ -315,6 +387,7 @@ const PropertyForm = () => {
              //console.log("not valid data")
              //setRegisterError("Mobile no. already exist")
              //setRegisterSpinnerStatus(false)
+
              setShowError("Something went wrong try again later!")
              setErrorColor("red-500")
              setSubmitButtonStatus(false);
@@ -342,6 +415,7 @@ const PropertyForm = () => {
     
 
   };
+
 
   
 

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['tecdn.b-cdn.net',"upload.wikimedia.org","nextopson.s3.ap-southeast-2.amazonaws.com"],
+        domains: ['tecdn.b-cdn.net',"upload.wikimedia.org","nextopson-photos.s3.ap-southeast-2.amazonaws.com"],
       },
       
 }
