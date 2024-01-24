@@ -5,6 +5,7 @@ import { CiUser } from "react-icons/ci";
 import { IoCreateOutline } from "react-icons/io5";
 import Image from 'next/image';
 import { FiAlignLeft } from "react-icons/fi";
+import logo from "../../images/newLogo3.jpg"
 
 function Sidebar() {
     
@@ -18,9 +19,16 @@ function Sidebar() {
         <div className='sidebar-content flex-col  w-full '>
 
 
-            <div className="company-name-logo-body flex items-center gap-4 justify-start p-4 pt-0 text-2xl lg:text-4xl font-semibold whitespace-nowrap text-white">
+            <div className="company-name-logo-body flex items-center gap-4 justify-start p-4 text-2xl lg:text-4xl font-semibold whitespace-nowrap text-white">
 
-             NextOpson
+            <Image
+                        className="object-contain rounded-lg  "
+                        src={logo}
+                        alt=""
+                        width={200} 
+                        height={200} 
+                        
+                        />
 
             </div>
 
