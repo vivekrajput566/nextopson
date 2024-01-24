@@ -10,6 +10,7 @@ const ProductCard = (singleProperty: any) => {
   console.log(singleProperty,"from card");
 
   return (
+
     <Link href={`/product/${singleProperty?.singleProperty?.productId}`}>
       <div className='relative mb-5'>
         {/* <div className={`absolute top-3 right-3`}><IoStarOutline className={"text-xl text-white font-semibold"}/></div> */}
@@ -18,7 +19,7 @@ const ProductCard = (singleProperty: any) => {
             <Image 
              src={singleProperty?.singleProperty&&
               singleProperty?.singleProperty?.images?.length>0?
-              require(`${process.env.IMAGE_URL}/${singleProperty?.singleProperty?.images[0]}`):constant?.errImage}
+              `${process.env.NEXT_PUBLIC_IMAGE_URL}/productPhotos/${singleProperty?.singleProperty?.images[0]}`:constant?.errImage}
             // src={building} 
             width={1000} height={1000} 
            
