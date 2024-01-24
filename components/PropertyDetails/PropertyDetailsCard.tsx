@@ -96,7 +96,7 @@ const PropertyDetailsCard = ({ singleCity }: any) => {
       <div className='md:w-[60%] w-[100%] flex flex-col justify-between gap-4 '>
         <div className=' flex flex-col gap-4 '>
           <div>
-            <h3 className={`font-bold md:text-base text-sm`}>{singleCity?.landmark}</h3>
+            <h3 className={`font-bold md:text-base text-sm capitalize`} >{singleCity?.landmark}</h3>
             <p className={`text-[#616874] md:text-base text-sm `}>{singleCity?.address}</p>
           </div>
           <div className={`flex gap-10 items-center  `}>

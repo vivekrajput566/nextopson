@@ -132,7 +132,7 @@ console.log("data from details", data);
         <div className="flex flex-col  md:w-[50%] justify-between gap-5">
           <div className=" flex flex-col gap-4 sm:gap-6 md:gap-8">
         <div className="flex flex-col gap-2">
-        <h2 className="font-bold text-lg sm:text-xl md:text-2xl text-neutral-950 ">
+        <h2 className="font-bold text-lg sm:text-xl md:text-2xl text-neutral-950 capitalize">
           {singlePropertyData?.ProductDetails?.landmark}
           </h2>
           <p className="text-gray-500">{singlePropertyData?.ProductDetails?.address}</p>
@@ -166,14 +166,14 @@ console.log("data from details", data);
 
 
           {!(singlePropertyData?.ProductDetails?.description==="null")&&
-            <p className=" text-neutral-600  text-xs sm:text-sm md:text-base font-medium w-full md:w-[90%]">
+            <p className=" text-neutral-600  text-xs sm:text-sm md:text-base font-medium w-full md:w-[90%] capitalize">
           
             {singlePropertyData?.ProductDetails?.description}
           </p>}
           <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <p className="text-black sm:text-base text-sm font-semibold">City :</p>
-                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.city}</p>
+                <p className="text-black sm:text-base text-sm font-semibold capitalize">City :</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold capitalize"> {singlePropertyData?.ProductDetails?.city}</p>
                 </div>
                {!(singlePropertyData?.ProductDetails?.bedrooms==="null")&&
                 <div className="flex items-center gap-2">
@@ -188,19 +188,19 @@ console.log("data from details", data);
 }
                 <div className="flex items-center gap-2">
                 <p className="text-black sm:text-base text-sm font-semibold">Furnished :</p>
-                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.furniture}</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold capitalize"> {singlePropertyData?.ProductDetails?.furniture}</p>
                 </div>
                 <div className="flex items-center gap-2">
                 <p className="text-black sm:text-base text-sm font-semibold">Landmark :</p>
-                <p className=" text-gray-600 sm:text-base text-sm font-semibold"> {singlePropertyData?.ProductDetails?.landmark}</p>
+                <p className=" text-gray-600 sm:text-base text-sm font-semibold capitalize"> {singlePropertyData?.ProductDetails?.landmark}</p>
                 </div>
 
                 {/* <div className="flex flex-col gap-1 sm:gap-2 md:gap-3"> */}
           {!(singlePropertyData?.ProductDetails?.propertyType==="null")&&  <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-            Property Type : <span className="text-gray-600">{singlePropertyData?.ProductDetails?.propertyType}</span>
+            Property Type : <span className="text-gray-600 capitalize">{singlePropertyData?.ProductDetails?.propertyType}</span>
             </p>}
             <p className=" text-black text-xs sm:text-sm md:text-base font-medium w-[90%]">
-            Property For : <span className="text-gray-600">{singlePropertyData?.ProductDetails?.propertyFor}</span>
+            Property For : <span className="text-gray-600 capitalize">{singlePropertyData?.ProductDetails?.propertyFor}</span>
             </p>
           {/* </div> */}
 
